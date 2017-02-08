@@ -9,6 +9,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
+    "start:dist": "static dist -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -z",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
@@ -46,6 +47,7 @@
     "karma-chrome-launcher": "2.0.0",
     "karma-jasmine": "1.1.0",
     "karma-remap-istanbul": "0.5.0",
+    "node-static": "^0.7.9",
     "protractor": "5.1.0",
     "ts-node": "2.0.0",
     "tslint": "4.4.2",
