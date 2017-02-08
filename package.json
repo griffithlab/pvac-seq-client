@@ -10,6 +10,7 @@
   "scripts": {
     "start": "ng serve",
     "start:dist": "static dist -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -z",
+    "build": "ng build --prod --aot",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
@@ -17,6 +18,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^1.0.0-beta.30",
     "@angular/common": "2.4.6",
     "@angular/compiler": "2.4.6",
     "@angular/core": "2.4.6",
