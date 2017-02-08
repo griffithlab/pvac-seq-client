@@ -12,6 +12,8 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
+import { InputTextModule, ButtonModule, ConfirmDialogModule } from 'primeng/primeng';
+
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 
@@ -19,25 +21,28 @@ import { AppRoutingModule } from './app.routing';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    DropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    ChartsModule
-  ],
-  declarations: [
-    AppComponent,
-    FullLayoutComponent,
-    NAV_DROPDOWN_DIRECTIVES,
-    BreadcrumbsComponent,
-    SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective
-  ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        DropdownModule.forRoot(),
+        TabsModule.forRoot(),
+        ChartsModule,
+        InputTextModule,
+        ButtonModule,
+        ConfirmDialogModule
+    ],
+    declarations: [
+        AppComponent,
+        FullLayoutComponent,
+        NAV_DROPDOWN_DIRECTIVES,
+        BreadcrumbsComponent,
+        SIDEBAR_TOGGLE_DIRECTIVES,
+        AsideToggleDirective
+    ],
+    providers: [{
+        provide: LocationStrategy,
+        useClass: HashLocationStrategy
+    }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
