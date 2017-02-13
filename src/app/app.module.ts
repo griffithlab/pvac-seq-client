@@ -28,8 +28,7 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
         TabsModule.forRoot(),
         ChartsModule,
         InputTextModule,
-        ButtonModule,
-        ConfirmDialogModule
+        ButtonModule
     ],
     declarations: [
         AppComponent,

@@ -1,3 +1,9 @@
 <div class="animated fadeIn">
-    Hello World!!
+  <h1>Hello from PrimeNG!</h1>
+  <input type="text" pInputText placeholder="Enter your name"
+         (change)="onChangeEvent($event)" />
+  <button pButton type="text"
+          (click)="greetMe()" icon="fa-check" label="Greet me"></button>
+  <p> {{theUserSaid}}</p>
+  <p-confirmDialog width="400"></p-confirmDialog>
 </div>
