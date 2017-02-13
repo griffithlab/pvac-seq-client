@@ -5,28 +5,32 @@ import { Routes, RouterModule } from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
-    component: FullLayoutComponent,
-    data: {
-      title: 'Home'
+    {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
     },
-    children: [
-      {
-        path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
-      },
-    ]
-  }
+    {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Home'
+        },
+        children: [
+            {
+                path: 'dashboard',
+                loadChildren: './dashboard/dashboard.module#DashboardModule'
+            },
+            {
+                path: 'start',
+                loadChildren: './start/start.module#StartModule'
+            },
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
