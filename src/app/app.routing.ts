@@ -25,6 +25,14 @@ export const routes: Routes = [
                 path: 'start',
                 loadChildren: './start/start.module#StartModule'
             },
+            {
+                path: 'manage',
+                loadChildren: './manage/manage.module#ManageModule'
+            },
+            {
+                path: 'results',
+                loadChildren: './results/results.module#ResultsModule'
+            },
         ]
     }
 ];
