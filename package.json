@@ -8,7 +8,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --proxy-config angular-cli.proxy.conf.json",
     "start:dist": "static dist -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -z",
     "build": "ng build --prod --aot",
     "lint": "tslint \"src/**/*.ts\"",
