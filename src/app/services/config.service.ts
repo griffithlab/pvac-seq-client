@@ -7,13 +7,21 @@ export class ConfigService {
     protocol: 'http://',
     domain: 'localhost',
     port: '8080',
+    api: 'api',
     version: 'v1'
   };
 
   serverUrl() {
     return this.server.protocol +
       this.server.domain + ':' +
+      this.server.port;
+  }
+
+  apiUrl() {
+    return this.server.protocol +
+      this.server.domain + ':' +
       this.server.port + '/' +
-      this.server.version + '/';
+      this.server.api + '/' +
+      this.server.version;
   }
 }

@@ -6,7 +6,11 @@ import { SwaggerApiService } from './services/swagger-api.service';
   template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
+
+  private apiJson;
+
   constructor(api: SwaggerApiService) {
-    console.log('url: ' + api.getUrl());
+    api.getApi()
+      .subscribe(api => this.apiJson = api);
   }
 }
