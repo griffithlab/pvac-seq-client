@@ -6,7 +6,7 @@ export class ConfigService {
   server = {
     protocol: 'http://',
     domain: 'localhost',
-    port: '8080',
+    port: '4200',
     api: 'api',
     version: 'v1'
   };
