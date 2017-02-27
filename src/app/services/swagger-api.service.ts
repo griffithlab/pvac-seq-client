@@ -5,28 +5,36 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
+import { ConfigService } from './config.service';
+
 @Injectable()
 export class SwaggerApiService {
 
-    private url: string = 'api/dataservice/';
+  private url: string = 'api/dataservice/';
 
-    constructor(private http: Http) { }
+  constructor(private http: Http, private config: ConfigService) {
+    console.log('server Url:' + config.serverUrl());
+  }
 
-    // getCustomersSummary(): Observable<ICustomer[]> {
-    //     return this.http.get(this.url + 'customers')
-    //         .map((resp: Response) => resp.json())
-    //         .catch(this.handleError);
-    // }
+  getUrl() {
+    return this.url;
+  }
 
-    // updateCustomer(customer: ICustomer) {
-    //     return this.http.put(this.url + 'putCustomer/' + customer.id, customer)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.handleError);
-    // }
+  // getCustomersSummary(): Observable<ICustomer[]> {
+  //     return this.http.get(this.url + 'customers')
+  //         .map((resp: Response) => resp.json())
+  //         .catch(this.handleError);
+  // }
 
-    handleError(error: any) {
-        console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
+  // updateCustomer(customer: ICustomer) {
+  //     return this.http.put(this.url + 'putCustomer/' + customer.id, customer)
+  //         .map((response: Response) => response.json())
+  //         .catch(this.handleError);
+  // }
+
+  handleError(error: any) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
 
 }
