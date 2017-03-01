@@ -1,25 +1,31 @@
 import { Component, ViewEncapsulation, OnInit, Injectable } from '@angular/core';
-import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, Resolve, ActivatedRoute } from '@angular/router';
 
 import { ProcessService } from '../../services/process.service';
 
 @Component({
-    templateUrl: 'manage.component.html',
-    providers: []
+  templateUrl: 'manage.component.html',
+  providers: []
 })
 
 export class ManageComponent {
-    constructor() {
-        console.log('ManageComponent loaded.');
-    }
+  private processes;
+
+  constructor(private route: ActivatedRoute, processes: ProcessService) {
+    console.log('ManageComponent loaded.');
+    // this.processes = this.route.snapshot.data['processes'];
+    processes.query().subscribe((processes) => {
+      this.processes = processes;
+    });
+  }
 }
 
 @Injectable()
 export class ProcessResolve implements Resolve<any> {
 
-  constructor(private processes: ProcessService) {}
+  constructor(private processes: ProcessService) { }
 
-  resolve(route: ActivatedRouteSnapshot) {
+  resolve() {
     return this.processes.query();
   }
 }

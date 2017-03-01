@@ -11,6 +11,8 @@ export class AppComponent {
 
   constructor(api: SwaggerApiService) {
     api.getApi()
-      .subscribe(api => this.apiJson = api);
+      .subscribe((api) => {
+        this.apiJson = api;
+      });
   }
 }
