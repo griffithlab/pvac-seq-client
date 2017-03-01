@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import {
-    Routes,
-    RouterModule
+  Routes,
+  RouterModule
 } from '@angular/router';
 
-import { ManageComponent } from './manage.component';
+import { ManageComponent, ProcessResolve } from './manage.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: ManageComponent,
-        data: {
-            title: 'Manage'
-        }
+  {
+    path: '',
+    component: ManageComponent,
+    resolve: {
+      processes: ProcessResolve
+    },
+    data: {
+      title: 'Manage'
     }
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  providers: [ProcessResolve],
+  exports: [RouterModule]
 })
 
 export class ManageRoutingModule { }
