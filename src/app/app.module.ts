@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
@@ -31,7 +30,6 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
     AppRoutingModule,
     ServicesModule,
     DropdownModule.forRoot(),
