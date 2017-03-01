@@ -12,7 +12,7 @@ export class ProcessService {
 
   private api: string;
 
-  constructor(private http:Http, private config:ConfigService) {
+  constructor(private http: Http, private config: ConfigService) {
     console.log('API URL: ' + config.apiUrl());
     this.api = config.apiUrl();
   }
@@ -22,6 +22,10 @@ export class ProcessService {
     return this.http
       .get(this.api + '/processes')
       .map(this.extractData)
+      .do((data) => {
+        console.log('process service data:')
+        console.log(data);
+      })
       .catch(this.handleError);
   }
 
