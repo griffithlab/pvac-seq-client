@@ -1,5 +1,20 @@
 <div class="manage-component">
-  <h2>Manage</h2>
+  <div class="row">
+    <div class="col">
+      <h2>Manage</h2>
+    </div>
+    <div class="col-1" >
+      <a (click)="reload()">Reload</a>
+    </div>
+  </div>
+  <div class="row">
+    <p-dataTable [value]="currentProcesses">
+      <p-column field="id" header="ID"></p-column>
+      <p-column field="parameters.sample_name" header="Sample Name"></p-column>
+      <p-column field="running" header="Running"></p-column>
+      <p-column field="url" header="URL"></p-column>
+    </p-dataTable>
+  </div>
   <h4>Processes:</h4>
   <pre>{{processes|json}}</pre>
 </div>

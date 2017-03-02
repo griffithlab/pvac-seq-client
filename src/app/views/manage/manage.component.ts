@@ -8,15 +8,21 @@ import { ProcessService } from '../../services/process.service';
   providers: []
 })
 
-export class ManageComponent {
+export class ManageComponent implements OnInit {
+  private currentProcesses;
   private processes;
 
-  constructor(private route: ActivatedRoute, processes: ProcessService) {
+  constructor(private route: ActivatedRoute, processService: ProcessService) {
     console.log('ManageComponent loaded.');
-    // this.processes = this.route.snapshot.data['processes'];
-    processes.query().subscribe((processes) => {
-      this.processes = processes;
-    });
+    this.processes = processService;
+  }
+
+  ngOnInit() {
+    this.currentProcesses = this.route.snapshot.data['processes'];
+  }
+
+  reload() {
+    this.processes.query();
   }
 }
 
