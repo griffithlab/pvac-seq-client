@@ -11,11 +11,9 @@ import { ConfigService } from './config.service';
 
 @Injectable()
 export class ProcessService {
-
   private api: string;
 
   constructor(private http: Http, private config: ConfigService) {
-    console.log('API URL: ' + config.apiUrl());
     this.api = config.apiUrl();
   }
 
@@ -24,10 +22,10 @@ export class ProcessService {
     return this.http
       .get(this.api + '/processes')
       .map(mapProcesses)
-      .do((data) => {
-        console.log('process service data:')
-        console.log(data);
-      })
+      // .do((data) => {
+      //   console.log('process service data:')
+      //   console.log(data);
+      // })
       .catch(handleError);
   }
 }
@@ -38,7 +36,6 @@ function mapProcesses(res: Response) {
 
 function toProcess(p: any) {
   let process = p as Process;
-  console.log('Parsed process:', process);
   return process;
 }
 
