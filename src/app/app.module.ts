@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
+import { provideStore } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
-
-import { InputTextModule, ButtonModule, ConfirmDialogModule } from 'primeng/primeng';
 
 // Services
 import { ConfigService } from './services/config.service';
@@ -28,9 +26,7 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServicesModule,
-    InputTextModule,
-    ButtonModule
+    ServicesModule
   ],
   declarations: [
     AppComponent,
