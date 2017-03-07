@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { Process } from '../models/process';
+
 import { ConfigService } from './config.service';
 
 @Injectable()
@@ -34,10 +36,8 @@ function mapProcesses(res: Response) {
   return res.json().map(toProcess)
 }
 
-function toProcess(r: any) {
-  // TODO: create Process interface and cast responses to Processes instead of just returning the reponse.
-  // See: https://www.barbarianmeetscoding.com/blog/2016/04/02/getting-started-with-angular-2-step-by-step-6-consuming-real-data-with-http/
-  let process = r;
+function toProcess(p: any) {
+  let process = p as Process;
   console.log('Parsed process:', process);
   return process;
 }
