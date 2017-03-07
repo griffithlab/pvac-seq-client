@@ -1,5 +1,5 @@
-import { File } from './file';
-import { Parameters } from './parameters';
+import { File } from './file.model';
+import { Parameters } from './parameters.model';
 
 export interface Process {
   readonly attached: boolean;

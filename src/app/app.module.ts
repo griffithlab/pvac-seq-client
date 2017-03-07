@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { provideStore } from '@ngrx/store';
-import { AppComponent } from './app.component';
-import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 
-import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
-import { AsideToggleDirective } from './shared/aside.directive';
-import { BreadcrumbsComponent } from './shared/breadcrumb.component';
+// Store
+import { provideStore } from '@ngrx/store';
+import { processes, selectedProcess } from './store/reducers/process.reducer';
 
 // Services
 import { ConfigService } from './services/config.service';
@@ -21,6 +18,13 @@ import { ServicesModule } from './services/services.module';
 
 //Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
+
+// Components
+import { AppComponent } from './app.component';
+import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
+import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
+import { AsideToggleDirective } from './shared/aside.directive';
+import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
 @NgModule({
   imports: [
@@ -36,10 +40,13 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
+    provideStore(processes, selectedProcess)
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

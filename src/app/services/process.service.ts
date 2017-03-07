@@ -14,6 +14,7 @@ import { ConfigService } from './config.service';
 
 @Injectable()
 export class ProcessService {
+  public processes: Observable<Array<Process>>;
   private api: string;
 
   constructor(private http: Http,
