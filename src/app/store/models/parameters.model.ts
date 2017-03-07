@@ -2,14 +2,14 @@ export interface Parameters {
   // required
   readonly action: string;
   readonly sample_name: string;
-  readonly alleles: Array<string>;
-  readonly prediction_algorithms: Array<string>;
+  readonly alleles: string[];
+  readonly prediction_algorithms: string[];
 
   // optional
-  readonly additional_input_files?: Array<string>;
+  readonly additional_input_files?: string[];
   readonly binding_threshold?: number;
   readonly downstream_sequence_length?: number;
-  readonly epitope_lengths?: Array<number>;
+  readonly epitope_lengths?: number[];
   readonly expression_cutoff?: number;
   readonly fasta_size?: number;
   readonly iedb_retries?: number;

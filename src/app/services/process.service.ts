@@ -5,7 +5,10 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Process } from '../models/process';
+import { Store } from '@ngrx/store';
+
+import { AppState } from '../store/models/app.model';
+import { Process } from '../store/models/process.model';
 
 import { ConfigService } from './config.service';
 
@@ -13,7 +16,9 @@ import { ConfigService } from './config.service';
 export class ProcessService {
   private api: string;
 
-  constructor(private http: Http, private config: ConfigService) {
+  constructor(private http: Http,
+    private config: ConfigService,
+    private store: Store<AppState>) {
     this.api = config.apiUrl();
   }
 
