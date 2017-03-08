@@ -24,22 +24,21 @@ export class ProcessService {
     private store: Store<AppState>
   ) {
     this.api = config.apiUrl();
-    // this.items = store.select('processes');
-    this.items = store.select((appState) => {
-      console.log('items select called.');
-      return appState.processes;
-    });
+    this.items = store.select('processes');
+    // this.items = store.select((appState) => {
+    //   console.log('items select called.');
+    //   return appState.processes;
+    // });
     this.selected = store.select('selectedProcess')
+    this.store.dispatch({ type: 'ADD_ITEMS', payload: [] });
   }
 
   // fetch a list of all processes
   query() {
-    let initialItems: Array<Process> = INITIAL_PROCESSES;
-    this.store.dispatch({ type: 'ADD_ITEMS', payload: initialItems });
-    // this.http.get(`${this.api}/proceses`)
-    //   .map(mapProcesses)
-    //   .map(payload => ({ type: 'ADD_ITEMS', payload }))
-    //   .subscribe(action => this.store.dispatch(action));
+    this.http.get(`${this.api}/processes`)
+      .map(mapProcesses)
+      .map(payload => ({ type: 'ADD_ITEMS', payload }))
+      .subscribe(action => this.store.dispatch(action));
     // return this.http
     //   .get(this.api + '/processes')
     //   .map(mapProcesses)
