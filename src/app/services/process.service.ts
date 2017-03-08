@@ -21,7 +21,8 @@ export class ProcessService {
   constructor(
     private http: Http,
     private config: ConfigService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private actions: ProcessActions
   ) {
     this.api = config.apiUrl();
     this.items = store.select('processes');
@@ -33,10 +34,11 @@ export class ProcessService {
   query() {
     this.http.get(`${this.api}/processes`)
       .map(mapProcesses)
-      .map(payload => ({ type: ProcessActions.ADD_PROCESSES, payload }))
+      //.map(payload => ({ type: ProcessActions.ADD_PROCESSES, payload }))
       .subscribe(
       // success
-      action => this.store.dispatch(action),
+      processes => this.actions.addProcesses(processes),
+      //action => this.store.dispatch(action),
       // error
       error => handleError(error)
       );

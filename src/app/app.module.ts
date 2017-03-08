@@ -10,13 +10,12 @@ import { rootReducer } from './store/reducers/index.reducer';
 import { ConfigService } from './services/config.service';
 import { SwaggerApiService } from './services/swagger-api.service';
 
-// Routing Module
+// App Modules
 import { AppRoutingModule } from './app.routing';
-
-// Services Module
 import { ServicesModule } from './services/services.module';
+import { StoreModule } from './store/store.module';
 
-//Layouts
+// Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
 // Components
@@ -30,7 +29,8 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServicesModule
+    ServicesModule,
+    StoreModule
   ],
   declarations: [
     AppComponent,
