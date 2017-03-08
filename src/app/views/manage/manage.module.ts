@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DataTableModule } from 'primeng/primeng';
+import { DataTableModule, ButtonModule } from 'primeng/primeng';
 
 import { ManageComponent } from './manage.component';
 import { ManageRoutingModule } from './manage-routing.module';
@@ -10,7 +10,8 @@ import { ManageRoutingModule } from './manage-routing.module';
   imports: [
     ManageRoutingModule,
     CommonModule,
-    DataTableModule
+    DataTableModule,
+    ButtonModule
   ],
   declarations: [ManageComponent]
 })

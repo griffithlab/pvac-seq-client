@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Injectable, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Injectable, ChangeDetectionStrategy } from '@angular/core';
 import { Router, Resolve, ActivatedRoute } from '@angular/router';
 
 import { ProcessService } from '../../services/process.service';

@@ -3,8 +3,8 @@
     <div class="col">
       <h2>Manage</h2>
     </div>
-    <div class="col-1">
-      <a (click)="reload()">Reload</a>
+    <div class="col-2" style="text-align: right;">
+      <button pButton type="button" (click)="reload()" label="Reload"></button>
     </div>
   </div>
   <div class="row">
@@ -17,6 +17,6 @@
       </p-dataTable>
     </div>
   </div>
-  <h4>Processes:</h4>
-  <pre>{{currentProcesses | async | json}}</pre>
+  <!-- <h4>Processes:</h4> -->
+  <!-- <pre>{{currentProcesses | async | json}}</pre> -->
 </div>
