@@ -4,7 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // Store
 import { provideStore } from '@ngrx/store';
-import { processes, selectedProcess } from './store/reducers/process.reducer';
+import { rootReducer } from './store/reducers/index.reducer';
 
 // Services
 import { ConfigService } from './services/config.service';
@@ -45,7 +45,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    provideStore(processes, selectedProcess)
+    provideStore(rootReducer)
   ],
   bootstrap: [AppComponent]
 })

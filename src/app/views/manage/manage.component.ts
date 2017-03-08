@@ -1,37 +1,31 @@
-import { Component, ViewEncapsulation, OnInit, Injectable } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Injectable, ChangeDetectionStrategy } from '@angular/core';
 import { Router, Resolve, ActivatedRoute } from '@angular/router';
 
 import { ProcessService } from '../../services/process.service';
 
 @Component({
   templateUrl: 'manage.component.html',
-  providers: []
+  providers: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ManageComponent implements OnInit {
   private currentProcesses;
   private processes;
+  private selectedProcess;
 
   constructor(private route: ActivatedRoute, processService: ProcessService) {
     console.log('ManageComponent loaded.');
     this.processes = processService;
+    this.currentProcesses = this.processes.items;
+    this.processes.query();
   }
 
   ngOnInit() {
-    this.currentProcesses = this.route.snapshot.data['processes'];
+    this.selectedProcess = this.processes.selected;
   }
 
   reload() {
     this.processes.query();
-  }
-}
-
-@Injectable()
-export class ProcessResolve implements Resolve<any> {
-
-  constructor(private processes: ProcessService) { }
-
-  resolve() {
-    return this.processes.query();
   }
 }

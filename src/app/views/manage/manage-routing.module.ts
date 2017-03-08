@@ -4,15 +4,12 @@ import {
   RouterModule
 } from '@angular/router';
 
-import { ManageComponent, ProcessResolve } from './manage.component';
+import { ManageComponent } from './manage.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ManageComponent,
-    resolve: {
-      processes: ProcessResolve
-    },
     data: {
       title: 'Manage'
     }
@@ -21,7 +18,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  providers: [ProcessResolve],
+  providers: [],
   exports: [RouterModule]
 })
 
