@@ -7,9 +7,11 @@ import { ProcessService } from './process.service';
 
 @NgModule({
   imports: [HttpModule],
-  providers: [ConfigService,
+  providers: [
+    ConfigService,
     SwaggerApiService,
-    ProcessService]
+    ProcessService
+  ]
 })
 
 export class ServicesModule { }

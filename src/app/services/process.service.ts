@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/models/app.model';
 import { Process } from '../store/models/process.model';
+import { ProcessActions } from '../store/actions/process.actions';
 
 import { ConfigService } from './config.service';
 
@@ -23,7 +24,6 @@ export class ProcessService {
     private store: Store<AppState>
   ) {
     this.api = config.apiUrl();
-    // this.items = store.select('processes');
     this.items = store.select('processes');
     this.selected = store.select('selectedProcess')
     this.store.dispatch({ type: 'ADD_ITEMS', payload: [] });
@@ -33,7 +33,7 @@ export class ProcessService {
   query() {
     this.http.get(`${this.api}/processes`)
       .map(mapProcesses)
-      .map(payload => ({ type: 'ADD_ITEMS', payload }))
+      .map(payload => ({ type: ProcessActions.ADD_PROCESSES, payload }))
       .subscribe(
       // success
       action => this.store.dispatch(action),
