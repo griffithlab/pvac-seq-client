@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { SwaggerSchemaService } from './swagger-schema.service';
+import { SwaggerApiService } from './swagger-api.service';
 
-describe('SwaggerSchemaService', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [SwaggerSchemaService]
-        });
+describe('SwaggerApiService', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [SwaggerApiService]
     });
+  });
 
-    it('should ...', inject([SwaggerSchemaService], (service: SwaggerSchemaService) => {
-        expect(service).toBeTruthy();
-    }));
+  it('should ...', inject([SwaggerApiService], (service: SwaggerApiService) => {
+    expect(service).toBeTruthy();
+  }));
 });
