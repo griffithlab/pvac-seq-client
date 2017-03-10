@@ -62,7 +62,7 @@ export function rootReducer(state: any, action: any) {
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective
+    AsideToggleDirective,
   ],
   providers: [
     {

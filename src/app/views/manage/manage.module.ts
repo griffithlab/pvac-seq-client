@@ -6,13 +6,19 @@ import { DataTableModule, ButtonModule } from 'primeng/primeng';
 import { ManageComponent } from './manage.component';
 import { ManageRoutingModule } from './manage-routing.module';
 
+import { ProcessTableComponent } from './process-table.component';
+
 @NgModule({
   imports: [
     ManageRoutingModule,
     CommonModule,
     DataTableModule,
-    ButtonModule
+    ButtonModule,
+    ProcessTableComponent
   ],
-  declarations: [ManageComponent]
+  declarations: [
+    ManageComponent,
+    ProcessTableComponent,
+  ]
 })
 export class ManageModule { }
