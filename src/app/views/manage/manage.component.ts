@@ -10,19 +10,19 @@ import { ProcessService } from '../../services/process.service';
 })
 
 export class ManageComponent implements OnInit {
-  private currentProcesses;
   private processes;
-  private selectedProcess;
+  private currentProcesses$;
+  private selectedProcess$;
 
   constructor(private route: ActivatedRoute, processService: ProcessService) {
     console.log('ManageComponent loaded.');
     this.processes = processService;
-    this.currentProcesses = this.processes.items;
+    this.currentProcesses$ = this.processes.items;
     this.processes.query();
   }
 
   ngOnInit() {
-    this.selectedProcess = this.processes.selected;
+    this.selectedProcess$ = this.processes.selected;
   }
 
   reload() {
