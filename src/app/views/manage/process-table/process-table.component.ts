@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { Process } from '../../../store/models/process.model';
 
 @Component({
@@ -12,7 +12,14 @@ export class ProcessTableComponent implements OnInit {
   @Input() processes: Array<Process>;
   @Input() title: string;
 
+  @Output('reload')
+  processTableEmitter = new EventEmitter();
+
   constructor() { }
+
+  reload() {
+    this.processTableEmitter.emit('reload');
+  }
 
   ngOnInit() {
   }
