@@ -12,14 +12,10 @@ export class ProcessTableComponent implements OnInit {
   @Input() processes: Array<Process>;
   @Input() title: string;
 
-  @Output('reload')
-  processTableEmitter = new EventEmitter();
+  @Output()
+  onReload: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
-
-  reload() {
-    this.processTableEmitter.emit('reload');
-  }
 
   ngOnInit() {
   }
