@@ -1,20 +1,7 @@
 <div class="manage-component">
-  <div class="row">
-    <div class="col">
-      <h2>Manage</h2>
-    </div>
-    <div class="col-2" style="text-align: right;">
-      <button pButton type="button" (click)="reload()" label="Reload"></button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <p-dataTable [value]="currentProcesses | async">
-        <p-column field="id" header="ID"></p-column>
-        <p-column field="parameters.sample_name" header="Sample Name"></p-column>
-        <p-column field="running" header="Running"></p-column>
-        <p-column field="url" header="URL"></p-column>
-      </p-dataTable>
+  <div class="row" >
+    <div class="col" >
+      <pvs-process-table [title]="'Manage Processes'" [processes]="currentProcesses"></pvs-process-table>
     </div>
   </div>
   <!-- <h4>Processes:</h4> -->
