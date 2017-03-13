@@ -34,11 +34,9 @@ export class ProcessService {
   query() {
     this.http.get(`${this.api}/processes`)
       .map(mapProcesses)
-      //.map(payload => ({ type: ProcessActions.ADD_PROCESSES, payload }))
       .subscribe(
       // success
       processes => this.actions.addProcesses(processes),
-      //action => this.store.dispatch(action),
       // error
       error => handleError(error)
       );
