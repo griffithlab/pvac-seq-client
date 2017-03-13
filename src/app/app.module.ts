@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 
 // Store
 import { ActionReducer, combineReducers, provideStore } from '@ngrx/store';
+import { storeLogger } from "ngrx-store-logger";
 import { compose } from '@ngrx/core/compose';
 import { AppState } from './store/models/app.model';
 import * as fromProcesses from './store/reducers/process.reducer';
@@ -38,7 +39,11 @@ const reducers = {
 // dev and prod currently provide the same function, dev adds the compose step
 // to more easily compose dev features like 'storeFreeze' that we might need in the future
 // see: https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts#L66-L84
-const developmentReducer: ActionReducer<AppState> = compose(combineReducers)(reducers);
+const developmentReducer: ActionReducer<AppState> = compose(
+  storeLogger(),
+  combineReducers
+)(reducers);
+
 const productionReducer: ActionReducer<AppState> = combineReducers(reducers);
 
 export function rootReducer(state: any, action: any) {

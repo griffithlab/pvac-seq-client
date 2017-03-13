@@ -27,7 +27,7 @@ export class ProcessService {
     this.api = config.apiUrl();
     this.items = store.select('processes');
     this.selected = store.select('selectedProcess')
-    this.store.dispatch({ type: 'ADD_ITEMS', payload: [] });
+    // this.store.dispatch({ type: 'ADD_PROCESSES', payload: [] });
   }
 
   // fetch a list of all processes
