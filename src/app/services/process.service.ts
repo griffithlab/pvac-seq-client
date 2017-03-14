@@ -32,14 +32,15 @@ export class ProcessService {
 
   // fetch a list of all processes
   query() {
-    this.http.get(`${this.api}/processes`)
-      .map(mapProcesses)
-      .subscribe(
-      // success
-      processes => this.actions.addProcesses(processes),
-      // error
-      error => handleError(error)
-      );
+    return this.http.get(`${this.api}/processes`)
+      .map(mapProcesses);
+    // .catch(handleError);
+    // .subscribe(
+    // // success
+    // processes => this.actions.addProcesses(processes),
+    // // error
+    // error => handleError(error)
+    // );
   }
 }
 

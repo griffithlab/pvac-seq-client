@@ -19,11 +19,15 @@ export class ManageComponent implements OnInit {
   constructor(private route: ActivatedRoute, processService: ProcessService) {
     this.processes = processService;
     this.currentProcesses$ = this.processes.items;
-    this.processes.query();
+    // this.processes.query();
   }
 
   ngOnInit() {
-    this.selectedProcess$ = this.processes.selected;
+    this.processes.query()
+      .subscribe(
+      state => console.log('manage component received state: ', state)
+      );
+    // this.selectedProcess$ = this.processes.selected;
   }
 
   reload() {

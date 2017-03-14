@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 
 // Store
 import { ActionReducer, combineReducers, provideStore } from '@ngrx/store';
+import { storeFreeze } from "ngrx-store-freeze";
 import { storeLogger } from "ngrx-store-logger";
 import { compose } from '@ngrx/core/compose';
 import { AppState } from './store/models/app.model';
@@ -41,6 +42,7 @@ const reducers = {
 // see: https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts#L66-L84
 const developmentReducer: ActionReducer<AppState> = compose(
   storeLogger(),
+  storeFreeze,
   combineReducers
 )(reducers);
 
