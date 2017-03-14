@@ -10,6 +10,7 @@ import { storeLogger } from "ngrx-store-logger";
 import { compose } from '@ngrx/core/compose';
 import { AppState, INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import * as fromProcesses from './store/reducers/process.reducer';
+import * as fromUi from './store/reducers/ui.reducer';
 
 // Services
 import { ConfigService } from './services/config.service';
@@ -34,12 +35,9 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 // see: https://github.com/ngrx/store/issues/345
 const reducers = {
   processes: fromProcesses.processes,
-  selectedProcess: fromProcesses.selectedProcess
+  ui: fromUi.ui
 }
 
-// dev and prod currently provide the same function, dev adds the compose step
-// to more easily compose dev features like 'storeFreeze' that we might need in the future
-// see: https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts#L66-L84
 const developmentReducer: ActionReducer<AppState> = compose(
   storeLogger(),
   storeFreeze,

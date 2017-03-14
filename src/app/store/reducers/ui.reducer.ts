@@ -1,4 +1,4 @@
-export const processes = (state: any = {}, { type, payload }) => {
+export const ui = (state: any = {}, { type, payload }) => {
   switch (type) {
     // case ProcessActions.ADD_PROCESSES:
     //   return payload;

@@ -16,7 +16,12 @@ import { LoadProcessesAction } from '../../store/actions/process.actions';
 
 export class ManageComponent implements OnInit {
 
-  constructor(private store: Store<AppState>, private processService: ProcessService) { }
+  constructor(private store: Store<AppState>, private processService: ProcessService) {
+    store.subscribe(
+      state => console.log('manage component received state: ', state)
+    );
+
+  }
 
   ngOnInit() {
     this.processService.query()

@@ -14,33 +14,20 @@ import { ConfigService } from './config.service';
 
 @Injectable()
 export class ProcessService {
-  public items: Observable<Array<Process>>;
-  public selected: Observable<Process>;
   private api: string;
 
   constructor(
     private http: Http,
     private config: ConfigService,
     private store: Store<AppState>,
-    // private actions: ProcessActions
   ) {
     this.api = config.apiUrl();
-    this.items = store.select('processes');
-    this.selected = store.select('selectedProcess')
-    // this.store.dispatch({ type: 'ADD_PROCESSES', payload: [] });
   }
 
   // fetch a list of all processes
   query() {
     return this.http.get(`${this.api}/processes`)
       .map(mapProcesses);
-    // .catch(handleError);
-    // .subscribe(
-    // // success
-    // processes => this.actions.addProcesses(processes),
-    // // error
-    // error => handleError(error)
-    // );
   }
 }
 
