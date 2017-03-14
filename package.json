@@ -1,11 +1,11 @@
 {
-  "name": "CoreUI",
-  "version": "1.0.0-alpha.3",
-  "description": "Open Source Bootstrap Admin Template",
+  "name": "pvac-seq-client",
+  "version": "0.0.0",
+  "description": "A cancer immunotherapy pipeline client for launching, managing, and reviewing the results of pVAC-Seq pipeline processes",
   "author": "",
-  "url": "http://coreui.io",
-  "copyright": "Copyright 2017 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
+  "url": "https://github.com/griffithlab/pVAC-Seq",
+  "copyright": "Copyright 2017 The McDonnell Genome Institute at Washington University School of Medicine",
+  "license": "NPOSL-3.0",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
@@ -39,7 +39,6 @@
     "lodash": "^4.17.4",
     "moment": "2.17.1",
     "ng2-charts": "^1.5.0",
-    "ngrx-store-logger": "^0.1.7",
     "primeng": "^2.0.0",
     "rxjs": "5.1.0",
     "simple-line-icons": "^2.4.1",
@@ -48,7 +47,7 @@
     "zone.js": "0.7.6"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0-rc.0",
+    "@angular/cli": "^1.0.0-rc.1",
     "@types/jasmine": "2.5.41",
     "@types/node": "~6.0.60",
     "codelyzer": "2.0.0-beta.4",
@@ -58,6 +57,8 @@
     "karma-coverage-istanbul-reporter": "^0.3.0",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ngrx-store-freeze": "^0.1.9",
+    "ngrx-store-logger": "^0.1.7",
     "node-static": "^0.7.9",
     "protractor": "5.1.0",
     "ts-node": "2.0.0",
