@@ -1,28 +1,34 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Action } from '@ngrx/store';
+import { Process } from '../models/process.model';
 
-import { createAction } from '../createAction';
-import { AppState } from '../models/app.model';
+export const LOAD_PROCESSES_ACTION = 'LOAD_PROCESSES_ACTION';
 
-@Injectable()
-export class ProcessActions {
+export class LoadProcessesAction implements Action {
+  readonly type = LOAD_PROCESSES_ACTION;
 
-  static ADD_PROCESSES = 'ADD_PROCESSES';
-
-  constructor(private store: Store<AppState>) {
+  constructor(public payload: Array<Process>) {
 
   }
-
-  public addProcesses(processes) {
-    this.store.dispatch(createAction(ProcessActions.ADD_PROCESSES, processes));
-  }
-
-  // decrement() {
-  //   this.store.dispatch(createAction(CounterActions.DECREMENT));
-  // }
-
-  // reset() {
-  //   this.store.dispatch(createAction(CounterActions.RESET));
-  // }
-
 }
+
+// export class ProcessActions {
+
+//   static ADD_PROCESSES = 'ADD_PROCESSES';
+
+//   constructor(private store: Store<AppState>) {
+
+//   }
+
+//   public addProcesses(processes) {
+//     this.store.dispatch(createAction(ProcessActions.ADD_PROCESSES, processes));
+//   }
+
+//   // decrement() {
+//   //   this.store.dispatch(createAction(CounterActions.DECREMENT));
+//   // }
+
+//   // reset() {
+//   //   this.store.dispatch(createAction(CounterActions.RESET));
+//   // }
+
+// }

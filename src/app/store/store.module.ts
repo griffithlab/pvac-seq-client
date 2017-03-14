@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { ProcessActions } from './actions/process.actions';
+// import { ProcessActions } from './actions/process.actions';
 
 @NgModule({
   providers: [
-    ProcessActions
+    // ProcessActions
   ]
 })
 

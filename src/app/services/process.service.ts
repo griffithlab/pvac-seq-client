@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/models/app.model';
 import { Process } from '../store/models/process.model';
-import { ProcessActions } from '../store/actions/process.actions';
+// import { ProcessActions } from '../store/actions/process.actions';
 
 import { ConfigService } from './config.service';
 
@@ -22,7 +22,7 @@ export class ProcessService {
     private http: Http,
     private config: ConfigService,
     private store: Store<AppState>,
-    private actions: ProcessActions
+    // private actions: ProcessActions
   ) {
     this.api = config.apiUrl();
     this.items = store.select('processes');

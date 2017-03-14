@@ -8,7 +8,7 @@ import { ActionReducer, combineReducers, provideStore } from '@ngrx/store';
 import { storeFreeze } from "ngrx-store-freeze";
 import { storeLogger } from "ngrx-store-logger";
 import { compose } from '@ngrx/core/compose';
-import { AppState } from './store/models/app.model';
+import { AppState, INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import * as fromProcesses from './store/reducers/process.reducer';
 
 // Services
@@ -76,7 +76,7 @@ export function rootReducer(state: any, action: any) {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    provideStore(rootReducer)
+    provideStore(rootReducer, INITIAL_APPLICATION_STATE)
   ],
   bootstrap: [AppComponent]
 })

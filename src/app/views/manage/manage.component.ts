@@ -1,9 +1,12 @@
 import { Component, OnInit, Injectable, ChangeDetectionStrategy } from '@angular/core';
 import { Router, Resolve, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
 
+import { Store } from '@ngrx/store';
 import { ProcessService } from '../../services/process.service';
+
+import { AppState } from '../../store/models/app.model';
 import { Process } from '../../store/models/process.model';
+import { LoadProcessesAction } from '../../store/actions/process.actions';
 
 @Component({
   templateUrl: 'manage.component.html',
@@ -12,25 +15,17 @@ import { Process } from '../../store/models/process.model';
 })
 
 export class ManageComponent implements OnInit {
-  private processes;
-  private currentProcesses$: Observable<Array<Process>>;
-  private selectedProcess$: Observable<Process>;
 
-  constructor(private route: ActivatedRoute, processService: ProcessService) {
-    this.processes = processService;
-    this.currentProcesses$ = this.processes.items;
-    // this.processes.query();
-  }
+  constructor(private store: Store<AppState>, private processService: ProcessService) { }
 
   ngOnInit() {
-    this.processes.query()
+    this.processService.query()
       .subscribe(
-      state => console.log('manage component received state: ', state)
+      processes => this.store.dispatch(new LoadProcessesAction(processes))
       );
-    // this.selectedProcess$ = this.processes.selected;
   }
 
-  reload() {
-    this.processes.query();
-  }
+  // reload() {
+  //   this.processes.query();
+  // }
 }
