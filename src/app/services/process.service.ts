@@ -5,8 +5,6 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Store } from '@ngrx/store';
-import { AppState } from '../store/models/app.model';
 import { Process } from '../store/models/process.model';
 
 import { ConfigService } from './config.service';
@@ -18,7 +16,6 @@ export class ProcessService {
   constructor(
     private http: Http,
     private config: ConfigService,
-    private store: Store<AppState>,
   ) {
     this.api = config.apiUrl();
   }
@@ -26,7 +23,6 @@ export class ProcessService {
   // fetch a list of all processes
   query() {
     return this.http.get(`${this.api}/processes`)
-      // .map(res => res.json());
       .map(mapProcesses);
   }
 }
