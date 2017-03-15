@@ -12,12 +12,12 @@ import * as fromUi from './ui.reducer';
 
 const root = {
   ui: fromUi.ui,
-  processes: fromProcesses.processes
+  processes: fromProcesses.processReducer
 }
 
 const developmentReducer: ActionReducer<AppState> = compose(
-  storeLogger(),
-  storeFreeze,
+  storeLogger(), // logs all state changes to console
+  storeFreeze, // throws error if app state mutates
   combineReducers
 )(root);
 

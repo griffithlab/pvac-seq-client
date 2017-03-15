@@ -1,12 +1,18 @@
 import { Action } from '@ngrx/store';
-import { Process } from '../models/process.model';
+import { AppState } from '../models/app.model';
 
-export const LOAD_PROCESSES_ACTION = 'LOAD_PROCESSES_ACTION';
+// TODO: keep an eye on the bug reports below and refactor to separate literals instead of map when fixed
+// Due to TS 2.1+ bug with string literals, actions implemented as map instead of separate
+// definitions. see: http://stackoverflow.com/questions/42035867/type-is-not-assignable-to-type-which-implements-it
+// and https://github.com/Microsoft/TypeScript/issues/13580
+export const PROCESS_ACTIONS = {
+  LOAD_PROCESSES_ACTION: 'LOAD_PROCESSES_ACTION'
+}
 
 export class LoadProcessesAction implements Action {
-  readonly type = LOAD_PROCESSES_ACTION;
+  readonly type = PROCESS_ACTIONS.LOAD_PROCESSES_ACTION;
 
-  constructor(public payload: Array<Process>) {
+  constructor(public payload?: AppState) {
 
   }
 }

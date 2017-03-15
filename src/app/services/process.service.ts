@@ -8,7 +8,6 @@ import 'rxjs/add/operator/catch';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/models/app.model';
 import { Process } from '../store/models/process.model';
-// import { ProcessActions } from '../store/actions/process.actions';
 
 import { ConfigService } from './config.service';
 
