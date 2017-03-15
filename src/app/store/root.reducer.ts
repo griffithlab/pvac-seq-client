@@ -1,4 +1,4 @@
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 import { ActionReducer, combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
@@ -6,13 +6,13 @@ import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from "ngrx-store-freeze";
 import { storeLogger } from "ngrx-store-logger";
 
-import { AppState } from '../models/app.model';
-import * as fromProcesses from './process.reducer';
-import * as fromUi from './ui.reducer';
+import { AppState } from './models/app.model';
+import * as fromStore from './reducers/store.reducer';
+import * as fromUi from './reducers/ui.reducer';
 
 const root = {
-  ui: fromUi.ui,
-  processes: fromProcesses.processReducer
+  ui: fromUi.uiReducer,
+  processes: fromStore.storeReducer
 }
 
 const developmentReducer: ActionReducer<AppState> = compose(

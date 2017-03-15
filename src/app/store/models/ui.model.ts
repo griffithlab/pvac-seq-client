@@ -1,9 +1,7 @@
-import { Process } from './process.model';
-
-export interface UserInterface {
+export interface UserInterfaceState {
   selectedProcessId: number;
 }
 
-export const INITIAL_UI_STATE: UserInterface = {
+export const INITIAL_UI_STATE: UserInterfaceState = {
   selectedProcessId: undefined
 }
