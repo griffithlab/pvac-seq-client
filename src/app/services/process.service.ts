@@ -26,15 +26,16 @@ export class ProcessService {
   // fetch a list of all processes
   query() {
     return this.http.get(`${this.api}/processes`)
+      // .map(res => res.json());
       .map(mapProcesses);
   }
 }
 
-function mapProcesses(res: Response) {
+function mapProcesses(res: Response): Array<Process> {
   return res.json().map(toProcess)
 }
 
-function toProcess(p: any) {
+function toProcess(p: any): Process {
   let process = p as Process;
   return process;
 }
