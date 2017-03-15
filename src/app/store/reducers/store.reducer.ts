@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { keyBy } from 'lodash';
+import * as _ from 'lodash';
 
 import { StoreState, INITIAL_STORE_STATE } from '../models/store.model';
 import { LoadProcessesAction, LOAD_PROCESSES_ACTION } from '../actions/store.actions';
@@ -18,7 +18,7 @@ function handleLoadProcessesAction(state: StoreState, action: LoadProcessesActio
   const processes = action.payload;
   const newState = Object.assign({}, state);
 
-  newState.processes = keyBy(processes, 'id')
+  newState.processes = _.keyBy(processes, 'id')
 
   return newState;
 }

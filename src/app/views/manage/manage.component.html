@@ -3,8 +3,8 @@
     <div class="col" >
       <pvs-process-table
           [title]="'Manage Processes'"
-          [processes]="currentProcesses$"
-          (onReload)="reload()">
+          [processes]="processes"
+          (onReload)="loadProcesses()">
       </pvs-process-table>
     </div>
   </div>

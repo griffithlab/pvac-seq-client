@@ -12,7 +12,7 @@ import * as fromUi from './reducers/ui.reducer';
 
 const root = {
   ui: fromUi.uiReducer,
-  processes: fromStore.storeReducer
+  store: fromStore.storeReducer
 }
 
 const developmentReducer: ActionReducer<AppState> = compose(

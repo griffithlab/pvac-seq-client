@@ -9,12 +9,17 @@
   </div>
   <div class="row">
     <div class="col">
-      <p-dataTable [value]="processes | async">
+      <p-dataTable [value]="processes">
         <p-column field="id" header="ID"></p-column>
         <p-column field="parameters.sample_name" header="Sample Name"></p-column>
         <p-column field="running" header="Running"></p-column>
         <p-column field="url" header="URL"></p-column>
       </p-dataTable>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col" >
+      <pre >{{processes|json}}</pre>
     </div>
   </div>
 </div>
