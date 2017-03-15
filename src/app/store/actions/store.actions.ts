@@ -10,8 +10,10 @@ export const STORE_ACTIONS = {
   LOAD_PROCESSES_ACTION: 'LOAD_PROCESSES_ACTION'
 }
 
+export const LOAD_PROCESSES_ACTION: string = 'LOAD_PROCESSES_ACTION';
+
 export class LoadProcessesAction implements Action {
-  readonly type = STORE_ACTIONS.LOAD_PROCESSES_ACTION;
+  readonly type = LOAD_PROCESSES_ACTION;
 
   constructor(public payload?: Array<Process>) {
 
