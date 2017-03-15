@@ -13,7 +13,6 @@ import { SwaggerApiService } from './services/swagger-api.service';
 // App Modules
 import { AppRoutingModule } from './app.routing';
 import { ServicesModule } from './services/services.module';
-import { StoreModule } from './store/store.module';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -30,7 +29,6 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
     BrowserModule,
     AppRoutingModule,
     ServicesModule,
-    StoreModule
   ],
   declarations: [
     AppComponent,
