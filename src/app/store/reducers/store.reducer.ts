@@ -18,7 +18,7 @@ function handleLoadProcessesAction(state: StoreState, action: LoadProcessesActio
   const processes = action.payload;
   const newState = Object.assign({}, state);
 
-  newState.processes = _.keyBy(processes, 'id')
+  newState.processes = _.keyBy(processes, 'id');
 
   return newState;
 }

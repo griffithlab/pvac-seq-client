@@ -49,3 +49,7 @@ export interface Parameters {
   readonly tumor_rna_coverage_cutoff?: number;
   readonly tumor_rna_vaf_cutoff?: number;
 }
+
+export interface ProcessMap {
+  [key: number]: Process;
+}

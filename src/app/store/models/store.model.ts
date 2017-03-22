@@ -1,7 +1,7 @@
-import { Process } from './process.model';
+import { ProcessMap } from './process.model';
 
 export interface StoreState {
-  processes: { [key: number]: Process };
+  processes: ProcessMap;
 }
 
 export const INITIAL_STORE_STATE: StoreState = {
