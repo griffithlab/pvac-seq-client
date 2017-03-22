@@ -4,11 +4,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // Store
 import { provideStore } from '@ngrx/store';
-import { AppState, INITIAL_APPLICATION_STATE } from './store/models/app.model';
+import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
-
-import { ConfigService } from './services/config.service';
-import { SwaggerApiService } from './services/swagger-api.service';
 
 // App Modules
 import { AppRoutingModule } from './app.routing';

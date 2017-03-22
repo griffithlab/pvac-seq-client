@@ -21,19 +21,19 @@ export class ProcessService {
   }
 
   // fetch a list of all processes
-  query() {
+
+  query(): Observable<Process[]> {
     return this.http.get(`${this.api}/processes`)
       .map(mapProcesses);
   }
 }
 
 function mapProcesses(res: Response): Array<Process> {
-  return res.json().map(toProcess)
+  return res.json().map(toProcess);
 }
 
 function toProcess(p: any): Process {
-  let process = p as Process;
-  return process;
+  return p as Process;
 }
 
 function handleError(error: any) {
