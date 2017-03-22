@@ -1,6 +1,8 @@
 import { Component, OnInit, Injectable, ChangeDetectionStrategy } from '@angular/core';
 import { Router, Resolve, ActivatedRoute } from '@angular/router';
 
+import { Observable } from 'rxjs/Rx';
+
 import { Store } from '@ngrx/store';
 import { ProcessService } from '../../services/process.service';
 
@@ -16,21 +18,28 @@ import { LoadProcessesAction } from '../../store/actions/store.actions';
 })
 
 export class ManageComponent implements OnInit {
-  processes = [];
+  processes$: Observable<Process[]>;
+
   constructor(private store: Store<AppState>, private processService: ProcessService) {
-    store.subscribe(
-      (state) => {
-        this.processes = _.valuesIn(state.store.processes);
-      }
-    );
+    this.processes$ = store
+      .map(this.mapStateToProcesses);
   }
 
-  ngOnInit() {
-    this.loadProcesses();
+  mapStateToProcesses(state: AppState): Process[] {
+    return _.chain(state.store.processes)
+      .valuesIn()
+      .map(p => p as Process)
+      .value();
   }
 
   loadProcesses() {
     this.processService.query()
       .subscribe(processes => this.store.dispatch(new LoadProcessesAction(processes)));
   }
+
+  ngOnInit() {
+    this.loadProcesses();
+  }
+
+
 }

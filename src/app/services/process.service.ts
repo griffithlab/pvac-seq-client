@@ -28,7 +28,7 @@ export class ProcessService {
   }
 }
 
-function mapProcesses(res: Response): Array<Process> {
+function mapProcesses(res: Response): Process[] {
   return res.json().map(toProcess);
 }
 
