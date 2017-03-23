@@ -3,10 +3,9 @@
     <div class="col" >
       <pvs-process-table
           [title]="'Manage Processes'"
-          [processes]="processes$ | async"
+          [processes]="processSummaries$ | async"
           (onReload)="loadProcesses()">
       </pvs-process-table>
     </div>
   </div>
-  <pre> Running Processes: {{ runningProcesses$ | async }}</pre>
 </div>

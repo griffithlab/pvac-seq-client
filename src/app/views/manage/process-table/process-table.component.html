@@ -11,16 +11,19 @@
     <div class="col">
       <p-dataTable [value]="processes">
         <p-column field="id" header="ID"></p-column>
-        <p-column field="parameters.sample_name" header="Sample Name"></p-column>
         <p-column field="running" header="Running"></p-column>
-        <p-column field="url" header="URL"></p-column>
+        <p-column field="sample_name" header="Sample Name"></p-column>
+        <p-column field="input_filename" header="Input"></p-column>
+        <p-column field="alleles" header="Alleles"></p-column>
+        <p-column field="prediction_algorithms" header="Prediction Algorithms"></p-column>
+        <p-column field="epitope_lengths" header="Epitope Lengths"></p-column>
       </p-dataTable>
     </div>
   </div>
-  <!-- <div class="row" style="margin-top: 3em;"> -->
-  <!-- <div class="col" > -->
-  <!-- <h4>/api/v1/processes</h4> -->
-  <!-- <pre style="color: #666;">{{processes|json}}</pre> -->
-  <!-- </div> -->
-  <!-- </div> -->
+  <div class="row" style="margin-top: 3em;">
+    <div class="col" >
+      <h4>/api/v1/processes</h4>
+      <pre style="color: #666;">{{processes|json}}</pre>
+    </div>
+  </div>
 </div>

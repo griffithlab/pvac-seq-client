@@ -50,6 +50,16 @@ export interface Parameters {
   readonly tumor_rna_vaf_cutoff?: number;
 }
 
+export interface ProcessSummaryVM {
+  readonly id: number;
+  readonly sample_name: string;
+  readonly input_filename: string;
+  readonly running: boolean;
+  readonly alleles: string;
+  readonly prediction_algorithms: string;
+  readonly epitope_lengths: string;
+}
+
 export interface ProcessMap {
   [key: number]: Process;
 }
