@@ -1,11 +1,15 @@
   :host /deep/ {
+    thead th {
+      text-align: left;
+    }
+
     .col-icon {
       width: 40px;
     }
     .col-id {
       width: 5%;
     }
-    .col-running {
+    .col-status {
       width: 5%;
     }
     .col-sample-name {
