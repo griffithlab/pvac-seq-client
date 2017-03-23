@@ -3,7 +3,8 @@
     <div class="col" >
       <pvs-process-table
           [title]="'Manage Processes'"
-          [processes]="processSummaries$ | async"
+          [processSummaries]="processSummaries$ | async"
+          [processes]="processes$ | async"
           (onReload)="loadProcesses()">
       </pvs-process-table>
     </div>

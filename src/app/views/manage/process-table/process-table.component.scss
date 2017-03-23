@@ -1,3 +1,26 @@
-.processTable {
-  background-color: inherit;
-}
+  :host /deep/ {
+    .col-icon {
+      width: 40px;
+    }
+    .col-id {
+      width: 5%;
+    }
+    .col-running {
+      width: 5%;
+    }
+    .col-sample-name {
+      width: 15%;
+    }
+    .col-input {
+      width: 15%;
+    }
+    .col-alleles {
+      width: 25%
+    }
+    .col-prediction-algorithms {
+      width: 25%
+    }
+    .col-epitope-lengths {
+      width: 15%;
+    }
+  }
