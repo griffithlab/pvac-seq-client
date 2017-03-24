@@ -19,14 +19,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^4.0.0-rc.6",
-    "@angular/compiler": "^4.0.0-rc.6",
-    "@angular/core": "^4.0.0-rc.6",
-    "@angular/forms": "^4.0.0-rc.6",
-    "@angular/http": "^4.0.0-rc.6",
-    "@angular/platform-browser": "^4.0.0-rc.6",
-    "@angular/platform-browser-dynamic": "^4.0.0-rc.6",
-    "@angular/router": "^4.0.0-rc.6",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^2.0.2",
     "@ngrx/store": "^2.2.1",
@@ -44,10 +44,11 @@
     "zone.js": "^0.8.5"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0-rc.4",
+    "@angular/cli": "^1.0.0",
+    "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "~6.0.60",
-    "@types/lodash": "ts2.2",
+    "@types/lodash": "ts2.1",
     "codelyzer": "2.0.0-beta.4",
     "jasmine-core": "2.5.2",
     "karma": "1.4.1",
@@ -59,8 +60,8 @@
     "ngrx-store-logger": "^0.1.7",
     "node-static": "^0.7.9",
     "protractor": "5.1.0",
-    "ts-node": "2.0.0",
+    "ts-node": "3.0.2",
     "tslint": "4.4.2",
-    "typescript": "2.2.1"
+    "typescript": "2.1.6"
   }
 }
