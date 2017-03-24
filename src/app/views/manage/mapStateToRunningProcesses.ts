@@ -7,7 +7,7 @@ export function mapStateToRunningProcesses(state: AppState): number {
   return _.chain<ProcessMap>(state.store.processes)
     .valuesIn()
     .reduce((acc: number, process: Process) => {
-      return process.attached ? acc + 1 : acc;
+      return process.running ? acc + 1 : acc;
     }, 0)
     .value();
 }

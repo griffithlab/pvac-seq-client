@@ -9,20 +9,25 @@
   </div>
   <div class="row">
     <div class="col">
-      <p-dataTable [value]="processSummaries">
+      <p-dataTable [value]="processSummaries" expandableRows="true">
         <p-column expander="true" styleClass="col-icon"></p-column>
         <p-column field="id" header="ID" styleClass="col-id"></p-column>
         <p-column field="running" header="Status" styleClass="col-status">
-          <!-- <ng-template let-col let-status="rowData.running" pTemplate="body"> -->
-          <!-- {{status}} -->
-          <!-- <span [style.color]="car[col.field]">{{car[col.field]}}</span> -->
-          <!-- </ng-template> -->
+          <ng-template let-col let-status="rowData.running" pTemplate="body">
+            <span [style.color]="status === false ? '#4dbd74' : '#f8cb00'">
+              <i class="fa fa-circle fa-lg m-t-2"></i>
+            </span>
+            <!-- <span [style.color]="car[col.field]">{{car[col.field]}}</span> -->
+          </ng-template>
         </p-column>
         <p-column field="sample_name" header="Sample Name" styleClass="col-sample-name"></p-column>
         <p-column field="input_filename" header="Input" styleClass="col-input"></p-column>
         <p-column field="alleles" header="Alleles" styleClass="col-alleles"></p-column>
         <p-column field="prediction_algorithms" header="Prediction Algorithms" styleClass="col-prediction-algorithms"></p-column>
         <p-column field="epitope_lengths" header="Epitope Lengths" styleClass="col-epitope-lengths"></p-column>
+        <ng-template let-process pTemplate="rowexpansion">
+          <pvs-process-detail [processId]="process.id"></pvs-process-detail>
+        </ng-template>
       </p-dataTable>
     </div>
   </div>

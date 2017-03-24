@@ -21,4 +21,8 @@ export class ProcessTableComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  getProcessDetail(id: number): Process {
+    return this.processes[id];
+  }
 }
