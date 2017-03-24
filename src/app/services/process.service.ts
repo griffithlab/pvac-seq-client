@@ -26,6 +26,11 @@ export class ProcessService {
     return this.http.get(`${this.api}/processes`)
       .map(mapProcesses);
   }
+
+  get(id: number): Observable<Process> {
+    return this.http.get(`${this.api}/processes/${id}`)
+      .map(toProcess);
+  }
 }
 
 function mapProcesses(res: Response): Process[] {
