@@ -42,7 +42,8 @@ export class ManageComponent implements OnInit {
             running: process.running,
             alleles: _.join(process.parameters.alleles, ', '),
             prediction_algorithms: _.join(process.parameters.prediction_algorithms, ', '),
-            epitope_lengths: _.join(process.parameters.epitope_lengths, ', ')
+            epitope_lengths: _.join(process.parameters.epitope_lengths, ', '),
+            detail: process
           };
         });
       }

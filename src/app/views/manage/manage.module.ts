@@ -7,6 +7,7 @@ import { ManageComponent } from './manage.component';
 import { ManageRoutingModule } from './manage-routing.module';
 
 import { ProcessTableComponent } from './process-table/process-table.component';
+import { ProcessDetailComponent } from './process-detail/process-detail.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ProcessTableComponent } from './process-table/process-table.component';
   declarations: [
     ManageComponent,
     ProcessTableComponent,
+    ProcessDetailComponent,
   ]
 })
 export class ManageModule { }
