@@ -1,5 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Observable } from 'rxjs/Rx';
+
+import { Store } from '@ngrx/store';
+import { ProcessService } from '../../../services/process.service';
+
+import { Process } from '../../../store/models/process.model';
+
 @Component({
   selector: 'pvs-process-detail',
   templateUrl: './process-detail.component.html',
@@ -8,7 +15,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProcessDetailComponent implements OnInit {
   @Input() processId: number;
 
-  constructor() { }
+  process$: Observable<Process>;
+
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
