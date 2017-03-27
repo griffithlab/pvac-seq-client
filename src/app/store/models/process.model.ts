@@ -3,6 +3,7 @@ export interface Process {
   readonly command: string;
   readonly files: { [key: number]: File };
   readonly id: number;
+  readonly log?: string[];
   readonly output: string;
   readonly parameters: Parameters;
   readonly pid: number;
