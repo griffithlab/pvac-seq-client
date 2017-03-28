@@ -3,12 +3,14 @@ export interface Process {
   readonly command: string;
   readonly files: { [key: number]: File };
   readonly id: number;
+  readonly last_message: string;
   readonly log?: string[];
   readonly output: string;
   readonly parameters: Parameters;
   readonly pid: number;
   readonly results_url: string;
   readonly running: boolean;
+  readonly status: number;
   readonly url: string;
 }
 
@@ -59,6 +61,7 @@ export interface ProcessSummaryVM {
   readonly alleles: string;
   readonly prediction_algorithms: string;
   readonly epitope_lengths: string;
+  readonly status: number;
 }
 
 export interface ProcessMap {
