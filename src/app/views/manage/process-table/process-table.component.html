@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <p-dataTable [value]="processSummaries" expandableRows="true">
+      <p-dataTable [value]="processSummaries" expandableRows="true" dataKey="id">
         <p-column expander="true" styleClass="col-icon"></p-column>
         <p-column field="id" header="ID" styleClass="col-id"></p-column>
         <p-column field="running" header="Status" styleClass="col-status">

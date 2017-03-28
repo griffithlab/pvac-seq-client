@@ -52,6 +52,7 @@ export class ManageComponent implements OnInit {
 
   loadProcesses() {
     this.processService.query()
+      .do(res => console.log('manage.component processService.query called.'))
       .subscribe(processes => this.store.dispatch(new LoadProcessesAction(processes)));
   }
 
