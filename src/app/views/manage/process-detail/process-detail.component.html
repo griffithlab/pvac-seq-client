@@ -1,7 +1,19 @@
 <div>
   <div *ngIf="process$ | async as process; else loadingProcess">
     <p-panel header="{{process.parameters.sample_name}}" >
-      <pre>Process: {{process|json}}</pre>
+      <div class="row" >
+        <div class="col" >
+          <p>pVAC-Seq ID: {{ process.id }}</p>
+        </div>
+        <div class="col" >
+          <p>Process ID: {{ process.pid }}</p>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col">
+          <p>Command: {{ process.command }}</p>
+        </div>
+      </div>
     </p-panel>
   </div>
 

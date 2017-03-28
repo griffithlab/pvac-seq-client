@@ -14,7 +14,7 @@
         <p-column field="id" header="ID" styleClass="col-id"></p-column>
         <p-column field="running" header="Status" styleClass="col-status">
           <ng-template let-running="rowData.running" let-status="rowData.status" pTemplate="body">
-            <span class="badge" [ngClass]="{ 'badge-warning': status === -1, 'badge-info': status === 0, 'badge-success': status === 1 }">
+            <span class="badge" [ngClass]="{ 'badge-warning': status == -1, 'badge-info': status == 0, 'badge-success': status == 1 }">
               {{ running === true ? 'Running' : 'Complete' }}
             </span>
           </ng-template>
