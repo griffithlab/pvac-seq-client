@@ -11,8 +11,6 @@ import { AppState } from '../../store/models/app.model';
 import { Process, ProcessMap, ProcessSummaryVM } from '../../store/models/process.model';
 import { LoadProcessesAction } from '../../store/actions/store.actions';
 
-import { mapStateToRunningProcesses } from './mapStateToRunningProcesses';
-
 @Component({
   templateUrl: 'manage.component.html',
   providers: []
@@ -20,16 +18,12 @@ import { mapStateToRunningProcesses } from './mapStateToRunningProcesses';
 
 export class ManageComponent implements OnInit {
   processes$: Observable<Process[]>;
-  runningProcesses$: Observable<number>;
   processSummaries$: Observable<ProcessSummaryVM[]>;
 
   constructor(private store: Store<AppState>, private processService: ProcessService) {
     this.processes$ = store
       .select(state => state.store.processes)
       .map(processMap => _.chain(processMap).valuesIn().map(p => p as Process).value());
-
-    this.runningProcesses$ = store
-      .map(mapStateToRunningProcesses);
 
     this.processSummaries$ = store
       .select(state => state.store.processes)
@@ -44,6 +38,7 @@ export class ManageComponent implements OnInit {
         sample_name: process.parameters.sample_name,
         input_filename: _(process.parameters.input_file).split('/').last(),
         running: process.running,
+        status: process.status,
         alleles: _.join(process.parameters.alleles, ', '),
         prediction_algorithms: _.join(process.parameters.prediction_algorithms, ', '),
         epitope_lengths: _.join(process.parameters.epitope_lengths, ', '),
