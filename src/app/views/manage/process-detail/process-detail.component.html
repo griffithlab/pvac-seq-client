@@ -1,3 +1,11 @@
 <div>
-  <pre>Process: {{process$ | async | json}}</pre>
+  <div *ngIf="process$ | async as process; else loadingProcess">
+    <p-panel header="{{process.parameters.sample_name}}" >
+      <pre>Process: {{process|json}}</pre>
+    </p-panel>
+  </div>
+
+  <ng-template #loadingProcess>
+    Loading...
+  </ng-template>
 </div>
