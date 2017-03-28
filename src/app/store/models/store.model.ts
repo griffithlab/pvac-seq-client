@@ -1,5 +1,6 @@
 import { ProcessMap } from './process.model';
 
+// export
 export interface StoreState {
   processes: ProcessMap;
   processDetail: ProcessMap;

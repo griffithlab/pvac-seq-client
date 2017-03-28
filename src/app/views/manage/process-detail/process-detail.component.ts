@@ -9,7 +9,7 @@ import { AppState } from '../../../store/models/app.model';
 import { Process } from '../../../store/models/process.model';
 import { LoadProcessAction } from '../../../store/actions/store.actions';
 
-import { mapStateToProcess } from './../mapStateToProcess';
+// import { mapStateToProcess } from './../mapStateToProcess';
 
 @Component({
   selector: 'pvs-process-detail',
@@ -23,7 +23,7 @@ export class ProcessDetailComponent implements OnInit {
 
   constructor(private store: Store<AppState>, private processService: ProcessService) {
     this.process$ = store
-      .map(mapStateToProcess);
+      .select(state => state.store.processDetail[this.processId]);
   }
 
   loadProcess(processId: number) {
