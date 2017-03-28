@@ -1,17 +1,49 @@
 <div>
   <div *ngIf="process$ | async as process; else loadingProcess">
-    <p-panel header="{{process.parameters.sample_name}}" >
-      <div class="row" >
-        <div class="col" >
-          <p>pVAC-Seq ID: {{ process.id }}</p>
+    <p-panel header="{{process.parameters.sample_name}}">
+      <div class="row">
+        <div class="col">
+          <p><span class="key">Status</span>:
+            <span class="badge badge-pill"
+                  [ngClass]="{ 'badge-danger': process.status == -1, 'badge-info': process.status == 0, 'badge-': process.status == 1 }">
+              {{ process.running === true ? 'Running' : status == 1 ? 'Complete' : 'Error' }}
+            </span>
+          </p>
         </div>
-        <div class="col" >
-          <p>Process ID: {{ process.pid }}</p>
+        <div class="col">
+          <p><span class="key">pVAC-Seq ID:</span> {{ process.id }}</p>
+        </div>
+        <div class="col">
+          <p><span class="key">Process ID:</span> {{ process.pid }}</p>
         </div>
       </div>
-      <div class="row" >
+      <div class="row">
         <div class="col">
-          <p>Command: {{ process.command }}</p>
+          <p><span class="key">Command:</span> {{ process.command }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p><span class="key">Latest Log Entry:</span> {{ process.last_message }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p-tabView>
+            <p-tabPanel header="Files" leftIcon="fa-files-o">
+              <pre> {{process.files | json}}</pre>
+            </p-tabPanel>
+            <p-tabPanel header="Log" leftIcon="fa-tasks">
+              <ul class="log">
+                <li *ngFor="let line of process.log" >
+                  <pre>{{line}}</pre>
+                </li>
+              </ul>
+            </p-tabPanel>
+            <p-tabPanel header="Parameters" leftIcon="fa-cog">
+              <pre>{{process.parameters | json}}</pre>
+            </p-tabPanel>
+          </p-tabView>
         </div>
       </div>
     </p-panel>
