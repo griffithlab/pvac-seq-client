@@ -1,3 +1,5 @@
+import { File } from './store.model';
+
 export interface Process {
   readonly attached: boolean;
   readonly command: string;
@@ -11,13 +13,6 @@ export interface Process {
   readonly results_url: string;
   readonly running: boolean;
   readonly status: number;
-  readonly url: string;
-}
-
-export interface File {
-  readonly description: string;
-  readonly display_name: string;
-  readonly fileID: number;
   readonly url: string;
 }
 
