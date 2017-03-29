@@ -1,32 +1,35 @@
-  :host /deep/ {
-    thead th {
-      text-align: left;
-    }
-
-    .col-icon {
-      width: 40px;
-    }
-    .col-id {
-      width: 5%;
-      text-align: center;
-    }
-    .col-status {
-      width: 80px;
-      text-align: center;
-    }
-    .col-sample-name {
-      width: 20%;
-    }
-    .col-input {
-      width: 20%;
-    }
-    .col-alleles {
-      width: 25%
-    }
-    .col-prediction-algorithms {
-      width: 25%
-    }
-    .col-epitope-lengths {
-      width: 15%;
-    }
+:host /deep/ {
+  table {
+    margin-bottom: 1em;
   }
+  thead th {
+    text-align: left;
+  }
+
+  .col-icon {
+    width: 40px;
+  }
+  .col-id {
+    width: 5%;
+    text-align: center;
+  }
+  .col-status {
+    width: 85px;
+    text-align: center;
+  }
+  .col-sample-name {
+    width: 20%;
+  }
+  .col-input {
+    width: 20%;
+  }
+  .col-alleles {
+    width: 25%
+  }
+  .col-prediction-algorithms {
+    width: 25%
+  }
+  .col-epitope-lengths {
+    width: 15%;
+  }
+}

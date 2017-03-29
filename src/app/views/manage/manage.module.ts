@@ -13,6 +13,7 @@ import { ManageRoutingModule } from './manage-routing.module';
 
 import { ProcessTableComponent } from './process-table/process-table.component';
 import { ProcessDetailComponent } from './process-detail/process-detail.component';
+import { StatusBadgeComponent } from './status-badge/status-badge.component';
 
 @NgModule({
   imports: [
@@ -21,12 +22,13 @@ import { ProcessDetailComponent } from './process-detail/process-detail.componen
     DataTableModule,
     ButtonModule,
     PanelModule,
-    TabViewModule
+    TabViewModule,
   ],
   declarations: [
     ManageComponent,
     ProcessTableComponent,
     ProcessDetailComponent,
+    StatusBadgeComponent,
   ]
 })
 export class ManageModule { }

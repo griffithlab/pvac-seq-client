@@ -1,5 +1,6 @@
 :host /deep/ {
   .ui-tabview-panel {
+    min-height: 300px;
     border-radius: .15em;
     border-left: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
@@ -8,6 +9,14 @@
   }
   .key {
     font-weight: bold;
+  }
+  ul.files {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin-bottom: .5em;
+    }
   }
   ul.log {
     list-style: none;

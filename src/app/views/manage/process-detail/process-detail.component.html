@@ -4,10 +4,7 @@
       <div class="row">
         <div class="col">
           <p><span class="key">Status</span>:
-            <span class="badge badge-pill"
-                  [ngClass]="{ 'badge-danger': process.status == -1, 'badge-info': process.status == 0, 'badge-': process.status == 1 }">
-              {{ process.running === true ? 'Running' : status == 1 ? 'Complete' : 'Error' }}
-            </span>
+            <pvs-status-badge [status]="process.status" [running]="process.running"></pvs-status-badge>
           </p>
         </div>
         <div class="col">
@@ -31,7 +28,12 @@
         <div class="col">
           <p-tabView>
             <p-tabPanel header="Files" leftIcon="fa-files-o">
-              <pre> {{process.files | json}}</pre>
+              <ul class="files">
+                <li *ngFor="let file of process.files" >
+                  <span style="font-weight: bold;">{{file.display_name}}</span><br/>
+                  <span class="small" >{{file.description}}</span>
+                </li>
+              </ul>
             </p-tabPanel>
             <p-tabPanel header="Log" leftIcon="fa-tasks">
               <ul class="log">

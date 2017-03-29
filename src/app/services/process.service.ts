@@ -42,6 +42,7 @@ function mapProcess(res: Response): Process {
 }
 
 function toProcess(p: any): Process {
+  p.status.toString();
   return p as Process;
 }
 
