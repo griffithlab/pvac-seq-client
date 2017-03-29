@@ -1,0 +1,4 @@
+<span class="badge badge-pill"
+      [ngClass]="{ 'badge-danger': status == '-1', 'badge-info': status == 0, 'badge-success': status == 1 }">
+  {{ running === true ? 'Running' : status == 1 ? 'Complete' : 'Error' }}
+</span>
