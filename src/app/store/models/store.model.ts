@@ -4,11 +4,13 @@ import { ProcessMap } from './process.model';
 export interface StoreState {
   processes: ProcessMap;
   processDetail: ProcessMap;
+  inputs: FileMap;
 }
 
 export const INITIAL_STORE_STATE: StoreState = {
   processes: {},
-  processDetail: {}
+  processDetail: {},
+  inputs: {}
 };
 
 export interface File {
@@ -16,4 +18,8 @@ export interface File {
   readonly display_name: string;
   readonly fileID: number;
   readonly url: string;
+}
+
+export interface FileMap {
+  [key: number]: File;
 }

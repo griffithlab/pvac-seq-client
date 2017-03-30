@@ -6,7 +6,9 @@ import {
   LoadProcessesAction,
   LOAD_PROCESSES_ACTION,
   LoadProcessAction,
-  LOAD_PROCESS_ACTION
+  LOAD_PROCESS_ACTION,
+  LoadInputsAction,
+  LOAD_INPUTS_ACTION,
 } from '../actions/store.actions';
 
 
@@ -17,6 +19,9 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
 
     case LOAD_PROCESS_ACTION:
       return handleLoadProcessAction(state, action);
+
+    case LOAD_INPUTS_ACTION:
+      return handleLoadInputsAction(state, action);
 
     default:
       return state;
@@ -39,6 +44,15 @@ function handleLoadProcessAction(state: StoreState, action: LoadProcessAction): 
 
   newProcessDetail[process.id] = process;
   newState.processDetail = newProcessDetail;
+
+  return newState;
+}
+
+function handleLoadInputsAction(state: StoreState, action: LoadInputsAction): StoreState {
+  const inputs = action.payload;
+  const newState = Object.assign({}, state);
+
+  newState.inputs = _.keyBy(inputs, 'fileID');
 
   return newState;
 }

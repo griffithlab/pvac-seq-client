@@ -1,6 +1,12 @@
 <div class="start-component">
   <h2>Start</h2>
   <form action="/api/v1/staging" method="post" enctype="multipart/form-data">
+    <p>File Count: {{ (inputs$ | async)?.length }}</p>
+    <p>Files:</p>
+    <ul>
+      <!-- <li *ngFor="let file of inputs$ | async" >{{file.display_name}}</li> -->
+      <li *ngFor="let file of inputs$ | async" >{{file.name}}</li>
+    </ul>
     Input VCF file: <select required name="input" class="selector">
     </select><br>
     Sample Name: <input type="text" name="samplename" required><br>

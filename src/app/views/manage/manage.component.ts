@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Observable } from 'rxjs/Rx';
-
-import { Store } from '@ngrx/store';
-import { ProcessService } from '../../services/process.service';
-
 import * as _ from 'lodash';
+import { Observable } from 'rxjs/Rx';
+import { Store } from '@ngrx/store';
 
 import { AppState } from '../../store/models/app.model';
 import { Process, ProcessMap, ProcessSummaryVM } from '../../store/models/process.model';
 import { LoadProcessesAction } from '../../store/actions/store.actions';
+
+import { ProcessService } from '../../services/process.service';
 
 @Component({
   templateUrl: 'manage.component.html',
@@ -30,6 +28,7 @@ export class ManageComponent implements OnInit {
       .map(this.mapProcessMapToProcessSummaries);
   }
 
+  // TODO: this kind of munging probably belongs in process.service
   mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummaryVM[] {
     const processes = _.valuesIn<Process>(processMap);
     return _.map(processes, (process) => {
@@ -47,9 +46,8 @@ export class ManageComponent implements OnInit {
     });
   }
 
-  loadProcesses() {
+  loadProcesses(): void {
     this.processService.query()
-      .do(res => console.log('manage.component processService.query called.'))
       .subscribe(processes => this.store.dispatch(new LoadProcessesAction(processes)));
   }
 

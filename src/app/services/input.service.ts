@@ -19,7 +19,7 @@ export class InputService {
     this.api = config.apiUrl();
   }
 
-  getInputFiles(): Observable<File[]> {
+  query(): Observable<File[]> {
     return this.http.get(`${this.api}/input`)
       .map(mapFiles);
   }

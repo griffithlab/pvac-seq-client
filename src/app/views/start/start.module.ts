@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { StartComponent } from './start.component';
 import { StartRoutingModule } from './start-routing.module';
 import { ConfirmDialogModule } from "primeng/components/confirmdialog/confirmdialog";
 
 @NgModule({
-    imports: [
-        StartRoutingModule
-    ],
-    declarations: [StartComponent]
+  imports: [
+    StartRoutingModule,
+    CommonModule,
+  ],
+  declarations: [StartComponent]
 })
 export class StartModule { }
