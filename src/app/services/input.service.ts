@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 
 import { File } from '../store/models/store.model';
 
+import * as _ from 'lodash';
+
 import { ConfigService } from './config.service';
 
 @Injectable()
@@ -26,5 +28,8 @@ export class InputService {
 }
 
 function mapFiles(res: Response): File[] {
-  return res.json().map(f => f as File);
+  return _.chain(res.json())
+    .map(f => f as File)
+    .filter(f => _.first(f.display_name) !== '.') // filter hidden
+    .value();
 }
