@@ -1,6 +1,17 @@
 <div>
   <div *ngIf="process$ | async as process; else loadingProcess">
-    <p-panel header="{{process.parameters.sample_name}}">
+    <p-panel>
+      <p-header>
+        <div class="row" >
+          <div class="col" >
+            {{process.parameters.sample_name}}
+          </div>
+          <div class="col text-right" >
+            <button pButton type="button" (click)="archive()" label="Archive" class="ui-button-warning"></button>
+            <button pButton type="button" (click)="onReload.emit()" label="Reload"></button>
+          </div>
+        </div>
+      </p-header>
       <div class="row">
         <div class="col">
           <p><span class="key">Status</span>:

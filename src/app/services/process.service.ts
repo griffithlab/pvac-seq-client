@@ -33,8 +33,12 @@ export class ProcessService {
   }
 
   // TODO: probably need to handle this with ngrx-effects
-  archive(id: number): Observable<Response> {
-    return this.http.get(`${this.api}/archive/${id}`);
+  archive(id: number): Observable<string> {
+    return this.http.get(`${this.api}/archive/${id}`)
+      .map(response => {
+        console.log(response);
+        return JSON.stringify(response);
+      });
   }
 }
 

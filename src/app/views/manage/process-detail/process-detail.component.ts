@@ -7,7 +7,7 @@ import { ProcessService } from '../../../services/process.service';
 
 import { AppState } from '../../../store/models/app.model';
 import { Process } from '../../../store/models/process.model';
-import { LoadProcessAction } from '../../../store/actions/store.actions';
+import { LoadProcessAction, ArchiveProcessAction } from '../../../store/actions/store.actions';
 
 @Component({
   selector: 'pvs-process-detail',
@@ -24,13 +24,18 @@ export class ProcessDetailComponent implements OnInit {
       .select(state => state.store.processDetail[this.processId]);
   }
 
-  loadProcess(processId: number) {
-    this.processService.get(processId)
+  loadProcess() {
+    this.processService.get(this.processId)
       .subscribe(process => this.store.dispatch(new LoadProcessAction(process)));
   }
 
+  archive() {
+    this.processService.archive(this.processId)
+      .subscribe(response => this.store.dispatch(new ArchiveProcessAction(response)));
+  }
+
   ngOnInit() {
-    this.loadProcess(this.processId);
+    this.loadProcess();
   }
 
 }
