@@ -24,14 +24,14 @@ export class StartComponent implements OnInit {
   parameters: {};
 
   constructor(private store: Store<AppState>, private inputService: InputService) {
-    console.log('StartComponent loaded.');
     this.inputs$ = store
       .select(state => state.store.inputs)
       .map(fileMap => _.chain(fileMap)
         .valuesIn()
         .map((f: File) => {
-          return { label: f.display_name, value: { id: f.fileID } } as SelectItem;
-        }).value());
+          return { label: f.display_name, value: { id: f.fileID } };
+        })
+        .value());
 
     this.parameters = {
       fileID: undefined
