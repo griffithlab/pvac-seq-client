@@ -31,6 +31,11 @@ export class ProcessService {
     return this.http.get(`${this.api}/processes/${id}`)
       .map(mapProcess);
   }
+
+  // TODO: probably need to handle this with ngrx-effects
+  archive(id: number): Observable<Response> {
+    return this.http.get(`${this.api}/archive/${id}`);
+  }
 }
 
 function mapProcesses(res: Response): Process[] {
