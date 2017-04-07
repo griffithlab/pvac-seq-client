@@ -37,7 +37,7 @@ export class ProcessService {
     return this.http.get(`${this.api}/archive/${id}`)
       .map(response => {
         console.log(response);
-        return JSON.stringify(response);
+        return response.statusText;
       });
   }
 }

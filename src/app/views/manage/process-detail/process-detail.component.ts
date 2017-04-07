@@ -29,6 +29,7 @@ export class ProcessDetailComponent implements OnInit {
       .subscribe(process => this.store.dispatch(new LoadProcessAction(process)));
   }
 
+  // TODO: probably need to implement this w/ ngrx-effects to prompt update of process list
   archive() {
     this.processService.archive(this.processId)
       .subscribe(response => this.store.dispatch(new ArchiveProcessAction(response)));
