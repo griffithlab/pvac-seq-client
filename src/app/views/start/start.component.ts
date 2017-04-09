@@ -31,7 +31,8 @@ export class StartComponent implements OnInit {
         .map((f: File) => {
           return { label: f.display_name, value: { id: f.fileID } };
         })
-        .value());
+        .value()
+      );
 
     this.parameters = {
       fileID: undefined
