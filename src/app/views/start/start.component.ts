@@ -16,6 +16,7 @@ import { SelectItem } from 'primeng/primeng';
 
 @Component({
   templateUrl: 'start.component.html',
+  styleUrls: ['./start.component.scss'],
   providers: []
 })
 
@@ -29,13 +30,14 @@ export class StartComponent implements OnInit {
       .map(fileMap => _.chain(fileMap)
         .valuesIn()
         .map((f: File) => {
-          return { label: f.display_name, value: { id: f.fileID } };
+          return { label: f.display_name, value: f.fileID };
         })
         .value()
       );
 
     this.parameters = {
-      fileID: undefined
+      fileID: undefined,
+      samplename: ''
     };
 
   }

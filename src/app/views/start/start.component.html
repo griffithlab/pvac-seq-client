@@ -1,42 +1,88 @@
 <div class="start-component">
   <h2>Start</h2>
   <form name="start">
-    <p>File Count: {{ (inputs$ | async)?.length }}</p>
-    <p>Files:</p>
-    <ul>
-      <!-- <li *ngFor="let file of inputs$ | async" >{{file.display_name}}</li> -->
-      <li *ngFor="let file of inputs$ | async" >{{file.label}}</li>
-    </ul>
-
     <div class="form-group row">
-      <label for="inputVCF" class="col-sm-2 col-form-label">Input VCF</label>
+      <label for="inputVcf" class="col-sm-3 col-form-label">*Input VCF</label>
       <div class="col-sm-4">
         <p-dropdown [options]="inputs$ | async"
                     [(ngModel)]="parameters.fileID"
                     name="start"
-                    [style]="{'width': '100%'}"
+                    styleClass="inputClass"
                     placeholder="Select Input VCF"
-                    id="inputVCF">
+                    required="true"
+                    id="inputVcf">
         </p-dropdown>
-        <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email"> -->
       </div>
-      <div class="col-sm-6 col-form-help">
+      <div class="col-sm-5 col-form-help">
+        <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="sampleName" class="col-sm-3 col-form-label">*Sample Name</label>
+      <div class="col-sm-4">
+        <input type="text" pInputText
+               [(ngModel)]="parameters.samplename"
+               styleClass="inputClass"
+               minlength="3"
+               maxlength="128"
+               name="start"
+               required="true"
+               id="sampleName"/>
+      </div>
+      <div class="col-sm-5 col-form-help">
+        <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="alleles" class="col-sm-3 col-form-label">*Alleles</label>
+      <div class="col-sm-4">
+        <input type="text" pInputText
+               [(ngModel)]="parameters.alleles"
+               styleClass="inputClass"
+               pattern="(\S+,)*\S+"
+               name="start"
+               required="true"
+               id="alleles"/>
+      </div>
+      <div class="col-sm-5 col-form-help">
+        <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="prediction_algorithms" class="col-sm-3 col-form-label">*Prediction Algorithms</label>
+      <div class="col-sm-4">
+        <input type="text" pInputText
+               [(ngModel)]="parameters.prediction_algorithms"
+               styleClass="inputClass"
+               pattern="((SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+,)*(SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+"
+               name="start"
+               required="true"
+               id="prediction_algoriths"/>
+      </div>
+      <div class="col-sm-5 col-form-help">
         <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p>
       </div>
     </div>
     <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      <label for="epitope_lengths" class="col-sm-3 col-form-label">Epitope Lengths</label>
+      <div class="col-sm-4">
+        <input type="text" pInputText
+               [(ngModel)]="parameters.epitope_lengths"
+               styleClass="inputClass"
+               name="start"
+               required="true"
+               id="epitope_lengths"/>
+      </div>
+      <div class="col-sm-5 col-form-help">
+        <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p>
       </div>
     </div>
-
-    Input VCF file: <select required name="input" class="selector">
-    </select><br>
-    Sample Name: <input type="text" name="samplename" required><br>
-    Alleles: <input type="text" name="alleles" pattern="(\S+,)*\S+" required><br>
-    Prediction Algorithms: <input type="text" name="prediction_algorithms" pattern="((SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+,)*(SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+" required><br>
-    <br><hr><br>
+  </form>
+  <form>
+    <hr/>
     Epitope Lengths: <input type="text" name="epitope_lengths" pattern="(\d+,)*\d+" value="10"><br>
     Peptide Sequence Length: <input type="number" name="peptide_sequence_length" value="21"><br>
     Gene Expression File: <select name="gene_expn_file" class="selector">

@@ -1,0 +1,8 @@
+:host /deep/ {
+  .col-form-label {
+    text-align: right;
+  }
+  .ui-inputtext, .ui-dropdown {
+    width: 100% !important;
+  }
+}
