@@ -31,56 +31,71 @@
              id="samplename"/>
     </div>
     <div class="col-sm-5 col-form-help">
-      <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p>
+      <p>Name assigned to this process</p>
     </div>
   </div>
 
-  <!-- <div class="form-group row"> -->
-  <!-- <label for="alleles" class="col-sm-3 col-form-label">*Alleles</label> -->
-  <!-- <div class="col-sm-4"> -->
-  <!-- <input type="text" pInputText -->
-  <!-- [(ngModel)]="parameters.alleles" -->
-  <!-- styleClass="inputClass" -->
-  <!-- pattern="(\S+,)*\S+" -->
-  <!-- name="start" -->
-  <!-- required="true" -->
-  <!-- id="alleles"/> -->
-  <!-- </div> -->
-  <!-- <div class="col-sm-5 col-form-help"> -->
-  <!-- <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p> -->
-  <!-- </div> -->
-  <!-- </div> -->
+  <div class="form-group row">
+    <label for="alleles" class="col-sm-3 col-form-label">*Alleles</label>
+    <div class="col-sm-4">
+      <input type="text" pInputText
+             ngModel
+             styleClass="inputClass"
+             pattern="(\S+,)*\S+"
+             name="alleles"
+             required="true"
+             id="alleles"/>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Comma-separated list of alleles to run the sequences against</p>
+    </div>
+  </div>
 
-  <!-- <div class="form-group row"> -->
-  <!-- <label for="prediction_algorithms" class="col-sm-3 col-form-label">*Prediction Algorithms</label> -->
-  <!-- <div class="col-sm-4"> -->
-  <!-- <input type="text" pInputText -->
-  <!-- [(ngModel)]="parameters.prediction_algorithms" -->
-  <!-- styleClass="inputClass" -->
-  <!-- pattern="((SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+,)*(SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+" -->
-  <!-- name="start" -->
-  <!-- required="true" -->
-  <!-- id="prediction_algoriths"/> -->
-  <!-- </div> -->
-  <!-- <div class="col-sm-5 col-form-help"> -->
-  <!-- <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p> -->
-  <!-- </div> -->
-  <!-- </div> -->
+  <div class="form-group row">
+    <label for="prediction_algorithms" class="col-sm-3 col-form-label">*Prediction Algorithms</label>
+    <div class="col-sm-4">
+      <input type="text" pInputText
+             ngModel
+             styleClass="inputClass"
+             pattern="((SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+,)*(SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+"
+             name="prediction_algorithms"
+             required="true"
+             id="prediction_algoriths"/>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Comma-separated list of prediction algorithms to use</p>
+    </div>
+  </div>
 
-  <!-- <div class="form-group row"> -->
-  <!-- <label for="epitope_lengths" class="col-sm-3 col-form-label">Epitope Lengths</label> -->
-  <!-- <div class="col-sm-4"> -->
-  <!-- <input type="text" pInputText -->
-  <!-- [(ngModel)]="parameters.epitope_lengths" -->
-  <!-- styleClass="inputClass" -->
-  <!-- name="start" -->
-  <!-- required="true" -->
-  <!-- id="epitope_lengths"/> -->
-  <!-- </div> -->
-  <!-- <div class="col-sm-5 col-form-help"> -->
-  <!-- <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p> -->
-  <!-- </div> -->
-  <!-- </div> -->
+  <div class="form-group row">
+    <label for="epitope_lengths" class="col-sm-3 col-form-label">Epitope Lengths</label>
+    <div class="col-sm-4">
+      <input type="text" pInputText
+             ngModel
+             styleClass="inputClass"
+             name="start"
+             required="true"
+             id="epitope_lengths"/>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Comma-separated list of epitope lengths to produce</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="peptide_sequence_length" class="col-sm-3 col-form-label">Peptide Sequence Length</label>
+    <div class="col-sm-4">
+      <input type="text" pInputText
+             ngModel
+             styleClass="inputClass"
+             name="peptide_sequence_length"
+             required="true"
+             id="peptide_sequence_length"/>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Length of the peptide sequences to produce in the FASTA</p>
+    </div>
+  </div>
 
   <div class="row" >
     <div class="col-sm-4 offset-sm-3 text-right">
@@ -90,9 +105,10 @@
     </div>
   </div>
 
+  <!-- <div class="row"> -->
+  <!-- <div class="col" > -->
+  <!-- <h2>Form f:</h2> -->
+  <!-- <pre>{{f|json}}</pre> -->
+  <!-- </div> -->
+  <!-- </div> -->
 </form>
-<div class="row">
-  <div class="col" >
-    <h2>parameters:</h2>
-  </div>
-</div>
