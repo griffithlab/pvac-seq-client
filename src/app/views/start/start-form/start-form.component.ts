@@ -35,12 +35,20 @@ export class StartFormComponent implements OnInit {
       );
 
     const startFormGroup = {
-      'inputVCF': [null, Validators.required],
+      'inputVCF': [null, [Validators.required]],
       'samplename': [null, [Validators.required]],
       'alleles': [null, [Validators.required]],
       'prediction_algorithms': [null, [Validators.required]],
       'epitope_lengths': ['10', [Validators.required]],
-      'peptide_sequence_length': [21, [Validators.required]]
+      'peptide_sequence_length': [21, [Validators.required]],
+      'gene_expn_file': [null, []],
+      'transcript_expn_file': [null, []],
+      'normal_snvs_coverage_file': [null, []],
+      'normal_indels_coverage_file': [null, []],
+      'tdna_snvs_coverage_file': [null, []],
+      'tdna_indels_coverage_file': [null, []],
+      'trna_snvs_coverage_file': [null, []],
+      'trna_indels_coverage_file': [null, []],
     };
 
     this.startForm = fb.group(startFormGroup);

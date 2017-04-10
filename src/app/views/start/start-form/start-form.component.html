@@ -1,7 +1,7 @@
 <form (formGroup)="startForm"
       (ngSubmit)="onSubmit(startForm.value)">
-  <div class="form-group row">
 
+  <div class="form-group row">
     <label for="vcfDropdown" class="col-sm-3 col-form-label">*Input VCF</label>
     <div class="col-sm-4">
       <p-dropdown [options]="inputs$ | async"
@@ -10,10 +10,10 @@
                   placeholder="Select Input VCF"
                   id="vcfDropdown">
       </p-dropdown>
-      <div class="ui-message ui-messages-error ui-corner-all"
-           *ngIf="!startForm.controls['inputVCF'].valid&&startForm.controls['inputVCF'].dirty">
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['inputVCF'].valid&&startForm.controls['inputVCF'].dirty">
         Input VCF is required.
-      </div>
+      </small>
     </div>
     <div class="col-sm-5 col-form-help">
       <p>VCF Input file</p>
@@ -102,6 +102,126 @@
     </div>
     <div class="col-sm-5 col-form-help">
       <p>Length of the peptide sequences to produce in the FASTA</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="geneExpnFileDropdown" class="col-sm-3 col-form-label">Gene Expression File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['gene_expn_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Gene Expression File"
+                  id="geneExpnFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Gene expression file</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="transcriptExpnFileDropdown" class="col-sm-3 col-form-label">Transcript Expression File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['transcript_expn_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Transcript Expression File"
+                  id="geneExpnFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Transcript expression file</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="normalSnvsCoverageFileDropdown" class="col-sm-3 col-form-label">Normal SNVs Coverage File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['normal_snvs_coverage_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Normal SVNs Coverage File"
+                  id="normalSnvsCoverageFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Normal SNVs coverage file</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="normalIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Normal Indels Coverage File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['normal_indels_coverage_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Normal Indels Coverage File"
+                  id="normalIndelsCoverageFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Normal Indels coverage file</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="tumorDnaSnvsCoverageFile" class="col-sm-3 col-form-label">Tumor DNA SNVs Coverage File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['tdna_snvs_coverage_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Tumor DNA SNVs Coverage File"
+                  id="tumorDnaSnvsCoverageFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Tumor DNA SNVs coverage file</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="tumorIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Tumor DNA Indels Coverage File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['tdna_indels_coverage_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Tumor Indels Coverage File"
+                  id="tumorIndelsCoverageFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Tumor DNA Indels coverage file</p>
+    </div>
+  </div>
+
+ <div class="form-group row">
+    <label for="tumorRnaSnvsCoverageFile" class="col-sm-3 col-form-label">Tumor RNA SNVs Coverage File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['trna_snvs_coverage_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Tumor RNA SNVs Coverage File"
+                  id="tumorRnaSnvsCoverageFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Tumor RNA SNVs coverage file</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="tumorIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Tumor RNA Indels Coverage File</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="inputs$ | async"
+                  [formControl]="startForm.controls['trna_indels_coverage_file']"
+                  styleClass="inputClass"
+                  placeholder="Select Tumor Indels Coverage File"
+                  id="tumorIndelsCoverageFileDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Tumor RNA Indels coverage file</p>
     </div>
   </div>
 
