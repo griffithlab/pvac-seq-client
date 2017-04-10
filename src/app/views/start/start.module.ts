@@ -9,6 +9,7 @@ import {
   InputTextModule,
   DropdownModule
 } from 'primeng/primeng';
+import { StartFormComponent } from './start-form/start-form.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import {
     InputTextModule,
     DropdownModule
   ],
-  declarations: [StartComponent]
+  declarations: [StartComponent, StartFormComponent]
 })
 export class StartModule { }
