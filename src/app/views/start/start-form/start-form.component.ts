@@ -20,6 +20,7 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class StartFormComponent implements OnInit {
   inputs$: Observable<SelectItem[]>;
+  startForm: FormGroup;
 
   constructor(private store: Store<AppState>, private inputService: InputService, private fb: FormBuilder) {
 
@@ -33,6 +34,16 @@ export class StartFormComponent implements OnInit {
         .value()
       );
 
+    const startFormGroup = {
+      'inputVCF': [null, Validators.required],
+      'samplename': [null, [Validators.required]],
+      'alleles': [null, [Validators.required]],
+      'prediction_algorithms': [null, [Validators.required]],
+      'epitope_lengths': ['10', [Validators.required]],
+      'peptide_sequence_length': [21, [Validators.required]]
+    };
+
+    this.startForm = fb.group(startFormGroup);
   }
 
   loadInputs(): void {

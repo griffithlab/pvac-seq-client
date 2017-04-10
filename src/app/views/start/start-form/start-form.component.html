@@ -1,20 +1,18 @@
-<form #f="ngForm"
-      (ngSubmit)="onSubmit(f.value)">
+<form (formGroup)="startForm"
+      (ngSubmit)="onSubmit(startForm.value)">
   <div class="form-group row">
 
     <label for="vcfDropdown" class="col-sm-3 col-form-label">*Input VCF</label>
     <div class="col-sm-4">
       <p-dropdown [options]="inputs$ | async"
-                  ngModel
-                  name="inputVCF"
+                  [formControl]="startForm.controls['inputVCF']"
                   styleClass="inputClass"
                   placeholder="Select Input VCF"
-                  required="true"
                   id="vcfDropdown">
       </p-dropdown>
     </div>
     <div class="col-sm-5 col-form-help">
-      <p>Nullam eu ante vel est convallis dignissim. Fusce suscipit.</p>
+      <p>VCF Input file</p>
     </div>
   </div>
 
@@ -22,12 +20,8 @@
     <label for="samplename" class="col-sm-3 col-form-label">*Sample Name</label>
     <div class="col-sm-4">
       <input type="text" pInputText
-             ngModel
+             [formControl]="startForm.controls['samplename']"
              styleClass="inputClass"
-             minlength="3"
-             maxlength="128"
-             name="samplename"
-             required="true"
              id="samplename"/>
     </div>
     <div class="col-sm-5 col-form-help">
@@ -39,11 +33,8 @@
     <label for="alleles" class="col-sm-3 col-form-label">*Alleles</label>
     <div class="col-sm-4">
       <input type="text" pInputText
-             ngModel
+             [formControl]="startForm.controls['alleles']"
              styleClass="inputClass"
-             pattern="(\S+,)*\S+"
-             name="alleles"
-             required="true"
              id="alleles"/>
     </div>
     <div class="col-sm-5 col-form-help">
@@ -55,11 +46,8 @@
     <label for="prediction_algorithms" class="col-sm-3 col-form-label">*Prediction Algorithms</label>
     <div class="col-sm-4">
       <input type="text" pInputText
-             ngModel
+             [formControl]="startForm.controls['prediction_algorithms']"
              styleClass="inputClass"
-             pattern="((SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+,)*(SMM|NetMHCpan|PickPocket|NetMHCcons|NetMHC|SMMPMBEC|NetMHCIIpan|NNalign|SMMalign)+"
-             name="prediction_algorithms"
-             required="true"
              id="prediction_algoriths"/>
     </div>
     <div class="col-sm-5 col-form-help">
@@ -71,10 +59,8 @@
     <label for="epitope_lengths" class="col-sm-3 col-form-label">Epitope Lengths</label>
     <div class="col-sm-4">
       <input type="text" pInputText
-             ngModel
+             [formControl]="startForm.controls['epitope_lengths']"
              styleClass="inputClass"
-             name="start"
-             required="true"
              id="epitope_lengths"/>
     </div>
     <div class="col-sm-5 col-form-help">
@@ -86,10 +72,8 @@
     <label for="peptide_sequence_length" class="col-sm-3 col-form-label">Peptide Sequence Length</label>
     <div class="col-sm-4">
       <input type="text" pInputText
-             ngModel
+             [formControl]="startForm.controls['peptide_sequence_length']"
              styleClass="inputClass"
-             name="peptide_sequence_length"
-             required="true"
              id="peptide_sequence_length"/>
     </div>
     <div class="col-sm-5 col-form-help">
@@ -101,14 +85,14 @@
     <div class="col-sm-4 offset-sm-3 text-right">
       <button pButton type="submit"
               label="Launch Process"
-              [disabled]="!f.valid"></button>
+              [disabled]="!startForm.valid"></button>
     </div>
   </div>
 
-  <!-- <div class="row"> -->
-  <!-- <div class="col" > -->
-  <!-- <h2>Form f:</h2> -->
-  <!-- <pre>{{f|json}}</pre> -->
-  <!-- </div> -->
-  <!-- </div> -->
+  <div class="row">
+    <div class="col" >
+      <h2>Form startForm.value</h2>
+      <pre>{{startForm.value|json}}</pre>
+    </div>
+  </div>
 </form>
