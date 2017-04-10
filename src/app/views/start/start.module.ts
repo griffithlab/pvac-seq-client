@@ -7,7 +7,9 @@ import { StartRoutingModule } from './start-routing.module';
 
 import {
   InputTextModule,
-  DropdownModule
+  ButtonModule,
+  TabViewModule,
+  DropdownModule,
 } from 'primeng/primeng';
 import { StartFormComponent } from './start-form/start-form.component';
 
@@ -17,6 +19,8 @@ import { StartFormComponent } from './start-form/start-form.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonModule,
+    TabViewModule,
     InputTextModule,
     DropdownModule
   ],

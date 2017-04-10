@@ -57,4 +57,7 @@ export class StartFormComponent implements OnInit {
     this.loadInputs();
   }
 
+  onSubmit(form: any): void {
+    console.log('you submitted value:', form);
+  }
 }
