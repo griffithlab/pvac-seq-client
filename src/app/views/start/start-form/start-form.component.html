@@ -10,6 +10,10 @@
                   placeholder="Select Input VCF"
                   id="vcfDropdown">
       </p-dropdown>
+      <div class="ui-message ui-messages-error ui-corner-all"
+           *ngIf="!startForm.controls['inputVCF'].valid&&startForm.controls['inputVCF'].dirty">
+        Input VCF is required.
+      </div>
     </div>
     <div class="col-sm-5 col-form-help">
       <p>VCF Input file</p>
@@ -23,6 +27,10 @@
              [formControl]="startForm.controls['samplename']"
              styleClass="inputClass"
              id="samplename"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['samplename'].valid&&startForm.controls['samplename'].dirty">
+        Sample Name is required.
+      </small>
     </div>
     <div class="col-sm-5 col-form-help">
       <p>Name assigned to this process</p>
@@ -36,6 +44,10 @@
              [formControl]="startForm.controls['alleles']"
              styleClass="inputClass"
              id="alleles"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['alleles'].valid&&startForm.controls['alleles'].dirty">
+        Alleles are required.
+      </small>
     </div>
     <div class="col-sm-5 col-form-help">
       <p>Comma-separated list of alleles to run the sequences against</p>
@@ -49,6 +61,10 @@
              [formControl]="startForm.controls['prediction_algorithms']"
              styleClass="inputClass"
              id="prediction_algoriths"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['prediction_algorithms'].valid&&startForm.controls['prediction_algorithms'].dirty">
+        Prediction algorithms are required.
+      </small>
     </div>
     <div class="col-sm-5 col-form-help">
       <p>Comma-separated list of prediction algorithms to use</p>
@@ -62,6 +78,10 @@
              [formControl]="startForm.controls['epitope_lengths']"
              styleClass="inputClass"
              id="epitope_lengths"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['epitope_lengths'].valid&&startForm.controls['epitope_lengths'].dirty">
+        Epitope lengths are required.
+      </small>
     </div>
     <div class="col-sm-5 col-form-help">
       <p>Comma-separated list of epitope lengths to produce</p>
@@ -75,6 +95,10 @@
              [formControl]="startForm.controls['peptide_sequence_length']"
              styleClass="inputClass"
              id="peptide_sequence_length"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['peptide_sequence_length'].valid&&startForm.controls['peptide_sequence_length'].dirty">
+        Peptide sequence length(s) are required.
+      </small>
     </div>
     <div class="col-sm-5 col-form-help">
       <p>Length of the peptide sequences to produce in the FASTA</p>
