@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StartComponent } from './start.component';
 import { StartRoutingModule } from './start-routing.module';
@@ -16,6 +16,7 @@ import { StartFormComponent } from './start-form/start-form.component';
     StartRoutingModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     InputTextModule,
     DropdownModule
   ],
