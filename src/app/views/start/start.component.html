@@ -1,7 +1,10 @@
 <div class="start-component">
   <h2>Start</h2>
-  <form name="start">
+  <form name="start"
+        #f="ngForm"
+        (onSubmit)="onSubmit(f.value)">
     <div class="form-group row">
+
       <label for="inputVcf" class="col-sm-3 col-form-label">*Input VCF</label>
       <div class="col-sm-4">
         <p-dropdown [options]="inputs$ | async"
