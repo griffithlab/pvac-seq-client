@@ -1,12 +1,5 @@
-import {
-  Component,
-  ViewEncapsulation,
-  OnInit
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 import * as _ from 'lodash';
 
@@ -14,7 +7,6 @@ import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.model';
 import { File } from '../../../store/models/store.model';
-import { Parameters } from '../../../store/models/process.model';
 import { LoadInputsAction } from '../../../store/actions/store.actions';
 
 import { InputService } from '../../../services/input.service';
@@ -28,9 +20,9 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class StartFormComponent implements OnInit {
   inputs$: Observable<SelectItem[]>;
-  parameters: {};
 
-  constructor(private store: Store<AppState>, private inputService: InputService) {
+  constructor(private store: Store<AppState>, private inputService: InputService, private fb: FormBuilder) {
+
     this.inputs$ = store
       .select(state => state.store.inputs)
       .map(fileMap => _.chain(fileMap)
@@ -40,11 +32,6 @@ export class StartFormComponent implements OnInit {
         })
         .value()
       );
-
-    this.parameters = {
-      fileID: undefined,
-      samplename: ''
-    };
 
   }
 
