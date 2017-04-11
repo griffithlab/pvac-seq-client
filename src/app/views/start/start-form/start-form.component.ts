@@ -22,8 +22,22 @@ export class StartFormComponent implements OnInit {
   inputs$: Observable<SelectItem[]>;
   startForm: FormGroup;
 
-  constructor(private store: Store<AppState>, private inputService: InputService, private fb: FormBuilder) {
+  netChopMethodOptions: SelectItem[];
+  topScoreMetricOptions: SelectItem[];
 
+  constructor(private store: Store<AppState>, private inputService: InputService, private fb: FormBuilder) {
+    this.netChopMethodOptions = [
+      { label: 'C term 3.0', value: 'cterm' },
+      { label: '20S 3.0', value: '20s' },
+    ];
+
+    this.topScoreMetricOptions = [
+      { label: 'Median Score', value: 'median' },
+      { label: 'Lowest Score', value: 'lowest' },
+    ];
+
+    // <option value="median" selected>Median Score</option>
+    // <option value="lowest">Lowest Score</option>
     this.inputs$ = store
       .select(state => state.store.inputs)
       .map(fileMap => _.chain(fileMap)
@@ -49,6 +63,11 @@ export class StartFormComponent implements OnInit {
       'tdna_indels_coverage_file': [null, []],
       'trna_snvs_coverage_file': [null, []],
       'trna_indels_coverage_file': [null, []],
+      'net_chop_method': [null, []],
+      'net_chop_threshold': [0.5, []],
+      'netmhc_stab': [false, []],
+      'top_result_per_mutation': [false, []],
+      'top_score_metric': ['median', []],
     };
 
     this.startForm = fb.group(startFormGroup);

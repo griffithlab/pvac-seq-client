@@ -225,6 +225,76 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label for="netChopMethodDropdown" class="col-sm-3 col-form-label">NetChop Method</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="netChopMethodOptions"
+                  [formControl]="startForm.controls['net_chop_method']"
+                  styleClass="inputClass"
+                  placeholder="Skip NetChop"
+                  id="netChopMethodDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>NetChop will be run if method specified here.</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="netChopThresholdSpinner" class="col-sm-3 col-form-label">NetChop Threshold</label>
+    <div class="col-sm-4">
+      <p-spinner [formControl]="startForm.controls['net_chop_threshold']"
+                 [step]="0.5"
+                 styleClass="inputClass"
+                 id="netChopSpinnerThreshold">
+      </p-spinner>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>NetChop prediction threshold</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="netMhcStabCheckbox" class="col-sm-3 col-form-label">NetMHC Stab</label>
+    <div class="col-sm-4">
+      <p-checkbox [formControl]="startForm.controls['netmhc_stab']"
+                  binary="true"
+                  id="netMhcStabCheckbox">
+      </p-checkbox>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Run NetMHCStabPan at the end of the pipeline</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="topResultPerMutationCheckbox" class="col-sm-3 col-form-label">Top Result Per Mutation</label>
+    <div class="col-sm-4">
+      <p-checkbox [formControl]="startForm.controls['top_result_per_mutation']"
+                  binary="true"
+                  id="topResultPerMutationCheckbox">
+      </p-checkbox>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Output top scoring candidate per allele-length per mutation</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="topScoreMetricDropdown" class="col-sm-3 col-form-label">Top Score Metric</label>
+    <div class="col-sm-4">
+      <p-dropdown [options]="topScoreMetricOptions"
+                  [formControl]="startForm.controls['top_score_metric']"
+                  styleClass="inputClass"
+                  placeholder="Select Top Score Metric"
+                  id="topScoreMetricDropdown">
+      </p-dropdown>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Metric for choosing best epitopes during binding filtering</p>
+    </div>
+  </div>
+
   <div class="row" >
     <div class="col-sm-4 offset-sm-3 text-right">
       <button pButton type="submit"
