@@ -47,7 +47,12 @@ export class StartFormComponent implements OnInit {
         })
         .value()
       );
-
+    /*
+          FASTA Size: <input type="number" name="fasta_size" value="200" step="2"><br>
+          IEDB Retries: <input type="number" name="iedb_retries" value="5"><br>
+          Downstream Sequence Length: <input type="text" name="downstream_sequence_length" value="1000"><br>
+          Keep Tmp Files: <input type="checkbox" name="keep_tmp_files"><br>
+    */
     const startFormGroup = {
       'inputVCF': [null, [Validators.required]],
       'samplename': [null, [Validators.required]],
@@ -68,6 +73,15 @@ export class StartFormComponent implements OnInit {
       'netmhc_stab': [false, []],
       'top_result_per_mutation': [false, []],
       'top_score_metric': ['median', []],
+      'binding_threshold': [500, []],
+      'minimum_fold_change': [0, []],
+      'expn_val': [1, []],
+      'normal_cov': [5, []],
+      'tdna_cov': [5, []],
+      'trna_cov': [5, []],
+      'normal_vaf': [5, []],
+      'tdna_vaf': [5, []],
+      'trna_vaf': [5, []],
     };
 
     this.startForm = fb.group(startFormGroup);
