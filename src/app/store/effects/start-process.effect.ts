@@ -7,7 +7,7 @@ import { START_PROCESS_ACTION, ErrorOccurredAction } from "../actions/store.acti
 
 
 @Injectable()
-export class WriteNewMessageEffectService {
+export class StartProcessEffectService {
 
   constructor(private actions$: Actions, private processService: ProcessService) {
 

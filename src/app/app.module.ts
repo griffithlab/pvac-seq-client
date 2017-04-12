@@ -5,8 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Store
 import { provideStore } from '@ngrx/store';
+import { EffectsModule } from "@ngrx/effects";
 import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
+import { StartProcessEffectService } from './store/effects/start-process.effect';
 
 // App Modules
 import { AppRoutingModule } from './app.routing';
@@ -28,6 +30,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     ServicesModule,
+    EffectsModule.run(StartProcessEffectService),
   ],
   declarations: [
     AppComponent,
