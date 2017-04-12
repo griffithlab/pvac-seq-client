@@ -327,7 +327,7 @@
   <div class="form-group row">
     <label for="normalCoverageInput" class="col-sm-3 col-form-label">Normal Coverage Cutoff</label>
     <div class="col-sm-4">
-      <input type="text" pInputText
+      <input type="number" pInputText
              [formControl]="startForm.controls['normal_cov']"
              id="normalCoverageInput"/>
       <small class="form-text text-danger"
@@ -343,7 +343,7 @@
   <div class="form-group row">
     <label for="tdnaCoverageInput" class="col-sm-3 col-form-label">Tumor DNA Coverage Cutoff</label>
     <div class="col-sm-4">
-      <input type="text" pInputText
+      <input type="number" pInputText
              [formControl]="startForm.controls['tdna_cov']"
              id="tdnaCoverageInput"/>
       <small class="form-text text-danger"
@@ -357,9 +357,9 @@
   </div>
 
   <div class="form-group row">
-    <label for="trnaCoverageInput" class="col-sm-3 col-form-label">Tumor DNA Coverage Cutoff</label>
+    <label for="trnaCoverageInput" class="col-sm-3 col-form-label">Tumor RNA Coverage Cutoff</label>
     <div class="col-sm-4">
-      <input type="text" pInputText
+      <input type="number" pInputText
              [formControl]="startForm.controls['trna_cov']"
              id="trnaCoverageInput"/>
       <small class="form-text text-danger"
@@ -407,7 +407,7 @@
   <div class="form-group row">
     <label for="tumorRnaVafInput" class="col-sm-3 col-form-label">Tumor RNA VAF Cutoff</label>
     <div class="col-sm-4">
-      <input type="text" pInputText
+      <input type="number" pInputText
              [formControl]="startForm.controls['trna_vaf']"
              id="tumorRnaVafInput"/>
       <small class="form-text text-danger"
@@ -417,6 +417,67 @@
     </div>
     <div class="col-sm-5 col-form-help">
       <p>Only sites below this tumor RNA VAF will be considered</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="fastaSizeInput" class="col-sm-3 col-form-label">FASTA Size Input</label>
+    <div class="col-sm-4">
+      <input type="number" pInputText
+             [formControl]="startForm.controls['fasta_size']"
+             id="fastaSizeInput"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['fasta_size'].valid&&startForm.controls['fasta_size'].dirty">
+        FASTA size required.
+      </small>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Number of entries submitted to IEDB in each request. Must be an even number</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="iedbRetriesInput" class="col-sm-3 col-form-label">IEDB Retries</label>
+    <div class="col-sm-4">
+      <input type="number" pInputText
+             [formControl]="startForm.controls['iedb_retries']"
+             id="iedbRetriesInput"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['iedb_retries'].valid&&startForm.controls['iedb_retries'].dirty">
+        IEDB retries required
+      </small>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Number of retries when making requests to the IEDB RESTful web interface. Must be less than or equal to 100</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="downstreamSequenceLengthInput" class="col-sm-3 col-form-label">Downstream Sequence Length</label>
+    <div class="col-sm-4">
+      <input type="text" pInputText
+             [formControl]="startForm.controls['downstream_sequence_length']"
+             id="downstreamSequenceLengthInput"/>
+      <small class="form-text text-danger"
+             *ngIf="!startForm.controls['downstream_sequence_length'].valid&&startForm.controls['downstream_sequence_length'].dirty">
+        Downstream sequence length required
+      </small>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Cap to limit the downstream sequence length for frameshifts when creating the fasta file. Use 'full' to include the full downstream sequence.</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="keepTmpFilesCheckbox" class="col-sm-3 col-form-label">Keep Temp Files</label>
+    <div class="col-sm-4">
+      <p-checkbox [formControl]="startForm.controls['keep_tmp_files']"
+                  binary="true"
+                  id="keepTmpFilesCheckbox">
+      </p-checkbox>
+    </div>
+    <div class="col-sm-5 col-form-help">
+      <p>Keep temporary files</p>
     </div>
   </div>
 

@@ -82,6 +82,10 @@ export class StartFormComponent implements OnInit {
       'normal_vaf': [5, []],
       'tdna_vaf': [5, []],
       'trna_vaf': [5, []],
+      'fasta_size': [200, []],
+      'iedb_retries': [5, []],
+      'downstream_sequence_length': [1000, []],
+      'keep_tmp_files': [false, []],
     };
 
     this.startForm = fb.group(startFormGroup);
