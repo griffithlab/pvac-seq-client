@@ -36,23 +36,26 @@ export class ProcessService {
   }
 
   start(process: any): Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    let options = new RequestOptions({ headers });
-    let payload = new URLSearchParams('', new FlaskQueryEncoder());
+    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const options = new RequestOptions({ headers });
+    const payload = new URLSearchParams('', new FlaskQueryEncoder());
 
     const payloadArray = _.toPairs(process);
     payloadArray.map((field) => {
       payload.append(field[0], field[1]);
-    })
+    });
 
     return this.http.post(`${this.api}/staging`, payload.toString(), options)
-      .map(mapProcess);
+      .map((response: Response) => {
+        console.log(response);
+        return JSON.parse(response['_body']) as number;
+      });
   }
 
   // TODO: probably need to handle this with ngrx-effects
   archive(id: number): Observable<string> {
     return this.http.get(`${this.api}/archive/${id}`)
-      .map(response => {
+      .map((response: Response) => {
         console.log(response);
         return response.statusText;
       });
