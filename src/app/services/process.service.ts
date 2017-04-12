@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Process } from '../store/models/process.model';
+import * as _ from 'lodash';
 
+import { Process } from '../store/models/process.model';
 import { ConfigService } from './config.service';
+
+import { FlaskQueryEncoder } from './FlaskQueryEncoder';
 
 @Injectable()
 export class ProcessService {
@@ -33,11 +36,19 @@ export class ProcessService {
   }
 
   start(process: any): Observable<any> {
-    const payload = JSON.stringify(process);
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers });
+    let payload = new URLSearchParams('', new FlaskQueryEncoder());
 
-    return this.http.post(`${this.api}/start`, payload)
+    const payloadArray = _.toPairs(process);
+    payloadArray.map((field) => {
+      payload.append(field[0], field[1]);
+    })
+
+    return this.http.post(`${this.api}/staging`, payload.toString(), options)
       .map(mapProcess);
   }
+
   // TODO: probably need to handle this with ngrx-effects
   archive(id: number): Observable<string> {
     return this.http.get(`${this.api}/archive/${id}`)

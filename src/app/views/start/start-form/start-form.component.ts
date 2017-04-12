@@ -54,7 +54,7 @@ export class StartFormComponent implements OnInit {
           Keep Tmp Files: <input type="checkbox" name="keep_tmp_files"><br>
     */
     const startFormGroup = {
-      'inputVCF': [1, [Validators.required]],
+      'input': [1, [Validators.required]],
       'samplename': ['sample-name-N', [Validators.required]],
       'alleles': ['HLA-A*01:01,HLA-A*03:01,HLA-B*07:02,HLA-B*08:01,HLA-C*07:02,HLA-C*07:137', [Validators.required]],
       'prediction_algorithms': ['NNalign,NetMHC,NetMHCIIpan,NetMHCcons,NetMHCpan,PickPocket,SMM,SMMPMBEC,SMMalign', [Validators.required]],
