@@ -15,7 +15,7 @@ export class WriteNewMessageEffectService {
 
   @Effect() newMessages$: Observable<any> = this.actions$
     .ofType(START_PROCESS_ACTION)
-    // .debug("sending new message to the server")
+    .debug("sending new message to the server")
     .switchMap(action => this.processService.start(action.payload))
     .catch(() => Observable.of(new ErrorOccurredAction("Error Ocurred while saving message")));
 }
