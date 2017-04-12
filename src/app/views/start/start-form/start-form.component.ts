@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.model';
 import { File } from '../../../store/models/store.model';
-import { LoadInputsAction } from '../../../store/actions/store.actions';
+import { LoadInputsAction, StartProcessAction } from '../../../store/actions/store.actions';
 
 import { InputService } from '../../../services/input.service';
 
@@ -54,10 +54,14 @@ export class StartFormComponent implements OnInit {
           Keep Tmp Files: <input type="checkbox" name="keep_tmp_files"><br>
     */
     const startFormGroup = {
-      'inputVCF': [null, [Validators.required]],
-      'samplename': [null, [Validators.required]],
-      'alleles': [null, [Validators.required]],
-      'prediction_algorithms': [null, [Validators.required]],
+      'inputVCF': [1, [Validators.required]],
+      'samplename': ['sample-name-N', [Validators.required]],
+      'alleles': ['HLA-A*01:01,HLA-A*03:01,HLA-B*07:02,HLA-B*08:01,HLA-C*07:02,HLA-C*07:137', [Validators.required]],
+      'prediction_algorithms': ['NNalign,NetMHC,NetMHCIIpan,NetMHCcons,NetMHCpan,PickPocket,SMM,SMMPMBEC,SMMalign', [Validators.required]],
+      // 'inputVCF': [null, [Validators.required]],
+      // 'samplename': [null, [Validators.required]],
+      // 'alleles': [null, [Validators.required]],
+      // 'prediction_algorithms': [null, [Validators.required]],
       'epitope_lengths': ['10', [Validators.required]],
       'peptide_sequence_length': [21, [Validators.required]],
       'gene_expn_file': [null, []],
@@ -101,6 +105,7 @@ export class StartFormComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
-    console.log('you submitted value:', form);
+    console.log('you submitted form:', form);
+    this.store.dispatch(new StartProcessAction(form))
   }
 }

@@ -32,6 +32,12 @@ export class ProcessService {
       .map(mapProcess);
   }
 
+  start(process: any): Observable<any> {
+    const payload = JSON.stringify(process);
+
+    return this.http.post(`${this.api}/start`, payload)
+      .map(mapProcess);
+  }
   // TODO: probably need to handle this with ngrx-effects
   archive(id: number): Observable<string> {
     return this.http.get(`${this.api}/archive/${id}`)
