@@ -16,6 +16,7 @@ const root = {
 }
 
 const developmentReducer: ActionReducer<AppState> = compose(
+  // compose in some helpful ngrx dev tools:
   storeLogger(), // logs all state changes to console
   storeFreeze, // throws error if app state mutates
   combineReducers
