@@ -3,8 +3,8 @@ import * as _ from 'lodash';
 
 import { StoreState, INITIAL_STORE_STATE } from '../models/store.model';
 import {
-  LoadProcessesAction,
-  LOAD_PROCESSES_ACTION,
+  ProcessesLoadedAction,
+  PROCESSES_LOADED_ACTION,
   LoadProcessAction,
   LOAD_PROCESS_ACTION,
   LoadInputsAction,
@@ -14,8 +14,8 @@ import {
 
 export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Action): StoreState {
   switch (action.type) {
-    case LOAD_PROCESSES_ACTION:
-      return handleLoadProcessesAction(state, action);
+    case PROCESSES_LOADED_ACTION:
+      return handleProcessesLoadedAction(state, action);
 
     case LOAD_PROCESS_ACTION:
       return handleLoadProcessAction(state, action);
@@ -28,7 +28,7 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
   }
 };
 
-function handleLoadProcessesAction(state: StoreState, action: LoadProcessesAction): StoreState {
+function handleProcessesLoadedAction(state: StoreState, action: ProcessesLoadedAction): StoreState {
   const processes = action.payload;
   const newState = Object.assign({}, state);
 

@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from '../../store/models/app.model';
 import { Process, ProcessMap, ProcessSummaryVM } from '../../store/models/process.model';
-import { LoadProcessesAction } from '../../store/actions/store.actions';
+import { ProcessesLoadedAction } from '../../store/actions/store.actions';
 
 import { ProcessService } from '../../services/process.service';
 
@@ -47,8 +47,10 @@ export class ManageComponent implements OnInit {
   }
 
   loadProcesses(): void {
-    this.processService.query()
-      .subscribe(processes => this.store.dispatch(new LoadProcessesAction(processes)));
+    this.processService
+      .query()
+      .subscribe(processes => this.store.dispatch(new ProcessesLoadedAction(processes)));
+    // .subscribe(processes => this.store.dispatch(new LoadProcessesAction(processes)));
   }
 
   ngOnInit() {
