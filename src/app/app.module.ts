@@ -24,13 +24,17 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
+const storeEffects = [
+  EffectsModule.run(LoadProcessesEffectService),
+];
+
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ServicesModule,
-    EffectsModule.run(LoadProcessesEffectService),
+    storeEffects,
   ],
   declarations: [
     AppComponent,

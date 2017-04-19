@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 
 import { ProcessService } from '../../services/process.service';
@@ -14,7 +15,7 @@ export class LoadProcessesEffectService {
   constructor(private actions$: Actions,
     private processService: ProcessService) { }
 
-  @Effect() proceses$: Observable<any> = this.actions$
+  @Effect() proceses$: Observable<Action> = this.actions$
     .ofType(LOAD_PROCESSES_ACTION)
     .debug('loading processes')
     .switchMap(action => this.processService.query())

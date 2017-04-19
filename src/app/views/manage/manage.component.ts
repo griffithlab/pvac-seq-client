@@ -48,9 +48,6 @@ export class ManageComponent implements OnInit {
 
   loadProcesses(): void {
     this.store.dispatch(new LoadProcessesAction());
-    // this.processService
-    //   .query()
-    //   .subscribe(processes => this.store.dispatch(new ProcessesLoadedAction(processes)));
   }
 
   ngOnInit() {
