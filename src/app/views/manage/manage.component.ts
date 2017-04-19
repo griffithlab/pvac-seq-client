@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from '../../store/models/app.model';
 import { Process, ProcessMap, ProcessSummaryVM } from '../../store/models/process.model';
-import { ProcessesLoadedAction } from '../../store/actions/store.actions';
+import { LoadProcessesAction } from '../../store/actions/store.actions';
 
 import { ProcessService } from '../../services/process.service';
 
@@ -18,7 +18,7 @@ export class ManageComponent implements OnInit {
   processes$: Observable<Process[]>;
   processSummaries$: Observable<ProcessSummaryVM[]>;
 
-  constructor(private store: Store<AppState>, private processService: ProcessService) {
+  constructor(private store: Store<AppState>) {
     this.processes$ = store
       .select(state => state.store.processes)
       .map(processMap => _.chain(processMap).valuesIn().map(p => p as Process).value());
@@ -47,10 +47,10 @@ export class ManageComponent implements OnInit {
   }
 
   loadProcesses(): void {
-    this.processService
-      .query()
-      .subscribe(processes => this.store.dispatch(new ProcessesLoadedAction(processes)));
-    // .subscribe(processes => this.store.dispatch(new LoadProcessesAction(processes)));
+    this.store.dispatch(new LoadProcessesAction());
+    // this.processService
+    //   .query()
+    //   .subscribe(processes => this.store.dispatch(new ProcessesLoadedAction(processes)));
   }
 
   ngOnInit() {

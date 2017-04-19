@@ -8,7 +8,7 @@ import { provideStore } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
 import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
-import { StartProcessEffectService } from './store/effects/start-process.effect';
+import { LoadProcessesEffectService } from './store/effects/store.effects';
 
 // App Modules
 import { AppRoutingModule } from './app.routing';
@@ -30,7 +30,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     ServicesModule,
-    EffectsModule.run(StartProcessEffectService),
+    EffectsModule.run(LoadProcessesEffectService),
   ],
   declarations: [
     AppComponent,
