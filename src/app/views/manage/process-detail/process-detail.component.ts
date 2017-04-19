@@ -31,7 +31,7 @@ export class ProcessDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new LoadProcessAction(this.processId));
+    this.store.dispatch(new LoadProcessAction());
   }
 
 }

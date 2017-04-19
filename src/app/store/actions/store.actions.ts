@@ -27,41 +27,52 @@ export const ERROR_OCCURRED_ACTION: string = 'ERROR_OCCURRED_ACTION';
 
 export class LoadProcessAction implements Action {
   readonly type = LOAD_PROCESS_ACTION;
-  constructor(public payload?: number) { }
 }
 
 export class LoadProcessesAction implements Action {
   readonly type = LOAD_PROCESSES_ACTION;
 
-  constructor(public payload?: Process[]) { }
+  constructor(public payload?: Process[]) {
+
+  }
 }
 
 export class ProcessLoadedAction implements Action {
   readonly type = PROCESS_LOADED_ACTION;
 
-  constructor(public payload?: Process) { }
+  constructor(public payload?: Process) {
+
+  }
 }
 
 export class LoadInputsAction implements Action {
   readonly type = LOAD_INPUTS_ACTION;
 
-  constructor(public payload?: File[]) { }
+  constructor(public payload?: File[]) {
+
+  }
 }
 
 export class ArchiveProcessAction implements Action {
   readonly type = ARCHIVE_PROCESS_ACTION;
 
-  constructor(public payload?: string) { }
+  constructor(public payload?: string) {
+
+  }
 }
 
 export class StartProcessAction implements Action {
   readonly type = START_PROCESS_ACTION;
 
-  constructor(public payload?: string) { }
+  constructor(public payload?: string) {
+
+  }
 }
 
 export class ErrorOccurredAction implements Action {
   readonly type = ERROR_OCCURRED_ACTION;
 
-  constructor(public payload?: string) { }
+  constructor(public payload?: string) {
+
+  }
 }

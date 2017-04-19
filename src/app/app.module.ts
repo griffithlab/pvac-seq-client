@@ -8,11 +8,7 @@ import { provideStore } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
 import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
-import {
-  StartProcessEffectService,
-  ArchiveProcessEffectService,
-  LoadProcessEffectService
-} from './store/effects/store.effects';
+import { StartProcessEffectService } from './store/effects/start-process.effect';
 
 // App Modules
 import { AppRoutingModule } from './app.routing';
@@ -28,19 +24,13 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
-const appEffects = [
-  EffectsModule.run(StartProcessEffectService),
-  EffectsModule.run(ArchiveProcessEffectService),
-  EffectsModule.run(LoadProcessEffectService)
-];
-
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ServicesModule,
-    appEffects
+    EffectsModule.run(StartProcessEffectService),
   ],
   declarations: [
     AppComponent,
