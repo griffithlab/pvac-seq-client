@@ -5,7 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Store
 import { provideStore } from '@ngrx/store';
-import { EffectsModule } from "@ngrx/effects";
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
 import { LoadProcessesEffectService } from './store/effects/store.effects';
@@ -35,6 +36,7 @@ const storeEffects = [
     AppRoutingModule,
     ServicesModule,
     storeEffects,
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
   ],
   declarations: [
     AppComponent,

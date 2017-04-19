@@ -3,8 +3,8 @@ import { environment } from '../../environments/environment';
 import { ActionReducer, combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
 
-import { storeFreeze } from "ngrx-store-freeze";
-import { storeLogger } from "ngrx-store-logger";
+import { storeFreeze } from 'ngrx-store-freeze';
+import { storeLogger } from 'ngrx-store-logger';
 
 import { AppState } from './models/app.model';
 import * as fromStore from './reducers/store.reducer';
@@ -13,7 +13,7 @@ import * as fromUi from './reducers/ui.reducer';
 const root = {
   ui: fromUi.uiReducer,
   store: fromStore.storeReducer
-}
+};
 
 const developmentReducer: ActionReducer<AppState> = compose(
   storeLogger(), // logs all state changes to console

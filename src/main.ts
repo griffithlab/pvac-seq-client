@@ -8,17 +8,17 @@ Observable.prototype.debug = function(message: string) {
   return this.do(
     nextValue => {
       if (!environment.production) {
-        console.log(message, nextValue)
+        console.log(message, nextValue);
       }
     },
     error => {
       if (!environment.production) {
-        console.error(message, error)
+        console.error(message, error);
       }
     },
     () => {
       if (!environment.production) {
-        console.error("Observable completed - ", message)
+        console.error('Observable completed - ', message);
       }
     }
   );
@@ -27,7 +27,7 @@ Observable.prototype.debug = function(message: string) {
 
 declare module 'rxjs/Observable' {
   interface Observable<T> {
-    debug: (...any) => Observable<T>
+    debug: (...any) => Observable<T>;
   }
 }
 
