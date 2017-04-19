@@ -7,7 +7,7 @@
             {{process.parameters.sample_name}}
           </div>
           <div class="col text-right" >
-            <button pButton type="button" (click)="archive()" [disabled]="process.running === true" label="Archive" class="ui-button-warning"></button>
+            <button pButton type="button" (click)="archive()" label="Archive" class="ui-button-warning"></button>
             <button pButton type="button" (click)="onReload.emit()" label="Reload"></button>
           </div>
         </div>
