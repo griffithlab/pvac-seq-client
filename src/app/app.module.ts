@@ -9,7 +9,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
-import { LoadProcessesEffectService } from './store/effects/store.effects';
+import {
+  LoadProcessesEffectService,
+  LoadProcessEffectService
+} from './store/effects/store.effects';
 
 // App Modules
 import { AppRoutingModule } from './app.routing';
@@ -27,6 +30,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
 const storeEffects = [
   EffectsModule.run(LoadProcessesEffectService),
+  EffectsModule.run(LoadProcessEffectService),
 ];
 
 @NgModule({
