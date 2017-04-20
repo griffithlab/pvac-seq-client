@@ -10,7 +10,10 @@ import { File } from '../models/store.model';
 export const STORE_ACTIONS = {
   LOAD_PROCESSES_ACTION: 'LOAD_PROCESSES_ACTION',
   PROCESSES_LOADED_ACTION: 'PROCESSES_LOADED_ACTION',
+
   LOAD_PROCESS_ACTION: 'LOAD_PROCESS_ACTION',
+  PROCESS_LOADED_ACTION: 'PROCESS_LOADED_ACTION',
+
   LOAD_INPUTS_ACTION: 'LOAD_INPUTS_ACTION',
   ARCHIVE_PROCESS_ACTION: 'ARCHIVE_PROCESS_ACTION',
   START_PROCESS_ACTION: 'START_PROCESS_ACTION',
@@ -19,7 +22,10 @@ export const STORE_ACTIONS = {
 
 export const LOAD_PROCESSES_ACTION: string = 'LOAD_PROCESSES_ACTION';
 export const PROCESSES_LOADED_ACTION: string = 'PROCESSES_LOADED_ACTION';
+
 export const LOAD_PROCESS_ACTION: string = 'LOAD_PROCESS_ACTION';
+export const PROCESS_LOADED_ACTION: string = 'PROCESS_LOADED_ACTION';
+
 export const LOAD_INPUTS_ACTION: string = 'LOAD_INPUTS_ACTION';
 export const ARCHIVE_PROCESS_ACTION: string = 'ARCHIVE_PROCESS_ACTION';
 export const START_PROCESS_ACTION: string = 'START_PROCESS_ACTION';
@@ -34,47 +40,41 @@ export class LoadProcessesAction implements Action {
 export class ProcessesLoadedAction implements Action {
   readonly type = PROCESSES_LOADED_ACTION;
 
-  constructor(public payload?: Process[]) {
-
-  }
+  constructor(public payload?: Process[]) { }
 }
 
 export class LoadProcessAction implements Action {
   readonly type = LOAD_PROCESS_ACTION;
 
-  constructor(public payload?: Process) {
+  constructor(public payload?: number) { }
+}
 
-  }
+export class ProcessLoadedAction implements Action {
+  readonly type = PROCESS_LOADED_ACTION;
+
+  constructor(public payload?: Process) { }
 }
 
 export class LoadInputsAction implements Action {
   readonly type = LOAD_INPUTS_ACTION;
 
-  constructor(public payload?: File[]) {
-
-  }
+  constructor(public payload?: File[]) { }
 }
 
 export class ArchiveProcessAction implements Action {
   readonly type = ARCHIVE_PROCESS_ACTION;
 
-  constructor(public payload?: string) {
-
-  }
+  constructor(public payload?: string) { }
 }
 
 export class StartProcessAction implements Action {
   readonly type = START_PROCESS_ACTION;
 
-  constructor(public payload?: string) {
-
-  }
+  constructor(public payload?: string) { }
 }
 
 export class ErrorOccurredAction implements Action {
   readonly type = ERROR_OCCURRED_ACTION;
 
-  constructor(public payload?: string) {
-
-  }
+  constructor(public payload?: string) { }
 }

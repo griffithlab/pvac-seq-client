@@ -25,8 +25,9 @@ export class ProcessDetailComponent implements OnInit {
   }
 
   loadProcess() {
-    this.processService.get(this.processId)
-      .subscribe(process => this.store.dispatch(new LoadProcessAction(process)));
+    this.store.dispatch(new LoadProcessAction(this.processId));
+    // this.processService.get(this.processId)
+    //   .subscribe(process => this.store.dispatch(new LoadProcessAction(process)));
   }
 
   // TODO: probably need to implement this w/ ngrx-effects to prompt update of process list
