@@ -11,7 +11,8 @@ import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
 import {
   LoadProcessesEffectService,
-  LoadProcessEffectService
+  LoadProcessEffectService,
+  ArchiveProcessEffectService,
 } from './store/effects/store.effects';
 
 // App Modules
@@ -31,6 +32,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 const storeEffects = [
   EffectsModule.run(LoadProcessesEffectService),
   EffectsModule.run(LoadProcessEffectService),
+  EffectsModule.run(ArchiveProcessEffectService),
 ];
 
 @NgModule({

@@ -14,8 +14,10 @@ export const STORE_ACTIONS = {
   LOAD_PROCESS_ACTION: 'LOAD_PROCESS_ACTION',
   PROCESS_LOADED_ACTION: 'PROCESS_LOADED_ACTION',
 
-  LOAD_INPUTS_ACTION: 'LOAD_INPUTS_ACTION',
   ARCHIVE_PROCESS_ACTION: 'ARCHIVE_PROCESS_ACTION',
+  PROCESS_ARCHIVED_ACTION: 'PROCESS_ARCHIVED_ACTION',
+
+  LOAD_INPUTS_ACTION: 'LOAD_INPUTS_ACTION',
   START_PROCESS_ACTION: 'START_PROCESS_ACTION',
   ERROR_OCCURRED_ACTION: 'ERROR_OCCURRED_ACTION',
 };
@@ -26,8 +28,10 @@ export const PROCESSES_LOADED_ACTION: string = 'PROCESSES_LOADED_ACTION';
 export const LOAD_PROCESS_ACTION: string = 'LOAD_PROCESS_ACTION';
 export const PROCESS_LOADED_ACTION: string = 'PROCESS_LOADED_ACTION';
 
-export const LOAD_INPUTS_ACTION: string = 'LOAD_INPUTS_ACTION';
 export const ARCHIVE_PROCESS_ACTION: string = 'ARCHIVE_PROCESS_ACTION';
+export const PROCESS_ARCHIVED_ACTION: string = 'PROCESS_ARCHIVED_ACTION';
+
+export const LOAD_INPUTS_ACTION: string = 'LOAD_INPUTS_ACTION';
 export const START_PROCESS_ACTION: string = 'START_PROCESS_ACTION';
 export const ERROR_OCCURRED_ACTION: string = 'ERROR_OCCURRED_ACTION';
 
@@ -63,6 +67,12 @@ export class LoadInputsAction implements Action {
 
 export class ArchiveProcessAction implements Action {
   readonly type = ARCHIVE_PROCESS_ACTION;
+
+  constructor(public payload?: number) { }
+}
+
+export class ProcessArchivedAction implements Action {
+  readonly type = PROCESS_ARCHIVED_ACTION;
 
   constructor(public payload?: string) { }
 }

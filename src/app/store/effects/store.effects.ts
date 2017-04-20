@@ -6,9 +6,11 @@ import { Observable } from 'rxjs/Rx';
 import { ProcessService } from '../../services/process.service';
 import {
   LOAD_PROCESSES_ACTION,
+  LoadProcessesAction,
   ProcessesLoadedAction,
   LOAD_PROCESS_ACTION,
   ProcessLoadedAction,
+  ARCHIVE_PROCESS_ACTION,
   ErrorOccurredAction
 } from '../actions/store.actions';
 
@@ -33,7 +35,21 @@ export class LoadProcessEffectService {
     .debug('loading process')
     .switchMap(action => this.processService.get(action.payload))
     .map(process => new ProcessLoadedAction(process))
-    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading process')));
+    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading process.')));
+
+  constructor(private actions$: Actions,
+    private processService: ProcessService) { }
+
+}
+
+@Injectable()
+export class ArchiveProcessEffectService {
+  @Effect() status$: Observable<Action> = this.actions$
+    .ofType(ARCHIVE_PROCESS_ACTION)
+    .debug('archiving process')
+    .switchMap(action => this.processService.archive(action.payload))
+    .map(process => new LoadProcessesAction()) // reload processes to update process tables etc.
+    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while archiving process.')));
 
   constructor(private actions$: Actions,
     private processService: ProcessService) { }
