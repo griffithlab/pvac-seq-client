@@ -26,7 +26,7 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
       return handleProcessLoadedAction(state, action);
 
     case PROCESS_ARCHIVED_ACTION:
-      return handleProcessLoadedAction(state, action);
+      return handleProcessArchivedAction(state, action);
 
     case LOAD_INPUTS_ACTION:
       return handleLoadInputsAction(state, action);
@@ -57,12 +57,11 @@ function handleProcessLoadedAction(state: StoreState, action: ProcessLoadedActio
 }
 
 function handleProcessArchivedAction(state: StoreState, action: ProcessArchivedAction): StoreState {
-  // const process = action.payload;
+  const processId = action.payload;
   const newState = Object.assign({}, state);
-  // const newProcessDetail = Object.assign({}, state.processDetail);
+  const newProcessDetail = Object.assign({}, _.omit(state.processDetail, processId)); // omit archived process details
 
-  // newProcessDetail[process.id] = process;
-  // newState.processDetail = newProcessDetail;
+  newState.processDetail = newProcessDetail;
 
   return newState;
 }
