@@ -53,13 +53,13 @@ export class ArchiveProcessEffectService {
     .debug('archiving process')
     .switchMap((action) => {
       return this.processService.archive(action.payload)
-        .map(() => action.payload);
-    })
-    .concat((processId) => {
-      return [
-        new LoadProcessesAction(),
-        new ClearProcessDetailsAction(processId),
-      ];
+        .flatMap((response) => {
+          const processId = action.payload;
+          return [
+            new LoadProcessesAction(),
+            new ClearProcessDetailsAction(processId),
+          ];
+        });
     })
     .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while archiving process.')));
 
