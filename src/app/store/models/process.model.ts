@@ -18,6 +18,7 @@ export interface Process {
 
 export interface Parameters {
   // required
+  readonly id: number;
   readonly input: string;
   readonly action: string;
   readonly samplename: string;
@@ -52,12 +53,12 @@ export interface Parameters {
 
 export interface ProcessSummaryVM {
   readonly id: number;
-  readonly samplename: string;
-  readonly input_filename: string;
-  readonly running: boolean;
   readonly alleles: string;
-  readonly prediction_algorithms: string;
   readonly epitope_lengths: string;
+  readonly input_filename: string;
+  readonly prediction_algorithms: string;
+  readonly running: boolean;
+  readonly samplename: string;
   readonly status: number;
 }
 
