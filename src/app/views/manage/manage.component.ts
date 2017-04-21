@@ -34,8 +34,8 @@ export class ManageComponent implements OnInit {
     return _.map(processes, (process) => {
       return {
         id: process.id,
-        sample_name: process.parameters.sample_name,
-        input_filename: _(process.parameters.input_file).split('/').last(),
+        samplename: process.parameters.samplename,
+        input_filename: _(process.parameters.input).split('/').last(),
         running: process.running,
         status: process.status,
         alleles: _.join(process.parameters.alleles, ', '),
