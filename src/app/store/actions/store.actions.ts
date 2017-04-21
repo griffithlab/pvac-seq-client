@@ -15,7 +15,7 @@ export const STORE_ACTIONS = {
   PROCESS_LOADED_ACTION: 'PROCESS_LOADED_ACTION',
 
   ARCHIVE_PROCESS_ACTION: 'ARCHIVE_PROCESS_ACTION',
-  PROCESS_ARCHIVED_ACTION: 'PROCESS_ARCHIVED_ACTION',
+  CLEAR_PROCESS_DETAILS: 'CLEAR_PROCESS_DETAILS',
 
   LOAD_INPUTS_ACTION: 'LOAD_INPUTS_ACTION',
   START_PROCESS_ACTION: 'START_PROCESS_ACTION',
@@ -29,7 +29,7 @@ export const LOAD_PROCESS_ACTION: string = 'LOAD_PROCESS_ACTION';
 export const PROCESS_LOADED_ACTION: string = 'PROCESS_LOADED_ACTION';
 
 export const ARCHIVE_PROCESS_ACTION: string = 'ARCHIVE_PROCESS_ACTION';
-export const PROCESS_ARCHIVED_ACTION: string = 'PROCESS_ARCHIVED_ACTION';
+export const CLEAR_PROCESS_DETAILS: string = 'CLEAR_PROCESS_DETAILS';
 
 export const LOAD_INPUTS_ACTION: string = 'LOAD_INPUTS_ACTION';
 export const START_PROCESS_ACTION: string = 'START_PROCESS_ACTION';
@@ -71,8 +71,8 @@ export class ArchiveProcessAction implements Action {
   constructor(public payload?: number) { }
 }
 
-export class ProcessArchivedAction implements Action {
-  readonly type = PROCESS_ARCHIVED_ACTION;
+export class ClearProcessDetailsAction implements Action {
+  readonly type = CLEAR_PROCESS_DETAILS;
 
   constructor(public payload?: string) { }
 }

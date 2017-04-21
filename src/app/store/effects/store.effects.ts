@@ -13,7 +13,7 @@ import {
     ProcessLoadedAction,
 
     ARCHIVE_PROCESS_ACTION,
-    ProcessArchivedAction,
+    ClearProcessDetailsAction,
 
     ErrorOccurredAction
 } from '../actions/store.actions';
@@ -53,14 +53,14 @@ export class ArchiveProcessEffectService {
         .debug('archiving process')
         .switchMap((action) => {
             return this.processService.archive(action.payload)
-                .map((res: any) => {
-                    return { response: res, action: action }; // return action for use in next step
-                });
+                .map(() => action.payload);
         })
-        .do((result: any) => {
-            return new ProcessArchivedAction(result.action.payload);
+        .mergeMap((processId) => {
+            return [
+                new ClearProcessDetailsAction(processId),
+                new LoadProcessesAction()
+            ];
         })
-        .map(status => new LoadProcessesAction()) // reload processes to update process tables etc.
         .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while archiving process.')));
 
     constructor(private actions$: Actions,

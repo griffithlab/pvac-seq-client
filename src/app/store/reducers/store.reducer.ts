@@ -9,8 +9,8 @@ import {
   ProcessLoadedAction,
   PROCESS_LOADED_ACTION,
 
-  ProcessArchivedAction,
-  PROCESS_ARCHIVED_ACTION,
+  ClearProcessDetailsAction,
+  CLEAR_PROCESS_DETAILS,
 
   LoadInputsAction,
   LOAD_INPUTS_ACTION,
@@ -25,8 +25,8 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
     case PROCESS_LOADED_ACTION:
       return handleProcessLoadedAction(state, action);
 
-    case PROCESS_ARCHIVED_ACTION:
-      return handleProcessArchivedAction(state, action);
+    case CLEAR_PROCESS_DETAILS:
+      return handleClearProcessDetailsAction(state, action);
 
     case LOAD_INPUTS_ACTION:
       return handleLoadInputsAction(state, action);
@@ -56,7 +56,7 @@ function handleProcessLoadedAction(state: StoreState, action: ProcessLoadedActio
   return newState;
 }
 
-function handleProcessArchivedAction(state: StoreState, action: ProcessArchivedAction): StoreState {
+function handleClearProcessDetailsAction(state: StoreState, action: ClearProcessDetailsAction): StoreState {
   const processId = action.payload;
   const newState = Object.assign({}, state);
   const newProcessDetail = Object.assign({}, _.omit(state.processDetail, processId)); // omit archived process details
