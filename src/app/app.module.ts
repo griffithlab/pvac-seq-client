@@ -4,11 +4,19 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Store
-import { provideStore } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { INITIAL_APPLICATION_STATE } from './store/models/app.model';
 import { rootReducer } from './store/root.reducer';
+
+import { combineReducers } from '@ngrx/store';
+import { compose } from '@ngrx/core/compose';
+import { storeReducer } from './store/reducers/store.reducer';
+import { uiReducer } from './store/reducers/ui.reducer';
+import { storeFreeze } from 'ngrx-store-freeze';
+
+
 import {
   LoadProcessesEffectService,
   LoadProcessEffectService,
@@ -41,6 +49,7 @@ const storeEffects = [
     BrowserAnimationsModule,
     AppRoutingModule,
     ServicesModule,
+    StoreModule.provideStore(rootReducer, INITIAL_APPLICATION_STATE),
     storeEffects,
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
   ],
@@ -57,7 +66,6 @@ const storeEffects = [
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    provideStore(rootReducer, INITIAL_APPLICATION_STATE),
   ],
   bootstrap: [AppComponent]
 })
