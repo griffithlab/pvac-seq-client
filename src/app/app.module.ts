@@ -57,7 +57,7 @@ const storeEffects = [
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    provideStore(rootReducer, INITIAL_APPLICATION_STATE)
+    provideStore(rootReducer, INITIAL_APPLICATION_STATE),
   ],
   bootstrap: [AppComponent]
 })
