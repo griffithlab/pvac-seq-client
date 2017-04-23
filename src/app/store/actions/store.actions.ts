@@ -18,7 +18,10 @@ export const STORE_ACTIONS = {
   CLEAR_PROCESS_DETAILS: 'CLEAR_PROCESS_DETAILS',
 
   LOAD_INPUTS_ACTION: 'LOAD_INPUTS_ACTION',
+
   START_PROCESS_ACTION: 'START_PROCESS_ACTION',
+  PROCESS_STARTED_ACTION: 'PROCESS_STARTED_ACTION',
+
   ERROR_OCCURRED_ACTION: 'ERROR_OCCURRED_ACTION',
 };
 
@@ -33,6 +36,8 @@ export const CLEAR_PROCESS_DETAILS: string = 'CLEAR_PROCESS_DETAILS';
 
 export const LOAD_INPUTS_ACTION: string = 'LOAD_INPUTS_ACTION';
 export const START_PROCESS_ACTION: string = 'START_PROCESS_ACTION';
+export const PROCESS_STARTED_ACTION: string = 'PROCESS_STARTED_ACTION';
+
 export const ERROR_OCCURRED_ACTION: string = 'ERROR_OCCURRED_ACTION';
 
 export class LoadProcessesAction implements Action {
@@ -80,7 +85,13 @@ export class ClearProcessDetailsAction implements Action {
 export class StartProcessAction implements Action {
   readonly type = START_PROCESS_ACTION;
 
-  constructor(public payload?: string) { }
+  constructor(public payload?: {}) { }
+}
+
+export class ProcessStartedAction implements Action {
+  readonly type = PROCESS_STARTED_ACTION;
+
+  constructor(public payload?: number) { }
 }
 
 export class ErrorOccurredAction implements Action {

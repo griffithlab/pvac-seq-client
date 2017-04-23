@@ -15,6 +15,9 @@ import {
   ARCHIVE_PROCESS_ACTION,
   ClearProcessDetailsAction,
 
+  START_PROCESS_ACTION,
+  ProcessStartedAction,
+
   ErrorOccurredAction
 } from '../actions/store.actions';
 
@@ -67,6 +70,23 @@ export class ArchiveProcessEffectService {
     private processService: ProcessService) { }
 
 }
+
+@Injectable()
+export class StartProcessEffectService {
+  @Effect() status$: Observable<Action> = this.actions$
+    .ofType(START_PROCESS_ACTION)
+    .debug('starting process')
+    .switchMap((action) => {
+      return this.processService.start(action.payload);
+    })
+    .map(response => new ProcessStartedAction(response))
+    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while archiving process.')));
+
+  constructor(private actions$: Actions,
+    private processService: ProcessService) { }
+
+}
+
 
 // @Effect() authenticate$ = this.updates$
 // .whenAction(AuthActions.AUTHENTICATE_REQUEST)
