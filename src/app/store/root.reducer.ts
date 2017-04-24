@@ -2,6 +2,7 @@ import { environment } from '../../environments/environment';
 
 import { ActionReducer, combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
+import { routerReducer } from '@ngrx/router-store';
 
 import { storeFreeze } from 'ngrx-store-freeze';
 import { storeLogger } from 'ngrx-store-logger';
@@ -12,7 +13,8 @@ import * as fromUi from './reducers/ui.reducer';
 
 const root = {
   ui: fromUi.uiReducer,
-  store: fromStore.storeReducer
+  store: fromStore.storeReducer,
+  router: routerReducer
 };
 
 const developmentReducer: ActionReducer<AppState> = compose(
