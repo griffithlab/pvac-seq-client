@@ -5,6 +5,7 @@ import { ConfigService } from './config.service';
 import { SwaggerApiService } from './swagger-api.service';
 import { ProcessService } from './process.service';
 import { InputService } from './input.service';
+import { FileService } from './file.service';
 
 @NgModule({
   imports: [HttpModule],
@@ -12,7 +13,8 @@ import { InputService } from './input.service';
     ConfigService,
     SwaggerApiService,
     ProcessService,
-    InputService
+    InputService,
+    FileService,
   ]
 })
 

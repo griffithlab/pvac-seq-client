@@ -13,7 +13,7 @@
         <p-column expander="true" styleClass="col-icon"></p-column>
         <p-column field="samplename" header="Sample Name" styleClass="col-sample-name"></p-column>
         <ng-template let-process pTemplate="rowexpansion">
-          <pvs-file-list [processId]="process.id"></pvs-file-list>
+          <pvs-file-table [processId]="process.id"></pvs-file-table>
         </ng-template>
       </p-dataTable>
     </div>

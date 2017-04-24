@@ -3,7 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { Store } from '@ngrx/store';
-import { ProcessService } from '../../../services/process.service';
 
 import { AppState } from '../../../store/models/app.model';
 import { Process } from '../../../store/models/process.model';
@@ -19,7 +18,7 @@ export class ProcessDetailComponent implements OnInit {
 
   process$: Observable<Process>;
 
-  constructor(private store: Store<AppState>, private processService: ProcessService) {
+  constructor(private store: Store<AppState>) {
     this.process$ = store
       .select(state => state.store.processDetail[this.processId]);
   }
@@ -30,8 +29,6 @@ export class ProcessDetailComponent implements OnInit {
 
   archive() {
     this.store.dispatch(new ArchiveProcessAction(this.processId));
-    // this.processService.archive(this.processId)
-    //   .subscribe(response => this.store.dispatch(new ArchiveProcessAction(response)));
   }
 
   ngOnInit() {

@@ -11,7 +11,7 @@ import {
 import { ResultsComponent } from './results.component';
 import { ResultsRoutingModule } from './results-routing.module';
 import { ResultsTableComponent } from './results-table/results-table.component';
-import { FileListComponent } from './file-list/file-list.component';
+import { FileTableComponent } from './file-table/file-table.component';
 
 @NgModule({
   imports: [
@@ -22,6 +22,6 @@ import { FileListComponent } from './file-list/file-list.component';
     PanelModule,
     TabViewModule,
   ],
-  declarations: [ResultsComponent, ResultsTableComponent, FileListComponent]
+  declarations: [ResultsComponent, ResultsTableComponent, FileTableComponent]
 })
 export class ResultsModule { }
