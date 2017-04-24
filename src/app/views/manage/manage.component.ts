@@ -7,8 +7,6 @@ import { AppState } from '../../store/models/app.model';
 import { Process, ProcessMap, ProcessSummaryVM } from '../../store/models/process.model';
 import { LoadProcessesAction } from '../../store/actions/store.actions';
 
-import { ProcessService } from '../../services/process.service';
-
 @Component({
   templateUrl: 'manage.component.html',
   providers: []
