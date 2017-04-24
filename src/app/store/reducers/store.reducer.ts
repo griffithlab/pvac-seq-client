@@ -12,6 +12,9 @@ import {
   ClearProcessDetailsAction,
   CLEAR_PROCESS_DETAILS,
 
+  FilesLoadedAction,
+  FILES_LOADED_ACTION,
+
   InputsLoadedAction,
   INPUTS_LOADED_ACTION,
 } from '../actions/store.actions';
@@ -30,6 +33,9 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
 
     case INPUTS_LOADED_ACTION:
       return handleInputsLoadedAction(state, action);
+
+    case FILES_LOADED_ACTION:
+      return handleFilesLoadedAction(state, action);
 
     default:
       return state;
@@ -52,6 +58,17 @@ function handleProcessLoadedAction(state: StoreState, action: ProcessLoadedActio
 
   newProcessDetail[process.id] = process;
   newState.processDetail = newProcessDetail;
+
+  return newState;
+}
+
+function handleFilesLoadedAction(state: StoreState, action: FilesLoadedAction): StoreState {
+  const files = action.payload;
+  const newState = Object.assign({}, state);
+  const newFilesDetail = Object.assign({}, state.fileList);
+
+  newFilesDetail[files.id] = files;
+  newState.filesDetail = newFilesDetail;
 
   return newState;
 }

@@ -23,6 +23,9 @@ export const STORE_ACTIONS = {
   START_PROCESS_ACTION: 'START_PROCESS_ACTION',
   PROCESS_STARTED_ACTION: 'PROCESS_STARTED_ACTION',
 
+  LOAD_FILES_ACTION: 'LOAD_FILES_ACTION',
+  FILES_LOADED_ACTION: 'FILES_LOADED_ACTION',
+
   ERROR_OCCURRED_ACTION: 'ERROR_OCCURRED_ACTION',
 };
 
@@ -40,6 +43,9 @@ export const INPUTS_LOADED_ACTION: string = 'INPUTS_LOADED_ACTION';
 
 export const START_PROCESS_ACTION: string = 'START_PROCESS_ACTION';
 export const PROCESS_STARTED_ACTION: string = 'PROCESS_STARTED_ACTION';
+
+export const LOAD_FILES_ACTION: string = 'LOAD_FILES_ACTION';
+export const FILES_LOADED_ACTION: string = 'FILES_LOADED_ACTION';
 
 export const ERROR_OCCURRED_ACTION: string = 'ERROR_OCCURRED_ACTION';
 
@@ -107,4 +113,16 @@ export class ErrorOccurredAction implements Action {
   readonly type = ERROR_OCCURRED_ACTION;
 
   constructor(public payload?: string) { }
+}
+
+export class LoadFilesAction implements Action {
+  readonly type = LOAD_FILES_ACTION;
+
+  constructor(public payload?: number) { }
+}
+
+export class FilesLoadedAction implements Action {
+  readonly type = FILES_LOADED_ACTION;
+
+  constructor(public payload?: File[]) { }
 }

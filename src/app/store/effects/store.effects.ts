@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { ProcessService } from '../../services/process.service';
 import { InputService } from '../../services/input.service';
+import { FileService } from '../../services/file.service';
 
 import {
   LOAD_PROCESSES_ACTION,
@@ -22,6 +23,9 @@ import {
 
   LOAD_INPUTS_ACTION,
   InputsLoadedAction,
+
+  FILES_LOADED_ACTION,
+  FilesLoadedAction,
 
   ErrorOccurredAction
 } from '../actions/store.actions';
@@ -51,6 +55,20 @@ export class LoadProcessEffectService {
 
   constructor(private actions$: Actions,
     private processService: ProcessService) { }
+
+}
+
+@Injectable()
+export class LoadFilesEffectService {
+  @Effect() files$: Observable<Action> = this.actions$
+    .ofType(LOAD_FILES_ACTION)
+    .debug('loading files')
+    .switchMap(action => this.fileService.query(action.payload))
+    .map(process => new FilesLoadedAction(process))
+    .catch(() => Observable.of(new ErrorOccurredAction('Error occurred while loading process files.')));
+
+  constructor(private actions$: Actions,
+    private fileService: FileService) { }
 
 }
 
