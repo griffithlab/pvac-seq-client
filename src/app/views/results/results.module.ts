@@ -1,14 +1,27 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import {
+  DataTableModule,
+  ButtonModule,
+  PanelModule,
+  TabViewModule
+} from 'primeng/primeng';
 
 import { ResultsComponent } from './results.component';
 import { ResultsRoutingModule } from './results-routing.module';
-import { ConfirmDialogModule } from "primeng/components/confirmdialog/confirmdialog";
-import { ResultsListComponent } from './results-list/results-list.component';
+import { ResultsTableComponent } from './results-table/results-table.component';
+import { FileListComponent } from './file-list/file-list.component';
 
 @NgModule({
-    imports: [
-        ResultsRoutingModule
-    ],
-    declarations: [ResultsComponent, ResultsListComponent]
+  imports: [
+    CommonModule,
+    ResultsRoutingModule,
+    DataTableModule,
+    ButtonModule,
+    PanelModule,
+    TabViewModule,
+  ],
+  declarations: [ResultsComponent, ResultsTableComponent, FileListComponent]
 })
 export class ResultsModule { }

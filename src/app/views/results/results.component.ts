@@ -21,6 +21,7 @@ export class ResultsComponent implements OnInit {
       .select(state => state.store.processes)
       .map(mapProcessMapToProcessSummaries);
   }
+
   loadProcesses(): void {
     this.store.dispatch(new LoadProcessesAction());
   }

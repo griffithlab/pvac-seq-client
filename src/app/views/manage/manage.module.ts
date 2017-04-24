@@ -17,8 +17,8 @@ import { StatusBadgeComponent } from './status-badge/status-badge.component';
 
 @NgModule({
   imports: [
-    ManageRoutingModule,
     CommonModule,
+    ManageRoutingModule,
     DataTableModule,
     ButtonModule,
     PanelModule,

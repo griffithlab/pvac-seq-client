@@ -5,7 +5,7 @@ import {
 } from '@angular/router';
 
 import { ResultsComponent } from './results.component';
-import { ResultsListComponent } from './results-list/results-list.component';
+import { ResultsTableComponent } from './results-table/results-table.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
     children: [
       {
         path: 'process/:processId',
-        component: ResultsListComponent,
+        component: ResultsTableComponent,
         data: {
           title: 'Process Result Files'
         }

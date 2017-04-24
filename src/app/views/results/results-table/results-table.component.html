@@ -1,0 +1,21 @@
+<div class="processTable" >
+  <div class="row">
+    <div class="col">
+      <h2 [innerHtml]="title">TABLE TITLE</h2>
+    </div>
+    <div class="col-2" style="text-align: right;">
+      <button pButton type="button" (click)="onReload.emit()" label="Reload"></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p-dataTable [value]="processSummaries" expandableRows="true" dataKey="id">
+        <p-column expander="true" styleClass="col-icon"></p-column>
+        <p-column field="samplename" header="Sample Name" styleClass="col-sample-name"></p-column>
+        <ng-template let-process pTemplate="rowexpansion">
+          <pvs-file-list [processId]="process.id"></pvs-file-list>
+        </ng-template>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

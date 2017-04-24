@@ -1,4 +1,5 @@
 <div class="results-component">
-  <h2>Results</h2>
-  <pvs-results-list title="Processes with Results Files"></pvs-results-list>
+  <pvs-results-table
+      [processSummaries]="processSummaries$ | async"
+      title="Completed Processes"></pvs-results-table>
 </div>
