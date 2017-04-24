@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//Layouts
+// Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'start',
     pathMatch: 'full',
   },
   {
