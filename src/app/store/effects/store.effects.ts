@@ -4,6 +4,8 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 
 import { ProcessService } from '../../services/process.service';
+import { InputService } from '../../services/input.service';
+
 import {
   LOAD_PROCESSES_ACTION,
   LoadProcessesAction,
@@ -17,6 +19,9 @@ import {
 
   START_PROCESS_ACTION,
   ProcessStartedAction,
+
+  LOAD_INPUTS_ACTION,
+  InputsLoadedAction,
 
   ErrorOccurredAction
 } from '../actions/store.actions';
@@ -87,21 +92,16 @@ export class StartProcessEffectService {
 
 }
 
+@Injectable()
+export class LoadInputsEffectService {
+  @Effect() inputs$: Observable<Action> = this.actions$
+    .ofType(LOAD_INPUTS_ACTION)
+    .debug('loading inputs')
+    .switchMap(action => this.inputService.query())
+    .map(inputs => new InputsLoadedAction(inputs))
+    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading inputs.')));
 
-// @Effect() authenticate$ = this.updates$
-// .whenAction(AuthActions.AUTHENTICATE_REQUEST)
-// .switchMap(update => this.api.post('/authenticate', update.action.payload)
-//   .map((res:any) => {
-//     return {
-//       res: res,
-//       update: update
-//     };
-//   })
-//   .do((result:any) => {
-//     if(result.update.action.payload.remember) {
-//       this.authService.setAuth(result.res.json());
-//     }
-//   })
-//   .map((result:any) => this.authActions.authenticateSuccess(result.res.json()))
-//   .catch((err:any) => Observable.of(this.authActions.authenticateError(err)))
-// );
+  constructor(private actions$: Actions,
+    private inputService: InputService) { }
+
+}

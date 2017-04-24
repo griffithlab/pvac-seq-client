@@ -96,8 +96,7 @@ export class StartFormComponent implements OnInit {
   }
 
   loadInputs(): void {
-    this.inputService.query()
-      .subscribe(inputs => this.store.dispatch(new LoadInputsAction(inputs)));
+    this.store.dispatch(new LoadInputsAction());
   }
 
   ngOnInit() {

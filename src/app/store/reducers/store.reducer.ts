@@ -12,8 +12,8 @@ import {
   ClearProcessDetailsAction,
   CLEAR_PROCESS_DETAILS,
 
-  LoadInputsAction,
-  LOAD_INPUTS_ACTION,
+  InputsLoadedAction,
+  INPUTS_LOADED_ACTION,
 } from '../actions/store.actions';
 
 
@@ -28,8 +28,8 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
     case CLEAR_PROCESS_DETAILS:
       return handleClearProcessDetailsAction(state, action);
 
-    case LOAD_INPUTS_ACTION:
-      return handleLoadInputsAction(state, action);
+    case INPUTS_LOADED_ACTION:
+      return handleInputsLoadedAction(state, action);
 
     default:
       return state;
@@ -66,7 +66,7 @@ function handleClearProcessDetailsAction(state: StoreState, action: ClearProcess
   return newState;
 }
 
-function handleLoadInputsAction(state: StoreState, action: LoadInputsAction): StoreState {
+function handleInputsLoadedAction(state: StoreState, action: InputsLoadedAction): StoreState {
   const inputs = action.payload;
   const newState = Object.assign({}, state);
 

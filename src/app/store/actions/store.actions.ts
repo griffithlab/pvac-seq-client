@@ -18,6 +18,7 @@ export const STORE_ACTIONS = {
   CLEAR_PROCESS_DETAILS: 'CLEAR_PROCESS_DETAILS',
 
   LOAD_INPUTS_ACTION: 'LOAD_INPUTS_ACTION',
+  INPUTS_LOADED_ACTION: 'INPUTS_LOADED_ACTION',
 
   START_PROCESS_ACTION: 'START_PROCESS_ACTION',
   PROCESS_STARTED_ACTION: 'PROCESS_STARTED_ACTION',
@@ -35,6 +36,8 @@ export const ARCHIVE_PROCESS_ACTION: string = 'ARCHIVE_PROCESS_ACTION';
 export const CLEAR_PROCESS_DETAILS: string = 'CLEAR_PROCESS_DETAILS';
 
 export const LOAD_INPUTS_ACTION: string = 'LOAD_INPUTS_ACTION';
+export const INPUTS_LOADED_ACTION: string = 'INPUTS_LOADED_ACTION';
+
 export const START_PROCESS_ACTION: string = 'START_PROCESS_ACTION';
 export const PROCESS_STARTED_ACTION: string = 'PROCESS_STARTED_ACTION';
 
@@ -66,6 +69,12 @@ export class ProcessLoadedAction implements Action {
 
 export class LoadInputsAction implements Action {
   readonly type = LOAD_INPUTS_ACTION;
+
+  constructor() { }
+}
+
+export class InputsLoadedAction implements Action {
+  readonly type = INPUTS_LOADED_ACTION;
 
   constructor(public payload?: File[]) { }
 }

@@ -22,6 +22,7 @@ import {
   LoadProcessEffectService,
   ArchiveProcessEffectService,
   StartProcessEffectService,
+  LoadInputsEffectService,
 } from './store/effects/store.effects';
 
 // App Modules
@@ -43,6 +44,7 @@ const storeEffects = [
   EffectsModule.run(LoadProcessEffectService),
   EffectsModule.run(ArchiveProcessEffectService),
   EffectsModule.run(StartProcessEffectService),
+  EffectsModule.run(LoadInputsEffectService),
 ];
 
 @NgModule({
