@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class StatusBadgeComponent {
   @Input() running: boolean;
-  @Input() status: string;
+  @Input() status: number;
 
   constructor() { }
 
