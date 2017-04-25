@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ConfigService {
@@ -6,7 +7,8 @@ export class ConfigService {
   server = {
     protocol: 'http://',
     domain: 'localhost',
-    port: '4200',
+    // prod mode directly queries pvacseq-api on port 8080, dev mode provides 4200 -> 8080 proxy
+    port: environment.production ? 8080 : 4200,
     api: 'api',
     version: 'v1'
   };
