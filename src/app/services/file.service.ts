@@ -17,7 +17,7 @@ export class FileService {
   }
 
   query(processId): Observable<File[]> {
-    return this.http.get(`${this.api}/processes/{processId}/results`)
+    return this.http.get(`${this.api}/processes/${processId}/results`)
       .map(mapFiles);
   }
 
@@ -27,10 +27,6 @@ function mapFiles(res: Response): File[] {
   return res.json().map(mapFile);
 }
 
-function mapFile(res: Response): File {
-  return toFile(res.json());
-}
-
-function toFile(f: any): File {
+function mapFile(f: {}): File {
   return f as File;
 }

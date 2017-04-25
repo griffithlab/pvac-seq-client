@@ -24,7 +24,7 @@ import {
   LOAD_INPUTS_ACTION,
   InputsLoadedAction,
 
-  FILES_LOADED_ACTION,
+  LOAD_FILES_ACTION,
   FilesLoadedAction,
 
   ErrorOccurredAction
@@ -63,8 +63,12 @@ export class LoadFilesEffectService {
   @Effect() files$: Observable<Action> = this.actions$
     .ofType(LOAD_FILES_ACTION)
     .debug('loading files')
-    .switchMap(action => this.fileService.query(action.payload))
-    .map(process => new FilesLoadedAction(process))
+    .switchMap((action) => {
+      return this.fileService.query(action.payload)
+        .map((files) => {
+          return new FilesLoadedAction({ processId: action.payload, files: files });
+        })
+    })
     .catch(() => Observable.of(new ErrorOccurredAction('Error occurred while loading process files.')));
 
   constructor(private actions$: Actions,

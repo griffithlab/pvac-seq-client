@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { File } from '../../../store/models/store.model';
 import { Observable } from 'rxjs/Rx';
 
+import * as _ from 'lodash';
+
 import { Store } from '@ngrx/store';
 import { LoadFilesAction } from '../../../store/actions/store.actions';
 
@@ -20,11 +22,16 @@ export class FileTableComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.files$ = store
-      .select(state => state.store.fileList[this.processId]);
+      .select(state => state.store.fileList[this.processId])
+      .map((fileMap) => {
+        return _.valuesIn<File>(fileMap)
+      });
   }
+
   loadFiles() {
     this.store.dispatch(new LoadFilesAction(this.processId));
   }
+
   ngOnInit() {
     this.loadFiles();
   }

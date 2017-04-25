@@ -63,12 +63,14 @@ function handleProcessLoadedAction(state: StoreState, action: ProcessLoadedActio
 }
 
 function handleFilesLoadedAction(state: StoreState, action: FilesLoadedAction): StoreState {
-  const files = action.payload;
-  const newState = Object.assign({}, state);
-  const newFilesDetail = Object.assign({}, state.fileList);
+  const files = action.payload.files;
+  const processId = action.payload.processId;
 
-  newFilesDetail[files.id] = files;
-  newState.filesDetail = newFilesDetail;
+  const newState = Object.assign({}, state);
+  const newFileList = Object.assign({}, state.fileList);
+
+  newFileList[processId] = _.keyBy(files, 'fileID');
+  newState.fileList = newFileList;
 
   return newState;
 }

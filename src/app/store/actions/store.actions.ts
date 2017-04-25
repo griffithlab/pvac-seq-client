@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Process } from '../models/process.model';
-import { File } from '../models/store.model';
+import { File, FileMap } from '../models/store.model';
 
 // TODO: keep an eye on the bug reports below and refactor to separate literals instead of map when fixed.
 // Due to TS 2.1+ bug with string literals, actions are implemented below as STORE_ACTIONS map instead of separate
@@ -124,5 +124,5 @@ export class LoadFilesAction implements Action {
 export class FilesLoadedAction implements Action {
   readonly type = FILES_LOADED_ACTION;
 
-  constructor(public payload?: File[]) { }
+  constructor(public payload?: { processId: number, files: FileMap }) { }
 }

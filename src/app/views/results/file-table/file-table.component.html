@@ -1,5 +1,6 @@
 <div>
-  <div *ngIf="files$ | async as file; else loadingFile">
+  <div *ngIf="files$ | async as files; else loadingFile">
+    <pre>{{files | json}}</pre>
   </div>
   <ng-template #loadingFile>
     Loading...
