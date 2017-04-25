@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { File } from '../../../store/models/store.model';
 import { Observable } from 'rxjs/Rx';
 
@@ -24,7 +24,7 @@ export class FileTableComponent implements OnInit {
     this.files$ = store
       .select(state => state.store.fileList[this.processId])
       .map((fileMap) => {
-        return _.valuesIn<File>(fileMap)
+        return _.valuesIn<File>(fileMap);
       });
   }
 
