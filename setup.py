@@ -14,7 +14,7 @@ for dirpath, dirnames, filenames in os.walk('pvacseq-client'):
 
 setup(
     name="pvacseq-client",
-    version=json.load(open("pvacseq-client/package.json"))['version']+"b8",
+    version=json.load(open("pvacseq-client/package.json"))['version'],
     packages=["src"],
     package_data={
         'src' : data_files,
