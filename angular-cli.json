@@ -7,7 +7,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "pvacseq-client",
       "assets": ["assets"],
       "index": "index.html",
       "main": "main.ts",
