@@ -12,6 +12,9 @@ import { ResultsComponent } from './results.component';
 import { ResultsRoutingModule } from './results-routing.module';
 import { ResultsTableComponent } from './results-table/results-table.component';
 import { FileTableComponent } from './file-table/file-table.component';
+import { ResultFileComponent } from './result-file/result-file.component';
+import { ResultProcessComponent } from './result-process/result-process.component';
+import { ResultVisualizeComponent } from './result-visualize/result-visualize.component';
 
 @NgModule({
   imports: [
@@ -22,6 +25,6 @@ import { FileTableComponent } from './file-table/file-table.component';
     PanelModule,
     TabViewModule,
   ],
-  declarations: [ResultsComponent, ResultsTableComponent, FileTableComponent]
+  declarations: [ResultsComponent, ResultsTableComponent, FileTableComponent, ResultFileComponent, ResultProcessComponent, ResultVisualizeComponent]
 })
 export class ResultsModule { }

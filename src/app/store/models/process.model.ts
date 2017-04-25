@@ -55,6 +55,7 @@ export interface ProcessSummaryVM {
   readonly id: number;
   readonly alleles: string;
   readonly epitope_lengths: string;
+  readonly file_count?: number;
   readonly input_filename: string;
   readonly prediction_algorithms: string;
   readonly running: boolean;

@@ -37,14 +37,15 @@ function mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummary
   return _.map(processes, (process) => {
     return {
       id: process.id,
-      samplename: process.parameters.samplename,
-      input_filename: _(process.parameters.input).split('/').last(),
-      running: process.running,
-      status: process.status,
       alleles: _.join(process.parameters.alleles, ', '),
-      prediction_algorithms: _.join(process.parameters.prediction_algorithms, ', '),
+      detail: process,
       epitope_lengths: _.join(process.parameters.epitope_lengths, ', '),
-      detail: process
+      file_count: _.size(process.files),
+      input_filename: _(process.parameters.input).split('/').last(),
+      prediction_algorithms: _.join(process.parameters.prediction_algorithms, ', '),
+      running: process.running,
+      samplename: process.parameters.samplename,
+      status: process.status,
     };
   });
 }

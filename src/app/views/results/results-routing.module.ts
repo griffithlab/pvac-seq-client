@@ -5,7 +5,9 @@ import {
 } from '@angular/router';
 
 import { ResultsComponent } from './results.component';
-import { ResultsTableComponent } from './results-table/results-table.component';
+import { ResultProcessComponent } from './result-process/result-process.component';
+import { ResultFileComponent } from './result-file/result-file.component';
+import { ResultVisualizeComponent } from './result-visualize/result-visualize.component';
 
 const routes: Routes = [
   {
@@ -17,10 +19,28 @@ const routes: Routes = [
     children: [
       {
         path: 'process/:processId',
-        component: ResultsTableComponent,
+        component: ResultProcessComponent,
         data: {
-          title: 'Process Result Files'
-        }
+          title: 'Results Component'
+        },
+        children: [
+          {
+            path: 'file/:fileId',
+            component: ResultFileComponent,
+            data: {
+              title: 'Result File'
+            },
+            children: [
+              {
+                path: 'visualize',
+                component: ResultVisualizeComponent,
+                data: {
+                  title: 'Result Visualization'
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   }
