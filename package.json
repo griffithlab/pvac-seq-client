@@ -10,7 +10,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config angular-cli.proxy.conf.json",
-    "start:dist": "static dist -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -z",
+    "start:dist": "static dist -p 4201 -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -z",
     "build": "ng build --prod --aot",
     "lint": "ng lint",
     "test": "ng test",
