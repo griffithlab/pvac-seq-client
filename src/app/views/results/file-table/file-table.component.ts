@@ -24,7 +24,14 @@ export class FileTableComponent implements OnInit {
     this.files$ = store
       .select(state => state.store.fileList[this.processId])
       .map((fileMap) => {
-        return _.valuesIn<File>(fileMap);
+        // convert fileMap to array of files with '.tsv' extension
+        return _.chain(fileMap)
+          .valuesIn<File>()
+          .filter((file) => {
+            return _(file.display_name).split('.').last() === 'tsv';
+            // return _.chain(file.display_name).split('.').last().value() === 'tsv';
+          })
+          .value();
       });
   }
 
