@@ -7,8 +7,8 @@
         <p-column field="rows" header="Rows" styleClass="col-rows"></p-column>
         <p-column field="size" header="Size" styleClass="col-size"></p-column>
         <p-column field="id" header="" styleClass="col-buttons">
-          <ng-template let-id="rowData.fileID" pTemplate="body">
-            <button pButton type="button" label="Visualize" ></button>
+          <ng-template let-fileId="rowData.fileID" pTemplate="body">
+            <button pButton type="button" label="Visualize" [routerLink]="['process', processId, 'file', fileId, 'visualize']"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
