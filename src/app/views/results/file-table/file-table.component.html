@@ -4,6 +4,7 @@
       <div class="col">
         <p-dataTable [value]="files$ | async" dataKey="id">
           <p-column field="display_name" header="File Name" styleClass="col-file-name"></p-column>
+          <p-column field="fileID" header="ID" styleClass="col-id"></p-column>
           <p-column field="rows" header="Rows" styleClass="col-rows"></p-column>
           <p-column field="size" header="Size" styleClass="col-size"></p-column>
           <p-column field="id" header="" styleClass="col-buttons">

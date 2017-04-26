@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-result-visualize',
@@ -10,9 +11,12 @@ export class ResultVisualizeComponent implements OnInit {
   private processId;
   private fileId;
   private params$;
+  private visualizeURL;
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private domSanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
@@ -21,6 +25,7 @@ export class ResultVisualizeComponent implements OnInit {
       .subscribe((params: Params) => {
         this.processId = params['processId'];
         this.fileId = params['fileId'];
+        this.visualizeURL = this.domSanitizer.bypassSecurityTrustResourceUrl('http://localhost:8080/api/v1/processes/15/results/17/visualize');
       });
   }
 
