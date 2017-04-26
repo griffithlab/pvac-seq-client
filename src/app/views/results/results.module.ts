@@ -25,6 +25,13 @@ import { ResultVisualizeComponent } from './result-visualize/result-visualize.co
     PanelModule,
     TabViewModule,
   ],
-  declarations: [ResultsComponent, ResultsTableComponent, FileTableComponent, ResultFileComponent, ResultProcessComponent, ResultVisualizeComponent]
+  declarations: [
+    ResultsComponent,
+    ResultsTableComponent,
+    FileTableComponent,
+    ResultFileComponent,
+    ResultProcessComponent,
+    ResultVisualizeComponent,
+  ]
 })
 export class ResultsModule { }
