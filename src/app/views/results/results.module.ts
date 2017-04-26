@@ -15,6 +15,7 @@ import { FileTableComponent } from './file-table/file-table.component';
 import { ResultFileComponent } from './result-file/result-file.component';
 import { ResultProcessComponent } from './result-process/result-process.component';
 import { ResultVisualizeComponent } from './result-visualize/result-visualize.component';
+import { ResultProcessesComponent } from './result-processes/result-processes.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { ResultVisualizeComponent } from './result-visualize/result-visualize.co
     ResultFileComponent,
     ResultProcessComponent,
     ResultVisualizeComponent,
+    ResultProcessesComponent,
   ]
 })
 export class ResultsModule { }
