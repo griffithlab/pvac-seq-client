@@ -1,22 +1,21 @@
 <div class="fileTable">
   <div *ngIf="files$ | async as files; else loadingFile">
-  <div class="row">
-    <div class="col">
-      <p-dataTable [value]="files$ | async" dataKey="id">
-        <p-column field="display_name" header="File Name" styleClass="col-file-name"></p-column>
-        <p-column field="rows" header="Rows" styleClass="col-rows"></p-column>
-        <p-column field="size" header="Size" styleClass="col-size"></p-column>
-        <p-column field="id" header="" styleClass="col-buttons">
-          <ng-template let-fileId="rowData.fileID" pTemplate="body">
-            <button pButton type="button" label="Visualize" [routerLink]="['process', processId, 'file', fileId, 'visualize']"></button>
-          </ng-template>
-        </p-column>
-      </p-dataTable>
+    <div class="row">
+      <div class="col">
+        <p-dataTable [value]="files$ | async" dataKey="id">
+          <p-column field="display_name" header="File Name" styleClass="col-file-name"></p-column>
+          <p-column field="rows" header="Rows" styleClass="col-rows"></p-column>
+          <p-column field="size" header="Size" styleClass="col-size"></p-column>
+          <p-column field="id" header="" styleClass="col-buttons">
+            <ng-template let-fileId="rowData.fileID" pTemplate="body">
+              <button pButton type="button" label="Visualize" [routerLink]="['../results','process', processId, 'file', fileId, 'visualize']"></button>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
     </div>
+    <ng-template #loadingFile>
+      Loading...
+    </ng-template>
   </div>
-  </div>
-  <ng-template #loadingFile>
-    Loading...
-  </ng-template>
 </div>
-<div>
