@@ -32,9 +32,11 @@ export class ResultProcessesComponent implements OnInit {
   }
 }
 
-// TODO: this kind of munging probably belongs in process.service
 function mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummaryVM[] {
-  const processes = _.chain(processMap).valuesIn<Process>().filter({ running: false }).value();
+  const processes = _.chain(processMap)
+    .valuesIn<Process>()
+    .filter({ running: false })
+    .value();
 
   return _.map(processes, (process) => {
     return {

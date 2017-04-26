@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { DomSanitizer } from "@angular/platform-browser";
+import { Router, ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+import { ConfigService } from '../../../services/config.service';
 
 @Component({
   selector: 'app-result-visualize',
@@ -8,16 +10,18 @@ import { DomSanitizer } from "@angular/platform-browser";
   styleUrls: ['./result-visualize.component.scss']
 })
 export class ResultVisualizeComponent implements OnInit {
-  private processId;
-  private fileId;
-  private visualizeURL;
+  private processId: number;
+  private fileId: number;
+  private visualizeURL: SafeResourceUrl;
+  private bokehUrl: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private domSanitizer: DomSanitizer,
+    private config: ConfigService,
   ) {
-    console.log('results-visualize loaded.');
+    this.bokehUrl = config.bokehUrl();
     this.processId = route.snapshot.parent.parent.params['processId'];
     this.fileId = route.snapshot.parent.params['fileId'];
   }
@@ -25,16 +29,8 @@ export class ResultVisualizeComponent implements OnInit {
   ngOnInit() {
     this.visualizeURL = this.domSanitizer
       .bypassSecurityTrustResourceUrl(
-      'http://localhost:8080/api/v1/processes/' +
+      this.bokehUrl + '/processes/' +
       this.processId + '/results/' + this.fileId + '/visualize');
-
-    // // TODO extract route params using http://stackoverflow.com/questions/43415352/angular-2-extract-multiple-variables-from-url
-    // this.params$ = this.route.params
-    //   .subscribe((params: Params) => {
-    //     this.processId = params['processId'];
-    //     this.fileId = params['fileId'];
-    //     this.visualizeURL = this.domSanitizer.bypassSecurityTrustResourceUrl('http://localhost:8080/api/v1/processes/15/results/17/visualize');
-    //   });
   }
 
 }

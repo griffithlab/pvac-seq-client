@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/models/app.model';
 
 @Component({
   selector: 'app-result-process',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultProcessComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
   }
