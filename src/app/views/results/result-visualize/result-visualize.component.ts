@@ -10,10 +10,10 @@ import { ConfigService } from '../../../services/config.service';
   styleUrls: ['./result-visualize.component.scss']
 })
 export class ResultVisualizeComponent implements OnInit {
-  private processId: number;
-  private fileId: number;
-  private visualizeURL: SafeResourceUrl;
-  private bokehUrl: string;
+  processId: number;
+  fileId: number;
+  visualizeURL: SafeResourceUrl;
+  bokehUrl: string;
 
   constructor(
     private route: ActivatedRoute,
