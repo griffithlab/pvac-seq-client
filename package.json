@@ -1,6 +1,6 @@
 {
   "name": "pvac-seq-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A cancer immunotherapy pipeline client for launching, managing, and reviewing the results of pVAC-Seq pipeline processes",
   "author": "",
   "url": "https://github.com/griffithlab/pVAC-Seq-client",
