@@ -67,7 +67,7 @@ export class LoadFilesEffectService {
       return this.fileService.query(action.payload)
         .map((files) => {
           return new FilesLoadedAction({ processId: action.payload, files: files });
-        })
+        });
     })
     .catch(() => Observable.of(new ErrorOccurredAction('Error occurred while loading process files.')));
 

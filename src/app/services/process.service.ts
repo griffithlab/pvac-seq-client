@@ -3,7 +3,6 @@ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angul
 
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 import * as _ from 'lodash';
 

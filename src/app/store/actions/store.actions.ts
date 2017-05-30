@@ -2,33 +2,6 @@ import { Action } from '@ngrx/store';
 import { Process } from '../models/process.model';
 import { File, FileMap } from '../models/store.model';
 
-// TODO: keep an eye on the bug reports below and refactor to separate literals instead of map when fixed.
-// Due to TS 2.1+ bug with string literals, actions are implemented below as STORE_ACTIONS map instead of separate
-// const definitions, which is more idiomatic.
-// see: http://stackoverflow.com/questions/42035867/type-is-not-assignable-to-type-which-implements-it
-// and https://github.com/Microsoft/TypeScript/issues/13580
-export const STORE_ACTIONS = {
-  LOAD_PROCESSES_ACTION: 'LOAD_PROCESSES_ACTION',
-  PROCESSES_LOADED_ACTION: 'PROCESSES_LOADED_ACTION',
-
-  LOAD_PROCESS_ACTION: 'LOAD_PROCESS_ACTION',
-  PROCESS_LOADED_ACTION: 'PROCESS_LOADED_ACTION',
-
-  ARCHIVE_PROCESS_ACTION: 'ARCHIVE_PROCESS_ACTION',
-  CLEAR_PROCESS_DETAILS: 'CLEAR_PROCESS_DETAILS',
-
-  LOAD_INPUTS_ACTION: 'LOAD_INPUTS_ACTION',
-  INPUTS_LOADED_ACTION: 'INPUTS_LOADED_ACTION',
-
-  START_PROCESS_ACTION: 'START_PROCESS_ACTION',
-  PROCESS_STARTED_ACTION: 'PROCESS_STARTED_ACTION',
-
-  LOAD_FILES_ACTION: 'LOAD_FILES_ACTION',
-  FILES_LOADED_ACTION: 'FILES_LOADED_ACTION',
-
-  ERROR_OCCURRED_ACTION: 'ERROR_OCCURRED_ACTION',
-};
-
 export const LOAD_PROCESSES_ACTION: string = 'LOAD_PROCESSES_ACTION';
 export const PROCESSES_LOADED_ACTION: string = 'PROCESSES_LOADED_ACTION';
 
@@ -48,6 +21,7 @@ export const LOAD_FILES_ACTION: string = 'LOAD_FILES_ACTION';
 export const FILES_LOADED_ACTION: string = 'FILES_LOADED_ACTION';
 
 export const ERROR_OCCURRED_ACTION: string = 'ERROR_OCCURRED_ACTION';
+export const SUCCESS_OCCURRED_ACTION: string = 'SUCCESS_OCCURRED_ACTION';
 
 export class LoadProcessesAction implements Action {
   readonly type = LOAD_PROCESSES_ACTION;
@@ -106,7 +80,7 @@ export class StartProcessAction implements Action {
 export class ProcessStartedAction implements Action {
   readonly type = PROCESS_STARTED_ACTION;
 
-  constructor(public payload?: number) { }
+  constructor(public payload?: {}) { }
 }
 
 export class ErrorOccurredAction implements Action {
@@ -115,6 +89,11 @@ export class ErrorOccurredAction implements Action {
   constructor(public payload?: string) { }
 }
 
+export class SuccessOccurredAction implements Action {
+  readonly type = SUCCESS_OCCURRED_ACTION;
+
+  constructor(public payload?: string) { }
+}
 export class LoadFilesAction implements Action {
   readonly type = LOAD_FILES_ACTION;
 
