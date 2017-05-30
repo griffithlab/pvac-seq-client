@@ -106,8 +106,10 @@ export class StartProcessEffectService {
     .switchMap((action) => {
       return this.processService.start(action.payload);
     })
-    .map(response => new ProcessStartedAction(response))
-    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while archiving process.')));
+    .flatMap(response => [
+      new ProcessStartedAction(response)
+    ])
+    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while starting process.')));
 
   constructor(private actions$: Actions,
     private processService: ProcessService) { }
