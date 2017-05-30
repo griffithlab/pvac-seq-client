@@ -31,11 +31,9 @@
       140
     ],
     "member-access": false,
-    "member-ordering": [
-      true,
-      "static-before-instance",
-      "variables-before-functions"
-    ],
+    "member-ordering": {
+      "order": "fields-first"
+    },
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [
