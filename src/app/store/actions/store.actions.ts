@@ -83,17 +83,6 @@ export class ProcessStartedAction implements Action {
   constructor(public payload?: {}) { }
 }
 
-export class ErrorOccurredAction implements Action {
-  readonly type = ERROR_OCCURRED_ACTION;
-
-  constructor(public payload?: string) { }
-}
-
-export class SuccessOccurredAction implements Action {
-  readonly type = SUCCESS_OCCURRED_ACTION;
-
-  constructor(public payload?: string) { }
-}
 export class LoadFilesAction implements Action {
   readonly type = LOAD_FILES_ACTION;
 
@@ -104,4 +93,16 @@ export class FilesLoadedAction implements Action {
   readonly type = FILES_LOADED_ACTION;
 
   constructor(public payload?: { processId: number, files: FileMap }) { }
+}
+
+export class ErrorOccurredAction implements Action {
+  readonly type = ERROR_OCCURRED_ACTION;
+
+  constructor(public payload?: {}) { }
+}
+
+export class SuccessOccurredAction implements Action {
+  readonly type = SUCCESS_OCCURRED_ACTION;
+
+  constructor(public payload?: {}) { }
 }

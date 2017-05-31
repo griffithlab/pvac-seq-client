@@ -1,7 +1,7 @@
 export interface UserInterfaceState {
   selectedProcessId: number;
-  currentError: string;
-  currentSuccess: string;
+  currentError: {};
+  currentSuccess: {};
 }
 
 export const INITIAL_UI_STATE: UserInterfaceState = {

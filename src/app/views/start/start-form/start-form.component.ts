@@ -20,6 +20,8 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class StartFormComponent implements OnInit {
   inputs$: Observable<SelectItem[]>;
+  success$: Observable<{}>;
+  error$: Observable<{}>;
   startForm: FormGroup;
 
   netChopMethodOptions: SelectItem[];
@@ -36,8 +38,6 @@ export class StartFormComponent implements OnInit {
       { label: 'Lowest Score', value: 'lowest' },
     ];
 
-    // <option value="median" selected>Median Score</option>
-    // <option value="lowest">Lowest Score</option>
     this.inputs$ = store
       .select(state => state.store.inputs)
       .map(fileMap => _.chain(fileMap)
@@ -47,21 +47,18 @@ export class StartFormComponent implements OnInit {
         })
         .value()
       );
-    /*
-          FASTA Size: <input type="number" name="fasta_size" value="200" step="2"><br>
-          IEDB Retries: <input type="number" name="iedb_retries" value="5"><br>
-          Downstream Sequence Length: <input type="text" name="downstream_sequence_length" value="1000"><br>
-          Keep Tmp Files: <input type="checkbox" name="keep_tmp_files"><br>
-    */
+
+    this.error$ = store
+      .select(state => state.ui.currentError);
+
+    this.success$ = store
+      .select(state => state.ui.currentSuccess);
+
     const startFormGroup = {
       'input': [null, [Validators.required]],
       'samplename': ['sample-name-N', [Validators.required]],
       'alleles': ['HLA-A*01:01,HLA-A*03:01,HLA-B*07:02,HLA-B*08:01,HLA-C*07:02,HLA-C*07:137', [Validators.required]],
       'prediction_algorithms': ['NNalign,NetMHC,NetMHCIIpan,NetMHCcons,NetMHCpan,PickPocket,SMM,SMMPMBEC,SMMalign', [Validators.required]],
-      // 'inputVCF': [null, [Validators.required]],
-      // 'samplename': [null, [Validators.required]],
-      // 'alleles': [null, [Validators.required]],
-      // 'prediction_algorithms': [null, [Validators.required]],
       'epitope_lengths': ['10', [Validators.required]],
       'peptide_sequence_length': [21, [Validators.required]],
       'gene_expn_file': [null, []],

@@ -27,7 +27,8 @@ import {
   LOAD_FILES_ACTION,
   FilesLoadedAction,
 
-  ErrorOccurredAction
+  SuccessOccurredAction,
+  ErrorOccurredAction,
 } from '../actions/store.actions';
 
 @Injectable()
@@ -107,7 +108,8 @@ export class StartProcessEffectService {
       return this.processService.start(action.payload);
     })
     .flatMap(response => [
-      new ProcessStartedAction(response)
+      new ProcessStartedAction(response),
+      new SuccessOccurredAction(response)
     ])
     .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while starting process.')));
 
