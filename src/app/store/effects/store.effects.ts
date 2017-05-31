@@ -31,6 +31,10 @@ import {
   ErrorOccurredAction,
 } from '../actions/store.actions';
 
+import {
+  ServerRequestCompletedAction
+} from '../actions/ui.actions';
+
 @Injectable()
 export class LoadProcessesEffectService {
   @Effect() proceses$: Observable<Action> = this.actions$
@@ -109,9 +113,13 @@ export class StartProcessEffectService {
     })
     .flatMap(response => [
       new ProcessStartedAction(response),
-      new SuccessOccurredAction(response)
+      new SuccessOccurredAction(response),
+      new ServerRequestCompletedAction(),
     ])
-    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while starting process.')));
+    .catch(() => Observable.from([
+      new ErrorOccurredAction('Error occurred while starting process.'),
+      new ServerRequestCompletedAction(),
+    ]));
 
   constructor(private actions$: Actions,
     private processService: ProcessService) { }

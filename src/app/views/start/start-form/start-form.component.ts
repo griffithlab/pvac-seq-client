@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  Validators,
+  FormControl,
+  FormGroup,
+  FormBuilder
+} from '@angular/forms';
 
 import * as _ from 'lodash';
 
@@ -7,7 +12,12 @@ import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.model';
 import { File } from '../../../store/models/store.model';
-import { LoadInputsAction, StartProcessAction } from '../../../store/actions/store.actions';
+import {
+  LoadInputsAction,
+  StartProcessAction
+} from '../../../store/actions/store.actions';
+
+import { ServerRequestStartedAction } from '../../../store/actions/ui.actions';
 
 import { InputService } from '../../../services/input.service';
 
@@ -22,12 +32,17 @@ export class StartFormComponent implements OnInit {
   inputs$: Observable<SelectItem[]>;
   success$: Observable<{}>;
   error$: Observable<{}>;
+  serverRequestActive$: Observable<boolean>;
+
   startForm: FormGroup;
 
   netChopMethodOptions: SelectItem[];
   topScoreMetricOptions: SelectItem[];
 
-  constructor(private store: Store<AppState>, private inputService: InputService, private fb: FormBuilder) {
+  constructor(private store: Store<AppState>,
+    private inputService: InputService,
+    private fb: FormBuilder) {
+
     this.netChopMethodOptions = [
       { label: 'C term 3.0', value: 'cterm' },
       { label: '20S 3.0', value: '20s' },
@@ -53,6 +68,9 @@ export class StartFormComponent implements OnInit {
 
     this.success$ = store
       .select(state => state.ui.currentSuccess);
+
+    this.serverRequestActive$ = store
+      .select(state => state.ui.serverRequestActive);
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
@@ -102,6 +120,7 @@ export class StartFormComponent implements OnInit {
 
   onSubmit(form: any): void {
     console.log('you submitted form:', form);
+    this.store.dispatch(new ServerRequestStartedAction());
     this.store.dispatch(new StartProcessAction(form));
   }
 }

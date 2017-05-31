@@ -4,6 +4,13 @@ import { UserInterfaceState, INITIAL_UI_STATE } from '../models/ui.model';
 import {
   SelectProcessAction,
   SELECT_PROCESS_ACTION,
+
+  ServerRequestStartedAction,
+  SERVER_REQUEST_STARTED_ACTION,
+
+  ServerRequestCompletedAction,
+  SERVER_REQUEST_COMPLETED_ACTION,
+
 } from '../actions/ui.actions';
 
 import {
@@ -26,6 +33,12 @@ export function uiReducer(state: UserInterfaceState = INITIAL_UI_STATE, action: 
     case SUCCESS_OCCURRED_ACTION:
       return handleSuccessOccurredAction(state, action);
 
+    case SERVER_REQUEST_STARTED_ACTION:
+      return handleServerRequestStartedAction(state, action);
+
+    case SERVER_REQUEST_COMPLETED_ACTION:
+      return handleServerRequestCompletedAction(state, action);
+
     default:
       return state;
   }
@@ -41,18 +54,35 @@ function handleSelectProcessAction(state: UserInterfaceState, action: SelectProc
 }
 
 function handleErrorOccurredAction(state: UserInterfaceState, action: ErrorOccurredAction): UserInterfaceState {
+  const errorResponse = action.payload;
   const newState = Object.assign({}, state);
 
-  newState.currentError = action.payload;
+  newState.currentError = errorResponse;
 
   return newState;
 }
 
-
 function handleSuccessOccurredAction(state: UserInterfaceState, action: SuccessOccurredAction): UserInterfaceState {
+  const successResponse = action.payload;
   const newState = Object.assign({}, state);
 
-  newState.currentSuccess = action.payload;
+  newState.currentSuccess = successResponse;
+
+  return newState;
+}
+
+function handleServerRequestStartedAction(state: UserInterfaceState, action: ServerRequestStartedAction): UserInterfaceState {
+  const newState = Object.assign({}, state);
+
+  newState.serverRequestActive = true;
+
+  return newState;
+}
+
+function handleServerRequestCompletedAction(state: UserInterfaceState, action: ServerRequestCompletedAction): UserInterfaceState {
+  const newState = Object.assign({}, state);
+
+  newState.serverRequestActive = false;
 
   return newState;
 }
