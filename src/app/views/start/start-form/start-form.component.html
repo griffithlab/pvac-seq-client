@@ -486,9 +486,10 @@
     <div class="col-sm-4 offset-sm-3 text-right form-button-row">
       <button pButton type="submit"
               label="Launch Process"
-              [attr.icon]="!(serverRequestActive$ | async) ? 'fa-spinner' : null"
+              [icon]="(serverRequestActive$ | async) ? 'fa-spinner' : 'fa-play'"
               [disabled]="!startForm.valid"></button>
     <p>Server Request: {{(serverRequestActive$ | async) ? 'active' : 'inactive'}}</p>
+    <p>Submit Icon: {{submitIcon}}</p>
     </div>
   </div>
 

@@ -33,6 +33,7 @@ export class StartFormComponent implements OnInit {
   success$: Observable<{}>;
   error$: Observable<{}>;
   serverRequestActive$: Observable<boolean>;
+  submitIcon: string;
 
   startForm: FormGroup;
 
@@ -64,13 +65,17 @@ export class StartFormComponent implements OnInit {
       );
 
     this.error$ = store
-      .select(state => state.ui.currentError);
+      .select<{}>(state => state.ui.currentError);
 
     this.success$ = store
-      .select(state => state.ui.currentSuccess);
+      .select<{}>(state => state.ui.currentSuccess);
 
     this.serverRequestActive$ = store
-      .select(state => state.ui.serverRequestActive);
+      .select<boolean>(state => state.ui.serverRequestActive);
+
+    this.serverRequestActive$.subscribe(active => {
+      this.submitIcon = active ? 'fa-spinner' : 'fa-play';
+    });
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
