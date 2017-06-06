@@ -1,8 +1,16 @@
 import { Action } from '@ngrx/store';
 import * as _ from 'lodash';
 
-import { StoreState, INITIAL_STORE_STATE } from '../models/store.model';
+import { StoreState, INITIAL_STORE_STATE, Request, Error } from '../models/store.model';
+import { Process, ProcessMap } from '../models/process.model';
+
 import {
+  SERVER_REQUEST_STARTED_ACTION,
+  ServerRequestStartedAction,
+
+  SERVER_REQUEST_COMPLETED_ACTION,
+  ServerRequestCompletedAction,
+
   ProcessesLoadedAction,
   PROCESSES_LOADED_ACTION,
 
@@ -77,7 +85,7 @@ function handleFilesLoadedAction(state: StoreState, action: FilesLoadedAction): 
 
 function handleClearProcessDetailsAction(state: StoreState, action: ClearProcessDetailsAction): StoreState {
   const processId = action.payload;
-  const newState = Object.assign({}, state);
+  const newState: StoreState = Object.assign({}, state);
   const newProcessDetail = Object.assign({}, _.omit(state.processDetail, processId)); // omit archived process details
 
   newState.processDetail = newProcessDetail;
@@ -90,6 +98,17 @@ function handleInputsLoadedAction(state: StoreState, action: InputsLoadedAction)
   const newState = Object.assign({}, state);
 
   newState.inputs = _.keyBy(inputs, 'fileID');
+
+  return newState;
+}
+
+function handleServerRequestStartedAction(state: StoreState, action: ServerRequestStartedAction): StoreState {
+  const request: Request = action.payload;
+  const newState = Object.assign({}, state);
+  const newRequests = Object.assign({}, state.requests);
+
+  newRequests.requests[request.id] = request;
+  newState.requests = newRequests;
 
   return newState;
 }

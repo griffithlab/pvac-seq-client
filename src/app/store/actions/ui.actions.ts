@@ -1,23 +1,18 @@
 import { Action } from '@ngrx/store';
 
-export const SELECT_PROCESS_ACTION: string = 'SELECT_PROCESS_ACTION';
-export const SERVER_REQUEST_STARTED_ACTION: string = 'SERVER_REQUEST_STARTED_ACTION';
-export const SERVER_REQUEST_COMPLETED_ACTION: string = 'SERVER_REQUEST_COMPLETED_ACTION';
+import { Notice } from '../models/ui.model';
 
-export class SelectProcessAction implements Action {
-  readonly type = SELECT_PROCESS_ACTION;
+export const CREATE_NOTICE_ACTION: string = 'DISPLAY_NOTICE_ACTION';
+export const DELETE_NOTICE_ACTION: string = 'REMOVE_NOTICE_ACTION';
 
-  constructor(public payload?: number) { }
+export class CreateNoticeAction implements Action {
+  readonly type = CREATE_NOTICE_ACTION;
+
+  constructor(public notice: Notice) { }
 }
 
-export class ServerRequestStartedAction implements Action {
-  readonly type = SERVER_REQUEST_STARTED_ACTION;
+export class DeleteNoticeAction implements Action {
+  readonly type = DELETE_NOTICE_ACTION;
 
-  constructor() { }
-}
-
-export class ServerRequestCompletedAction implements Action {
-  readonly type = SERVER_REQUEST_COMPLETED_ACTION;
-
-  constructor() { }
+  constructor(public id: number) { }
 }

@@ -7,6 +7,8 @@ import { ProcessService } from '../../services/process.service';
 import { InputService } from '../../services/input.service';
 import { FileService } from '../../services/file.service';
 
+import * as _ from 'lodash';
+
 import {
   LOAD_PROCESSES_ACTION,
   LoadProcessesAction,
@@ -27,26 +29,24 @@ import {
   LOAD_FILES_ACTION,
   FilesLoadedAction,
 
-  SuccessOccurredAction,
   ErrorOccurredAction,
 } from '../actions/store.actions';
 
-import {
-  ServerRequestCompletedAction
-} from '../actions/ui.actions';
-
 @Injectable()
 export class LoadProcessesEffectService {
+  constructor(private actions$: Actions,
+    private processService: ProcessService) { }
+
   @Effect() proceses$: Observable<Action> = this.actions$
     .ofType(LOAD_PROCESSES_ACTION)
     .debug('loading processes')
     .switchMap(action => this.processService.query())
     .map(processes => new ProcessesLoadedAction(processes))
-    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading processes.')));
-
-  constructor(private actions$: Actions,
-    private processService: ProcessService) { }
-
+    .catch(() => Observable.of(new ErrorOccurredAction({
+      id: _.uniqueId('error_'),
+      action: LOAD_PROCESSES_ACTION,
+      summary: 'Load Processes Error'
+    })));
 }
 
 @Injectable()
@@ -56,15 +56,21 @@ export class LoadProcessEffectService {
     .debug('loading process')
     .switchMap(action => this.processService.get(action.payload))
     .map(process => new ProcessLoadedAction(process))
-    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading process.')));
+    .catch(() => Observable.of(new ErrorOccurredAction({
+      id: _.uniqueId('error_'),
+      action: LOAD_PROCESS_ACTION,
+      summary: 'Load Process Error'
+    })));
 
   constructor(private actions$: Actions,
     private processService: ProcessService) { }
-
 }
 
 @Injectable()
 export class LoadFilesEffectService {
+  constructor(private actions$: Actions,
+    private fileService: FileService) { }
+
   @Effect() files$: Observable<Action> = this.actions$
     .ofType(LOAD_FILES_ACTION)
     .debug('loading files')
@@ -74,15 +80,18 @@ export class LoadFilesEffectService {
           return new FilesLoadedAction({ processId: action.payload, files: files });
         });
     })
-    .catch(() => Observable.of(new ErrorOccurredAction('Error occurred while loading process files.')));
-
-  constructor(private actions$: Actions,
-    private fileService: FileService) { }
-
+    .catch(() => Observable.of(new ErrorOccurredAction({
+      id: _.uniqueId('error_'),
+      action: LOAD_FILES_ACTION,
+      summary: 'Load Files Error'
+    })));
 }
 
 @Injectable()
 export class ArchiveProcessEffectService {
+  constructor(private actions$: Actions,
+    private processService: ProcessService) { }
+
   @Effect() status$: Observable<Action> = this.actions$
     .ofType(ARCHIVE_PROCESS_ACTION)
     .debug('archiving process')
@@ -96,46 +105,51 @@ export class ArchiveProcessEffectService {
           ];
         });
     })
-    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while archiving process.')));
-
-  constructor(private actions$: Actions,
-    private processService: ProcessService) { }
-
+    .catch(() => Observable.from([
+      new ErrorOccurredAction({
+        id: _.uniqueId('error_'),
+        action: ARCHIVE_PROCESS_ACTION,
+        summary: 'Archive Process Error'
+      }),
+    ]));
 }
 
 @Injectable()
 export class StartProcessEffectService {
-  @Effect() status$: Observable<Action> = this.actions$
-    .ofType(START_PROCESS_ACTION)
-    .debug('starting process')
-    .switchMap((action) => {
-      return this.processService.start(action.payload);
-    })
-    .flatMap(response => [
-      new ProcessStartedAction(response),
-      new SuccessOccurredAction(response),
-      new ServerRequestCompletedAction(),
-    ])
-    .catch(() => Observable.from([
-      new ErrorOccurredAction('Error occurred while starting process.'),
-      new ServerRequestCompletedAction(),
-    ]));
-
   constructor(private actions$: Actions,
     private processService: ProcessService) { }
 
+  @Effect() status$: Observable<Action> = this.actions$
+    .ofType(START_PROCESS_ACTION)
+    .switchMap((action) => {
+      return this.processService.start(action.payload)
+        .flatMap(response => [
+          new ProcessStartedAction(response),
+        ]);
+    })
+    .catch(() => Observable.from([
+      new ErrorOccurredAction({
+        id: _.uniqueId('error_'),
+        action: START_PROCESS_ACTION,
+        summary: 'Load Processes Error'
+      }),
+    ]));
 }
 
 @Injectable()
 export class LoadInputsEffectService {
+  constructor(private actions$: Actions,
+    private inputService: InputService) { }
+
   @Effect() inputs$: Observable<Action> = this.actions$
     .ofType(LOAD_INPUTS_ACTION)
     .debug('loading inputs')
     .switchMap(action => this.inputService.query())
     .map(inputs => new InputsLoadedAction(inputs))
-    .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading inputs.')));
-
-  constructor(private actions$: Actions,
-    private inputService: InputService) { }
+    .catch(() => Observable.of(new ErrorOccurredAction({
+      id: _.uniqueId('error_'),
+      action: LOAD_INPUTS_ACTION,
+      summary: 'Load Inputs Error'
+    })));
 
 }

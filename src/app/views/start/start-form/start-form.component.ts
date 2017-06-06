@@ -17,8 +17,6 @@ import {
   StartProcessAction
 } from '../../../store/actions/store.actions';
 
-import { ServerRequestStartedAction } from '../../../store/actions/ui.actions';
-
 import { InputService } from '../../../services/input.service';
 
 import { SelectItem } from 'primeng/primeng';
@@ -64,18 +62,18 @@ export class StartFormComponent implements OnInit {
         .value()
       );
 
-    this.error$ = store
-      .select<{}>(state => state.ui.currentError);
+    // this.error$ = store
+    //   .select<{}>(state => state.ui.currentError);
 
-    this.success$ = store
-      .select<{}>(state => state.ui.currentSuccess);
+    // this.success$ = store
+    //   .select<{}>(state => state.ui.currentSuccess);
 
-    this.serverRequestActive$ = store
-      .select<boolean>(state => state.ui.serverRequestActive);
+    // this.serverRequestActive$ = store
+    //   .select<boolean>(state => state.ui.serverRequestActive);
 
-    this.serverRequestActive$.subscribe(active => {
-      this.submitIcon = active ? 'fa-spinner' : 'fa-play';
-    });
+    // this.serverRequestActive$.subscribe(active => {
+    //   this.submitIcon = active ? 'fa-spinner' : 'fa-play';
+    // });
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
@@ -124,8 +122,6 @@ export class StartFormComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
-    console.log('you submitted form:', form);
-    this.store.dispatch(new ServerRequestStartedAction());
-    this.store.dispatch(new StartProcessAction(form));
+    this.store.dispatch(new StartProcessAction({ id: 'start-form', parameters: form }));
   }
 }

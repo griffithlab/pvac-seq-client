@@ -1,6 +1,9 @@
 import { Action } from '@ngrx/store';
 import { Process } from '../models/process.model';
-import { File, FileMap } from '../models/store.model';
+import { File, FileMap, Error, Request, Response } from '../models/store.model';
+
+export const SERVER_REQUEST_STARTED_ACTION: string = 'SERVER_REQUEST_STARTED_ACTION';
+export const SERVER_REQUEST_COMPLETED_ACTION: string = 'SERVER_REQUEST_COMPLETED_ACTION';
 
 export const LOAD_PROCESSES_ACTION: string = 'LOAD_PROCESSES_ACTION';
 export const PROCESSES_LOADED_ACTION: string = 'PROCESSES_LOADED_ACTION';
@@ -21,7 +24,18 @@ export const LOAD_FILES_ACTION: string = 'LOAD_FILES_ACTION';
 export const FILES_LOADED_ACTION: string = 'FILES_LOADED_ACTION';
 
 export const ERROR_OCCURRED_ACTION: string = 'ERROR_OCCURRED_ACTION';
-export const SUCCESS_OCCURRED_ACTION: string = 'SUCCESS_OCCURRED_ACTION';
+
+export class ServerRequestStartedAction implements Action {
+  readonly type = SERVER_REQUEST_STARTED_ACTION;
+
+  constructor(public payload?: Request) { }
+}
+
+export class ServerRequestCompletedAction implements Action {
+  readonly type = SERVER_REQUEST_COMPLETED_ACTION;
+
+  constructor(public payload?: Response) { }
+}
 
 export class LoadProcessesAction implements Action {
   readonly type = LOAD_PROCESSES_ACTION;
@@ -74,7 +88,7 @@ export class ClearProcessDetailsAction implements Action {
 export class StartProcessAction implements Action {
   readonly type = START_PROCESS_ACTION;
 
-  constructor(public payload?: {}) { }
+  constructor(public payload?: { id: string, parameters: {} }) { }
 }
 
 export class ProcessStartedAction implements Action {
@@ -98,11 +112,5 @@ export class FilesLoadedAction implements Action {
 export class ErrorOccurredAction implements Action {
   readonly type = ERROR_OCCURRED_ACTION;
 
-  constructor(public payload?: {}) { }
-}
-
-export class SuccessOccurredAction implements Action {
-  readonly type = SUCCESS_OCCURRED_ACTION;
-
-  constructor(public payload?: {}) { }
+  constructor(public payload?: Error) { }
 }
