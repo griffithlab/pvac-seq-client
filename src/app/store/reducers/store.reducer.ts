@@ -86,7 +86,7 @@ function handleFilesLoadedAction(state: StoreState, action: FilesLoadedAction): 
 function handleClearProcessDetailsAction(state: StoreState, action: ClearProcessDetailsAction): StoreState {
   const processId = action.payload;
   const newState: StoreState = Object.assign({}, state);
-  const newProcessDetail = Object.assign({}, _.omit(state.processDetail, processId)); // omit archived process details
+  const newProcessDetail = <ProcessMap>Object.assign({}, _.omit(state.processDetail, processId)); // omit archived process details
 
   newState.processDetail = newProcessDetail;
 
