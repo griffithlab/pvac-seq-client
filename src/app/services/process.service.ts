@@ -31,13 +31,14 @@ export class ProcessService {
     return this.restangular
       .all('processes')
       .getList();
-    // return this.http.get(`${this.api}/processes`)
-    //   .map(mapProcesses);
   }
 
   get(id: number): Observable<Process> {
-    return this.http.get(`${this.api}/processes/${id}`)
-      .map(mapProcess);
+    return this.restangular
+      .one('processes', id)
+      .get();
+    // return this.http.get(`${this.api}/processes/${id}`)
+    //   .map(mapProcess);
   }
 
   stage(process: any): Observable<any> {
