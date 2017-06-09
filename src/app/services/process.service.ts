@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { URLSearchParams } from '@angular/http';
 
 import { Restangular } from 'ngx-restangular';
 
@@ -19,13 +19,10 @@ export class ProcessService {
 
   constructor(
     private restangular: Restangular,
-    private http: Http,
     private config: ConfigService,
   ) {
     this.api = config.apiUrl();
   }
-
-  // fetch a list of all processes
 
   query(): Observable<Process[]> {
     return this.restangular
@@ -37,8 +34,6 @@ export class ProcessService {
     return this.restangular
       .one('processes', id)
       .get();
-    // return this.http.get(`${this.api}/processes/${id}`)
-    //   .map(mapProcess);
   }
 
   stage(process: any): Observable<any> {
@@ -60,35 +55,8 @@ export class ProcessService {
   }
 
   archive(id: number): Observable<string> {
-    return this.http.get(`${this.api}/archive/${id}`)
-      .map((response: Response) => {
-        return response.statusText;
-      });
+    return this.restangular
+      .one('archive', id)
+      .get();
   }
-}
-
-function mapProcesses(res: Response): Process[] {
-  return res.json().map(toProcess);
-}
-
-function mapProcess(res: Response): Process {
-  return toProcess(res.json());
-}
-
-function toProcess(p: any): Process {
-  p.status.toString();
-  return p as Process;
-}
-
-function handleError(error: any) {
-  let errMsg: string;
-  if (error instanceof Response) {
-    const body = error.json() || '';
-    const err = body.error || JSON.stringify(body);
-    errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  } else {
-    errMsg = error.message ? error.message : error.toString();
-  }
-  console.error(errMsg);
-  return Observable.throw(errMsg);
 }
