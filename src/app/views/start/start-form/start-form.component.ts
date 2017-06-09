@@ -17,7 +17,7 @@ import {
   StartProcessAction
 } from '../../../store/actions/store.actions';
 
-import { ServerRequestStartedAction } from '../../../store/actions/ui.actions';
+import { ServerRequestStartedAction } from '../../../store/actions/store.actions';
 
 import { InputService } from '../../../services/input.service';
 
