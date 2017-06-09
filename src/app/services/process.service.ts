@@ -28,8 +28,11 @@ export class ProcessService {
   // fetch a list of all processes
 
   query(): Observable<Process[]> {
-    return this.http.get(`${this.api}/processes`)
-      .map(mapProcesses);
+    return this.restangular
+      .all('processes')
+      .getList();
+    // return this.http.get(`${this.api}/processes`)
+    //   .map(mapProcesses);
   }
 
   get(id: number): Observable<Process> {
