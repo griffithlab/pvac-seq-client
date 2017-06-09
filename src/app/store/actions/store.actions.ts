@@ -2,6 +2,9 @@ import { Action } from '@ngrx/store';
 import { Process } from '../models/process.model';
 import { File, FileMap } from '../models/store.model';
 
+export const SERVER_REQUEST_STARTED_ACTION: string = 'SERVER_REQUEST_STARTED_ACTION';
+export const SERVER_REQUEST_COMPLETED_ACTION: string = 'SERVER_REQUEST_COMPLETED_ACTION';
+
 export const LOAD_PROCESSES_ACTION: string = 'LOAD_PROCESSES_ACTION';
 export const PROCESSES_LOADED_ACTION: string = 'PROCESSES_LOADED_ACTION';
 
@@ -22,6 +25,18 @@ export const FILES_LOADED_ACTION: string = 'FILES_LOADED_ACTION';
 
 export const ERROR_OCCURRED_ACTION: string = 'ERROR_OCCURRED_ACTION';
 export const SUCCESS_OCCURRED_ACTION: string = 'SUCCESS_OCCURRED_ACTION';
+
+export class ServerRequestStartedAction implements Action {
+  readonly type = SERVER_REQUEST_STARTED_ACTION;
+
+  constructor() { }
+}
+
+export class ServerRequestCompletedAction implements Action {
+  readonly type = SERVER_REQUEST_COMPLETED_ACTION;
+
+  constructor() { }
+}
 
 export class LoadProcessesAction implements Action {
   readonly type = LOAD_PROCESSES_ACTION;
