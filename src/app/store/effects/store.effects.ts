@@ -109,7 +109,7 @@ export class StartProcessEffectService {
     .ofType(START_PROCESS_ACTION)
     .debug('starting process')
     .switchMap((action) => {
-      return this.processService.start(action.payload);
+      return this.processService.stageR(action.payload);
     })
     .flatMap(response => [
       new ProcessStartedAction(response),

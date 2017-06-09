@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
+import { Restangular } from 'ngx-restangular';
+
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
@@ -16,6 +18,7 @@ export class ProcessService {
   private api: string;
 
   constructor(
+    private restangular: Restangular,
     private http: Http,
     private config: ConfigService,
   ) {
@@ -34,21 +37,22 @@ export class ProcessService {
       .map(mapProcess);
   }
 
-  start(process: any): Observable<any> {
-    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    const options = new RequestOptions({ headers });
-    const payload = new URLSearchParams('', new FlaskQueryEncoder());
+  stage(process: any): Observable<any> {
+    const body = new URLSearchParams('', new FlaskQueryEncoder());
 
     const payloadArray = _.toPairs(process);
     payloadArray.map((field) => {
-      payload.append(field[0], field[1]);
+      body.append(field[0], field[1]);
     });
 
-    return this.http.post(`${this.api}/staging`, payload.toString(), options)
-      .map((response: Response) => {
-        console.log(response);
-        return JSON.parse(response['_body']) as number;
-      });
+    return this.restangular
+      .oneUrl('staging', this.api)
+      .customPOST(
+      body,
+      'staging', // put your path here
+      undefined, // params here, e.g. {format: "json"}
+      { 'Content-Type': 'application/x-www-form-urlencoded' }
+      );
   }
 
   archive(id: number): Observable<string> {
