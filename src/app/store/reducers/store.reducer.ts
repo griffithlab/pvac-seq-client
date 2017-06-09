@@ -2,7 +2,15 @@ import { Action } from '@ngrx/store';
 import * as _ from 'lodash';
 
 import { StoreState, INITIAL_STORE_STATE } from '../models/store.model';
+import { ProcessMap } from '../models/process.model';
+
 import {
+  ServerRequestStartedAction,
+  SERVER_REQUEST_STARTED_ACTION,
+
+  ServerRequestCompletedAction,
+  SERVER_REQUEST_COMPLETED_ACTION,
+
   ProcessesLoadedAction,
   PROCESSES_LOADED_ACTION,
 
@@ -22,6 +30,12 @@ import {
 
 export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Action): StoreState {
   switch (action.type) {
+    case SERVER_REQUEST_STARTED_ACTION:
+      return handleServerRequestStartedAction(state, action);
+
+    case SERVER_REQUEST_COMPLETED_ACTION:
+      return handleServerRequestCompletedAction(state, action);
+
     case PROCESSES_LOADED_ACTION:
       return handleProcessesLoadedAction(state, action);
 
@@ -41,6 +55,21 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
       return state;
   }
 };
+function handleServerRequestStartedAction(state: StoreState, action: ServerRequestStartedAction): StoreState {
+  const newState = Object.assign({}, state);
+
+  // newState.serverRequestActive = true;
+
+  return newState;
+}
+
+function handleServerRequestCompletedAction(state: StoreState, action: ServerRequestCompletedAction): StoreState {
+  const newState = Object.assign({}, state);
+
+  // newState.serverRequestActive = false;
+
+  return newState;
+}
 
 function handleProcessesLoadedAction(state: StoreState, action: ProcessesLoadedAction): StoreState {
   const processes = action.payload;
@@ -77,10 +106,10 @@ function handleFilesLoadedAction(state: StoreState, action: FilesLoadedAction): 
 
 function handleClearProcessDetailsAction(state: StoreState, action: ClearProcessDetailsAction): StoreState {
   const processId = action.payload;
-  const newState = Object.assign({}, state);
+  const newState = _.cloneDeep(state);
   const newProcessDetail = Object.assign({}, _.omit(state.processDetail, processId)); // omit archived process details
 
-  newState.processDetail = newProcessDetail;
+  newState.processDetail = <ProcessMap>_.omit(state.processDetail, processId);
 
   return newState;
 }
