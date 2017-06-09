@@ -8,6 +8,8 @@ import { InputService } from '../../services/input.service';
 import { FileService } from '../../services/file.service';
 
 import {
+  ServerRequestCompletedAction,
+
   LOAD_PROCESSES_ACTION,
   LoadProcessesAction,
   ProcessesLoadedAction,
@@ -30,10 +32,6 @@ import {
   SuccessOccurredAction,
   ErrorOccurredAction,
 } from '../actions/store.actions';
-
-import {
-  ServerRequestCompletedAction
-} from '../actions/ui.actions';
 
 @Injectable()
 export class LoadProcessesEffectService {
