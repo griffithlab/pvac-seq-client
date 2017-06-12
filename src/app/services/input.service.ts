@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { Restangular } from 'ngx-restangular';
+
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
@@ -12,24 +14,26 @@ import { ConfigService } from './config.service';
 
 @Injectable()
 export class InputService {
-  private api: string;
+    private api: string;
 
-  constructor(
-    private http: Http,
-    private config: ConfigService,
-  ) {
-    this.api = config.apiUrl();
-  }
+    constructor(
+        private restangular: Restangular,
+        private config: ConfigService,
+    ) {
+        this.api = config.apiUrl();
+    }
 
-  query(): Observable<File[]> {
-    return this.http.get(`${this.api}/input`)
-      .map(mapFiles);
-  }
+    query(): Observable<File[]> {
+        return this.restangular
+            .all('input')
+            .getList()
+            .map(mapFiles);
+    }
 }
 
-function mapFiles(res: Response): File[] {
-  return _.chain(res.json())
-    .map(f => f as File)
-    .filter(f => _.first(f.display_name) !== '.') // filter hidden
-    .value();
+function mapFiles(res: Restangular): File[] {
+    return _.chain(res.plain())
+        .map(f => f as File)
+        .filter(f => _.first(f.display_name) !== '.') // filter hidden
+        .value();
 }

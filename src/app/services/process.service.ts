@@ -48,8 +48,8 @@ export class ProcessService {
       .oneUrl('staging', this.api)
       .customPOST(
       body,
-      'staging', // put your path here
-      undefined, // params here, e.g. {format: "json"}
+      'staging', // path
+      undefined, // params
       { 'Content-Type': 'application/x-www-form-urlencoded' }
       );
   }
