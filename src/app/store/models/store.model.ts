@@ -39,20 +39,15 @@ export interface ServerRequestMap {
 }
 
 export interface ServerRequest {
-  readonly element;
-  readonly operation;
-  readonly path;
   readonly url;
-  readonly headers;
-  readonly params;
-  active: boolean;
+  readonly method;
+  active?: boolean;
   response?: ServerResponse;
 }
 
 export interface ServerResponse {
-  readonly data;
-  readonly operation;
-  readonly what;
-  readonly url;
-  readonly response;
+  readonly ok: boolean;
+  readonly url: string;
+  readonly status: number;
+  readonly statusText: string;
 }

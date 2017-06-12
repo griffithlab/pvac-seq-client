@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Process } from '../models/process.model';
-import { File, FileMap } from '../models/store.model';
+import { File, FileMap, ServerRequest, ServerResponse } from '../models/store.model';
 
 export const SERVER_REQUEST_STARTED_ACTION: string = 'SERVER_REQUEST_STARTED_ACTION';
 export const SERVER_REQUEST_COMPLETED_ACTION: string = 'SERVER_REQUEST_COMPLETED_ACTION';
@@ -29,13 +29,13 @@ export const SUCCESS_OCCURRED_ACTION: string = 'SUCCESS_OCCURRED_ACTION';
 export class ServerRequestStartedAction implements Action {
   readonly type = SERVER_REQUEST_STARTED_ACTION;
 
-  constructor() { }
+  constructor(public payload?: ServerRequest) { }
 }
 
 export class ServerRequestCompletedAction implements Action {
   readonly type = SERVER_REQUEST_COMPLETED_ACTION;
 
-  constructor() { }
+  constructor(public payload?: ServerResponse) { }
 }
 
 export class LoadProcessesAction implements Action {

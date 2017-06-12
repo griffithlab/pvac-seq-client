@@ -1,7 +1,13 @@
 import { Action } from '@ngrx/store';
 import * as _ from 'lodash';
 
-import { StoreState, INITIAL_STORE_STATE } from '../models/store.model';
+import {
+  StoreState,
+  INITIAL_STORE_STATE,
+  ServerRequest,
+  ServerResponse
+} from '../models/store.model';
+
 import { ProcessMap } from '../models/process.model';
 
 import {
@@ -56,18 +62,17 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
   }
 };
 function handleServerRequestStartedAction(state: StoreState, action: ServerRequestStartedAction): StoreState {
-  const newState = Object.assign({}, state);
-
-  // newState.serverRequestActive = true;
-
+  const request: ServerRequest = action.payload;
+  const newState = _.cloneDeep(state);
+  newState.serverRequests[request.url] = request;
   return newState;
 }
 
 function handleServerRequestCompletedAction(state: StoreState, action: ServerRequestCompletedAction): StoreState {
-  const newState = Object.assign({}, state);
-
-  // newState.serverRequestActive = false;
-
+  const response: ServerResponse = action.payload;
+  const newState = _.cloneDeep(state);
+  newState.serverRequests[response.url].response = response;
+  newState.serverRequests[response.url].active = false;
   return newState;
 }
 
@@ -107,7 +112,6 @@ function handleFilesLoadedAction(state: StoreState, action: FilesLoadedAction): 
 function handleClearProcessDetailsAction(state: StoreState, action: ClearProcessDetailsAction): StoreState {
   const processId = action.payload;
   const newState = _.cloneDeep(state);
-  const newProcessDetail = Object.assign({}, _.omit(state.processDetail, processId)); // omit archived process details
 
   newState.processDetail = <ProcessMap>_.omit(state.processDetail, processId);
 
