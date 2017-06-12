@@ -39,8 +39,8 @@ export class ProcessService {
   stage(process: Process): Observable<number> { // pvacseq-api returns new process ID
     const body = new URLSearchParams('', new FlaskQueryEncoder());
 
-    const payloadArray = _.toPairs(process);
-    payloadArray.map((field) => {
+    const bodyArray = _.toPairs(process);
+    bodyArray.map((field) => {
       body.append(field[0], field[1]);
     });
 
