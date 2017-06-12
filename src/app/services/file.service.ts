@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { Restangular } from 'ngx-restangular';
+
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -12,21 +14,16 @@ import { ConfigService } from './config.service';
 export class FileService {
   private api: string;
 
-  constructor(private http: Http, private config: ConfigService) {
+  constructor(private restangular: Restangular,
+    private config: ConfigService) {
     this.api = config.apiUrl();
   }
 
   query(processId): Observable<File[]> {
-    return this.http.get(`${this.api}/processes/${processId}/results`)
-      .map(mapFiles);
+    return this.restangular
+      .one('processes', processId)
+      .all('results')
+      .getList();
   }
 
-}
-
-function mapFiles(res: Response): File[] {
-  return res.json().map(mapFile);
-}
-
-function mapFile(f: {}): File {
-  return f as File;
 }
