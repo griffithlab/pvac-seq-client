@@ -125,7 +125,6 @@ export class StartFormComponent implements OnInit {
 
   onSubmit(form: any): void {
     console.log('you submitted form:', form);
-    this.store.dispatch(new ServerRequestStartedAction());
-    this.store.dispatch(new StartProcessAction(form));
+    this.store.dispatch(new StartProcessAction({ parameters: form, component: 'start-form' }));
   }
 }

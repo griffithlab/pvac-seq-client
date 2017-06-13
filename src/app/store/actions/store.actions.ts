@@ -89,7 +89,7 @@ export class ClearProcessDetailsAction implements Action {
 export class StartProcessAction implements Action {
   readonly type = START_PROCESS_ACTION;
 
-  constructor(public payload?: {}) { }
+  constructor(public payload?: { parameters: {}, component?: string }) { }
 }
 
 export class ProcessStartedAction implements Action {

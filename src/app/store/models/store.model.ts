@@ -41,6 +41,7 @@ export interface ServerRequestMap {
 export interface ServerRequest {
   readonly url;
   readonly method;
+  component?: string;
   active?: boolean;
   response?: ServerResponse;
 }

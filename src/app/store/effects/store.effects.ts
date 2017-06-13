@@ -107,17 +107,18 @@ export class StartProcessEffectService {
     .ofType(START_PROCESS_ACTION)
     .debug('starting process')
     .switchMap((action) => {
-      return this.processService.stage(action.payload);
+      return this.processService.stage(action.payload.parameters, action.payload.component);
     })
     .flatMap(response => [
       new ProcessStartedAction(response),
-      new SuccessOccurredAction(response),
-      new ServerRequestCompletedAction(),
     ])
-    .catch(() => Observable.from([
-      new ErrorOccurredAction('Error occurred while starting process.'),
-      new ServerRequestCompletedAction(),
-    ]));
+    .catch((response) => {
+      return Observable.from([
+        new ErrorOccurredAction('Error occurred while starting process.'),
+        new ServerRequestCompletedAction(response),
+      ]);
+    }
+    );
 
   constructor(private actions$: Actions,
     private processService: ProcessService) { }

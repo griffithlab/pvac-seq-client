@@ -36,8 +36,11 @@ export class ProcessService {
       .get();
   }
 
-  stage(process: Process): Observable<number> { // pvacseq-api returns new process ID
+  stage(process: Process, component?: string): Observable<number> { // pvacseq-api returns new process ID
     const body = new URLSearchParams('', new FlaskQueryEncoder());
+    const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+    if (component) { headers['X-Requesting-Component'] = component; };
 
     const bodyArray = _.toPairs(process);
     bodyArray.map((field) => {
@@ -50,7 +53,7 @@ export class ProcessService {
       body,
       'staging', // path
       undefined, // params
-      { 'Content-Type': 'application/x-www-form-urlencoded' }
+      headers
       );
   }
 

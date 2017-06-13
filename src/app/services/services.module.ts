@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestMethod } from '@angular/http';
 import {
   HttpInterceptorModule,
   HttpInterceptorService
@@ -48,12 +48,15 @@ export class ServicesModule {
   ) {
 
     httpInterceptor.request(/\/api\//).addInterceptor((data, method) => {
-      const request: ServerRequest = {
-        url: data[0].url,
-        method: data[0].method,
+      const request = data[0];
+
+      const serverRequest: ServerRequest = {
+        url: request.url,
+        method: request.method,
+        component: request.headers.get('x-requesting-component'),
         active: true
       };
-      this.store.dispatch(new ServerRequestStartedAction(request));
+      this.store.dispatch(new ServerRequestStartedAction(serverRequest));
       return data;
     });
 
