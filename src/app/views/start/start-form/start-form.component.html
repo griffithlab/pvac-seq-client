@@ -507,6 +507,13 @@
     </div>
   </div>
 
+  <div class="row"
+       *ngIf="startFormRequests$ | async as serverRequests">
+    <div class="col-sm-4 offset-sm-3" >
+      <h4>Server Requests:</h4>
+      <pre>{{serverRequests | json}}</pre>
+    </div>
+  </div>
   <!-- <div class="row"> -->
   <!-- <div class="col" > -->
   <!-- <h2>Form startForm.value</h2> -->

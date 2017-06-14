@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.model';
-import { File } from '../../../store/models/store.model';
+import { File, ServerRequest } from '../../../store/models/store.model';
 import {
   LoadInputsAction,
   StartProcessAction
@@ -29,10 +29,9 @@ import { SelectItem } from 'primeng/primeng';
   styleUrls: ['./start-form.component.scss']
 })
 export class StartFormComponent implements OnInit {
+  id: string;
   inputs$: Observable<SelectItem[]>;
-  success$: Observable<{}>;
-  error$: Observable<{}>;
-  serverRequestActive$: Observable<boolean>;
+  startFormRequests$: Observable<ServerRequest[]>;
   submitIcon: string;
 
   startForm: FormGroup;
@@ -43,6 +42,8 @@ export class StartFormComponent implements OnInit {
   constructor(private store: Store<AppState>,
     private inputService: InputService,
     private fb: FormBuilder) {
+
+    this.id = 'start-form';
 
     this.netChopMethodOptions = [
       { label: 'C term 3.0', value: 'cterm' },
@@ -64,18 +65,17 @@ export class StartFormComponent implements OnInit {
         .value()
       );
 
-    this.error$ = store
-      .select<{}>(state => state.ui.currentError);
-
-    this.success$ = store
-      .select<{}>(state => state.ui.currentSuccess);
-
-    this.serverRequestActive$ = store
-      .select<boolean>(state => state.ui.serverRequestActive);
-
-    this.serverRequestActive$.subscribe(active => {
-      this.submitIcon = active ? 'fa-spinner' : 'fa-play';
-    });
+    this.startFormRequests$ = store
+      .select(state => state.store.serverRequests)
+      .map((serverRequestMap) => {
+        return _.chain(serverRequestMap)
+          .valuesIn()
+          .map((req: ServerRequest) => {
+            if (req.component === this.id) { return req as ServerRequest; };
+          })
+          .compact()
+          .value();
+      });
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
