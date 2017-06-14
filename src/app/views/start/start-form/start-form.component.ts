@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   Validators,
-  FormControl,
   FormGroup,
   FormBuilder
 } from '@angular/forms';
@@ -17,8 +16,6 @@ import {
   StartProcessAction
 } from '../../../store/actions/store.actions';
 
-import { ServerRequestStartedAction } from '../../../store/actions/store.actions';
-
 import { InputService } from '../../../services/input.service';
 
 import { SelectItem } from 'primeng/primeng';
@@ -30,9 +27,10 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class StartFormComponent implements OnInit {
   id: string;
+  startFormRequests$: Observable<ServerRequest[]>; // all server requests made from start-form
+  stagingRequest$: Observable<ServerRequest>; // active staging request
+  inputsRequest$: Observable<ServerRequest>; // active input request
   inputs$: Observable<SelectItem[]>;
-  startFormRequests$: Observable<ServerRequest[]>;
-  submitIcon: string;
 
   startForm: FormGroup;
 
@@ -55,8 +53,7 @@ export class StartFormComponent implements OnInit {
       { label: 'Lowest Score', value: 'lowest' },
     ];
 
-    this.inputs$ = store
-      .select(state => state.store.inputs)
+    this.inputs$ = store.select(state => state.store.inputs)
       .map(fileMap => _.chain(fileMap)
         .valuesIn()
         .map((f: File) => {
@@ -65,8 +62,7 @@ export class StartFormComponent implements OnInit {
         .value()
       );
 
-    this.startFormRequests$ = store
-      .select(state => state.store.serverRequests)
+    this.startFormRequests$ = store.select(state => state.store.serverRequests)
       .map((serverRequestMap) => {
         return _.chain(serverRequestMap)
           .valuesIn()
@@ -76,6 +72,12 @@ export class StartFormComponent implements OnInit {
           .compact()
           .value();
       });
+
+    this.stagingRequest$ = this.startFormRequests$
+      .let((reqs: ServerRequest[]) => {
+        return _.filter(reqs, (req) => _.includes(req.url, 'staging'))
+      })
+      .subscribe();
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
@@ -116,7 +118,7 @@ export class StartFormComponent implements OnInit {
   }
 
   loadInputs(): void {
-    this.store.dispatch(new LoadInputsAction());
+    this.store.dispatch(new LoadInputsAction(this.id));
   }
 
   ngOnInit() {

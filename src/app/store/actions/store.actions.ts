@@ -67,7 +67,7 @@ export class ProcessLoadedAction implements Action {
 export class LoadInputsAction implements Action {
   readonly type = LOAD_INPUTS_ACTION;
 
-  constructor() { }
+  constructor(public payload?: string) { }
 }
 
 export class InputsLoadedAction implements Action {
