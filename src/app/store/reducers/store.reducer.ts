@@ -5,6 +5,7 @@ import {
   StoreState,
   INITIAL_STORE_STATE,
   ServerRequest,
+  ServerRequestMap,
   ServerResponse
 } from '../models/store.model';
 
@@ -16,6 +17,9 @@ import {
 
   ServerRequestCompletedAction,
   SERVER_REQUEST_COMPLETED_ACTION,
+
+  ClearCompletedServerRequestAction,
+  CLEAR_COMPLETED_SERVER_REQUEST_ACTION,
 
   ProcessesLoadedAction,
   PROCESSES_LOADED_ACTION,
@@ -41,6 +45,9 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
 
     case SERVER_REQUEST_COMPLETED_ACTION:
       return handleServerRequestCompletedAction(state, action);
+
+    case CLEAR_COMPLETED_SERVER_REQUEST_ACTION:
+      return handleClearCompletedServerRequestAction(state, action);
 
     case PROCESSES_LOADED_ACTION:
       return handleProcessesLoadedAction(state, action);
@@ -73,6 +80,15 @@ function handleServerRequestCompletedAction(state: StoreState, action: ServerReq
   const newState = _.cloneDeep(state);
   newState.serverRequests[response.url].response = response;
   newState.serverRequests[response.url].active = false;
+  return newState;
+}
+
+function handleClearCompletedServerRequestAction(state: StoreState, action: ClearCompletedServerRequestAction): StoreState {
+  const response: ServerResponse = action.payload;
+  const newState = _.cloneDeep(state);
+
+  newState.serverRequests = <ServerRequestMap>_.omit(newState.serverRequests, response.url);
+
   return newState;
 }
 

@@ -5,6 +5,8 @@ import { File, FileMap, ServerRequest, ServerResponse } from '../models/store.mo
 export const SERVER_REQUEST_STARTED_ACTION: string = 'SERVER_REQUEST_STARTED_ACTION';
 export const SERVER_REQUEST_COMPLETED_ACTION: string = 'SERVER_REQUEST_COMPLETED_ACTION';
 
+export const CLEAR_COMPLETED_SERVER_REQUEST_ACTION: string = 'CLEAR_COMPLETED_SERVER_REQEUST_ACTION';
+
 export const LOAD_PROCESSES_ACTION: string = 'LOAD_PROCESSES_ACTION';
 export const PROCESSES_LOADED_ACTION: string = 'PROCESSES_LOADED_ACTION';
 
@@ -84,6 +86,12 @@ export class ClearProcessDetailsAction implements Action {
   readonly type = CLEAR_PROCESS_DETAILS;
 
   constructor(public payload?: string) { }
+}
+
+export class ClearCompletedServerRequestAction implements Action {
+  readonly type = CLEAR_COMPLETED_SERVER_REQUEST_ACTION;
+
+  constructor(public payload?: ServerResponse) { }
 }
 
 export class StartProcessAction implements Action {

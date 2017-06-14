@@ -8,7 +8,10 @@ import { InputService } from '../../services/input.service';
 import { FileService } from '../../services/file.service';
 
 import {
+  SERVER_REQUEST_COMPLETED_ACTION,
   ServerRequestCompletedAction,
+
+  ClearCompletedServerRequestAction,
 
   LOAD_PROCESSES_ACTION,
   LoadProcessesAction,
@@ -117,8 +120,7 @@ export class StartProcessEffectService {
         new ErrorOccurredAction('Error occurred while starting process.'),
         new ServerRequestCompletedAction(response),
       ]);
-    }
-    );
+    });
 
   constructor(private actions$: Actions,
     private processService: ProcessService) { }
@@ -136,5 +138,17 @@ export class LoadInputsEffectService {
 
   constructor(private actions$: Actions,
     private inputService: InputService) { }
+
+}
+
+@Injectable()
+export class ClearCompletedServerRequestService {
+  @Effect() input$: Observable<Action> = this.actions$
+    .ofType(SERVER_REQUEST_COMPLETED_ACTION)
+    .debug('clearing completed server request')
+    .map(action => new ClearCompletedServerRequestAction(action.payload))
+    .catch(() => Observable.of(new ErrorOccurredAction('Error occurred while clearing completed server request')));
+
+  constructor(private actions$: Actions) { }
 
 }

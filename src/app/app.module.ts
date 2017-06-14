@@ -18,6 +18,7 @@ import {
   StartProcessEffectService,
   LoadInputsEffectService,
   LoadFilesEffectService,
+  ClearCompletedServerRequestService
 } from './store/effects/store.effects';
 
 // App Modules
@@ -41,6 +42,7 @@ const storeEffects = [
   EffectsModule.run(StartProcessEffectService),
   EffectsModule.run(LoadInputsEffectService),
   EffectsModule.run(LoadFilesEffectService),
+  EffectsModule.run(ClearCompletedServerRequestService),
 ];
 
 @NgModule({
