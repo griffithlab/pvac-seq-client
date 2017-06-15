@@ -510,8 +510,12 @@
   <div class="row"
        *ngIf="startFormRequests$ | async as serverRequests">
     <div class="col-sm-4 offset-sm-3" >
-      <h4>Server Requests:</h4>
-      <pre>{{serverRequests | json}}</pre>
+      <h4>Input Requests:</h4>
+      <pre>{{inputsRequest$ | async | json}}</pre>
+    </div>
+    <div class="col-sm-4">
+      <h4>Staging Requests:</h4>
+      <pre>{{stagingRequest$ | async | json}}</pre>
     </div>
   </div>
   <!-- <div class="row"> -->

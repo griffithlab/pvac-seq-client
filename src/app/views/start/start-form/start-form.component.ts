@@ -54,30 +54,23 @@ export class StartFormComponent implements OnInit {
     ];
 
     this.inputs$ = store.select(state => state.store.inputs)
-      .map(fileMap => _.chain(fileMap)
-        .valuesIn()
-        .map((f: File) => {
-          return { label: f.display_name, value: f.fileID };
-        })
-        .value()
-      );
+      .map(fileMap => _.valuesIn(fileMap))
+      .map(files => _.map(files, (f: File) => { return { label: f.display_name, value: f.fileID }; }));
 
     this.startFormRequests$ = store.select(state => state.store.serverRequests)
-      .map((serverRequestMap) => {
-        return _.chain(serverRequestMap)
-          .valuesIn()
-          .map((req: ServerRequest) => {
-            if (req.component === this.id) { return req as ServerRequest; };
-          })
-          .compact()
-          .value();
-      });
+      .map(reqMap => _.valuesIn(reqMap)) // convert to array from object
+      .filter(reqs => reqs.length > 0) // filter empty array
+      .map(reqs => _.filter(reqs, req => req.component === this.id));
 
     this.stagingRequest$ = this.startFormRequests$
-      .let((reqs: ServerRequest[]) => {
-        return _.filter(reqs, (req) => _.includes(req.url, 'staging'))
-      })
-      .subscribe();
+      .map((reqs) => {
+        return _.find(reqs, (req) => _.includes(req.url, 'staging'));
+      });
+
+    this.inputsRequest$ = this.startFormRequests$
+      .map((reqs) => {
+        return _.find(reqs, (req) => _.includes(req.url, 'input'));
+      });
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
