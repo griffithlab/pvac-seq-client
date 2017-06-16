@@ -7,6 +7,8 @@ import { ProcessService } from '../../services/process.service';
 import { InputService } from '../../services/input.service';
 import { FileService } from '../../services/file.service';
 
+import { ServerResponse } from '../models/store.model';
+
 import {
   SERVER_REQUEST_COMPLETED_ACTION,
   ServerRequestCompletedAction,
@@ -110,16 +112,22 @@ export class StartProcessEffectService {
     .ofType(START_PROCESS_ACTION)
     .debug('starting process')
     .switchMap((action) => {
-      return this.processService.stage(action.payload.parameters, action.payload.component);
-    })
-    .flatMap(response => [
-      new ProcessStartedAction(response),
-    ])
-    .catch((response) => {
-      return Observable.from([
-        new ErrorOccurredAction('Error occurred while starting process.'),
-        new ServerRequestCompletedAction(response),
-      ]);
+      return this.processService.stage(action.payload.parameters, action.payload.component)
+        .flatMap(response => [
+          new ProcessStartedAction(response),
+        ])
+        .catch((res) => {
+          const serverResponse: ServerResponse = {
+            ok: res.ok,
+            url: res.url,
+            status: res.status,
+            statusText: res.statusText,
+          };
+          return Observable.from([
+            new ErrorOccurredAction('Error occurred while starting process.'),
+            new ServerRequestCompletedAction(serverResponse),
+          ]);
+        });
     });
 
   constructor(private actions$: Actions,

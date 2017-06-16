@@ -45,6 +45,8 @@ export class StartFormComponent implements OnInit {
   submitButtonClass = 'ui-button-primary';
   submitButtonIcon = 'fa-play';
 
+  startMessages = [];
+
   netChopMethodOptions: SelectItem[];
   topScoreMetricOptions: SelectItem[];
 
@@ -93,6 +95,9 @@ export class StartFormComponent implements OnInit {
         this.submitButtonIcon = request.active ? 'fa-spinner fa-spin' : 'fa-play';
         if (!_.isUndefined(request.response.ok)) {
           this.lastStagingRequestOK = request.response.ok;
+          this.startMessages.push({
+
+          });
         }
         this.lastStagingRequest = request;
       }
