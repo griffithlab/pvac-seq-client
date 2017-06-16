@@ -32,6 +32,9 @@ export class StartFormComponent implements OnInit {
   inputsRequest$: Observable<ServerRequest>; // active input request
   inputs$: Observable<SelectItem[]>;
 
+  lastStagingRequest: ServerRequest;
+  lastInputsRequest: ServerRequest;
+
   startForm: FormGroup;
 
   netChopMethodOptions: SelectItem[];
@@ -59,31 +62,31 @@ export class StartFormComponent implements OnInit {
 
     // monitors all start-form server requests
     this.startFormRequests$ = store.select(state => state.store.serverRequests)
-      .map((serverRequestMap) => {
-        return _.chain(serverRequestMap)
-          .valuesIn()
-          .map((req: ServerRequest) => {
-            if (req.component === this.id) { return req as ServerRequest; };
-          })
-          .compact()
-          .value();
-      });
-    // this.startFormRequests$ = store.select(state => state.store.serverRequests)
-    //   .map(reqMap => _.valuesIn(reqMap)) // convert to array from object
-    //   .filter(reqs => reqs.length > 0) // filter empty array
-    //   .map(reqs => _.filter(reqs, req => req.component === this.id));
+      .map(reqMap => _.valuesIn(reqMap)) // convert to array from object
+      .filter(reqs => reqs.length > 0) // filter empty array
+      .map(reqs => _.filter(reqs, req => req.component === this.id));
 
     // monitors all staging server requests
     this.stagingRequest$ = this.startFormRequests$
       .map((reqs) => {
         return _.find(reqs, (req) => _.includes(req.url, 'staging'));
-      });
+      })
+      .filter(req => _.isObject(req));
 
     // monitors all inputs server requests
     this.inputsRequest$ = this.startFormRequests$
       .map((reqs) => {
         return _.find(reqs, (req) => _.includes(req.url, 'input'));
-      });
+      })
+      .filter(req => _.isObject(req));
+
+    this.stagingRequest$.subscribe(
+      (request) => { this.lastStagingRequest = request; }
+    );
+
+    this.inputsRequest$.subscribe(
+      (request) => { this.lastInputsRequest = request; }
+    );
 
     const startFormGroup = {
       'input': [null, [Validators.required]],

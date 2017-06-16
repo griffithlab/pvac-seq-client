@@ -513,11 +513,11 @@
        *ngIf="startFormRequests$ | async as serverRequests">
     <div class="col-sm-4 offset-sm-3" >
       <h4>Input Requests:</h4>
-      <pre>{{inputsRequest$ | async | json}}</pre>
+      <pre>{{lastInputsRequest | json}}</pre>
     </div>
     <div class="col-sm-4">
-      <h4>Staging Requests:</h4>
-      <pre>{{stagingRequest$ | async | json}}</pre>
+      <h4>Last Staging Request:</h4>
+      <pre>{{lastStagingRequest | json}}</pre>
     </div>
   </div>
   <!-- <div class="row"> -->
