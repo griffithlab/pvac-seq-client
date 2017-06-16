@@ -54,7 +54,13 @@ export class ServicesModule {
         url: request.url,
         method: request.method,
         component: request.headers.get('x-requesting-component'),
-        active: true
+        active: true,
+        response: {
+          ok: undefined,
+          url: undefined,
+          status: undefined,
+          statusText: undefined
+        }
       };
       this.store.dispatch(new ServerRequestStartedAction(serverRequest));
       return data;

@@ -26,16 +26,24 @@ import { SelectItem } from 'primeng/primeng';
   styleUrls: ['./start-form.component.scss']
 })
 export class StartFormComponent implements OnInit {
-  id: string;
-  startFormRequests$: Observable<ServerRequest[]>; // all server requests made from start-form
-  stagingRequest$: Observable<ServerRequest>; // active staging request
-  inputsRequest$: Observable<ServerRequest>; // active input request
-  inputs$: Observable<SelectItem[]>;
-
-  lastStagingRequest: ServerRequest;
-  lastInputsRequest: ServerRequest;
-
+  id: string; // unique ID for this component
   startForm: FormGroup;
+
+  // observables
+  startFormRequests$: Observable<ServerRequest[]>; // all server requests made from start-form
+  stagingRequest$: Observable<ServerRequest>; // staging requests
+  inputsRequest$: Observable<ServerRequest>; // input requests
+  inputs$: Observable<SelectItem[]>; // file inputs for VCF dropdown
+
+  // last server requests
+  lastStagingRequest: ServerRequest;
+  lastStagingRequestOK: boolean;
+  lastInputsRequest: ServerRequest;
+  lastInputsrequestOK: boolean;
+
+  // UI classes, etc
+  submitButtonClass = 'ui-button-primary';
+  submitButtonIcon = 'fa-play';
 
   netChopMethodOptions: SelectItem[];
   topScoreMetricOptions: SelectItem[];
@@ -81,7 +89,13 @@ export class StartFormComponent implements OnInit {
       .filter(req => _.isObject(req));
 
     this.stagingRequest$.subscribe(
-      (request) => { this.lastStagingRequest = request; }
+      (request) => {
+        this.submitButtonIcon = request.active ? 'fa-spinner fa-spin' : 'fa-play';
+        if (!_.isUndefined(request.response.ok)) {
+          this.lastStagingRequestOK = request.response.ok;
+        }
+        this.lastStagingRequest = request;
+      }
     );
 
     this.inputsRequest$.subscribe(
