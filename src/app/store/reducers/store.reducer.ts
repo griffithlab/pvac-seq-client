@@ -68,6 +68,7 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
       return state;
   }
 };
+
 function handleServerRequestStartedAction(state: StoreState, action: ServerRequestStartedAction): StoreState {
   const request: ServerRequest = action.payload;
   const newState = _.cloneDeep(state);

@@ -132,7 +132,7 @@ export class LoadInputsEffectService {
   @Effect() inputs$: Observable<Action> = this.actions$
     .ofType(LOAD_INPUTS_ACTION)
     .debug('loading inputs')
-    .switchMap(action => this.inputService.query())
+    .switchMap(action => this.inputService.query(action.payload))
     .map(inputs => new InputsLoadedAction(inputs))
     .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading inputs.')));
 

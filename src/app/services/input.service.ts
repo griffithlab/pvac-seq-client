@@ -23,7 +23,7 @@ export class InputService {
 
     return this.restangular
       .all('input')
-      .getList()
+      .getList(undefined, headers)
       .map(mapFiles);
   }
 }

@@ -57,16 +57,29 @@ export class StartFormComponent implements OnInit {
       .map(fileMap => _.valuesIn(fileMap))
       .map(files => _.map(files, (f: File) => { return { label: f.display_name, value: f.fileID }; }));
 
+    // monitors all start-form server requests
     this.startFormRequests$ = store.select(state => state.store.serverRequests)
-      .map(reqMap => _.valuesIn(reqMap)) // convert to array from object
-      .filter(reqs => reqs.length > 0) // filter empty array
-      .map(reqs => _.filter(reqs, req => req.component === this.id));
+      .map((serverRequestMap) => {
+        return _.chain(serverRequestMap)
+          .valuesIn()
+          .map((req: ServerRequest) => {
+            if (req.component === this.id) { return req as ServerRequest; };
+          })
+          .compact()
+          .value();
+      });
+    // this.startFormRequests$ = store.select(state => state.store.serverRequests)
+    //   .map(reqMap => _.valuesIn(reqMap)) // convert to array from object
+    //   .filter(reqs => reqs.length > 0) // filter empty array
+    //   .map(reqs => _.filter(reqs, req => req.component === this.id));
 
+    // monitors all staging server requests
     this.stagingRequest$ = this.startFormRequests$
       .map((reqs) => {
         return _.find(reqs, (req) => _.includes(req.url, 'staging'));
       });
 
+    // monitors all inputs server requests
     this.inputsRequest$ = this.startFormRequests$
       .map((reqs) => {
         return _.find(reqs, (req) => _.includes(req.url, 'input'));

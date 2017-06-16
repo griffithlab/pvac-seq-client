@@ -3,7 +3,9 @@
       enctype="application/x-www-form-urlencoded">
 
   <div class="form-group row">
-    <label for="vcfDropdown" class="col-sm-3 col-form-label">*Input VCF</label>
+    <label for="vcfDropdown" class="col-sm-3 col-form-label">*Input VCF
+      <span class="small">Loading: {{(inputsRequest$ | async) != undefined ? 'true' : 'false'}}</span>
+    </label>
     <div class="col-sm-4">
       <p-dropdown [options]="inputs$ | async"
                   [formControl]="startForm.controls['input']"
