@@ -1,4 +1,5 @@
 import { File } from './store.model';
+import * as _ from 'lodash';
 
 export interface Process {
   readonly attached: boolean;
@@ -51,7 +52,7 @@ export interface Parameters {
   readonly trna_vaf?: number;
 }
 
-export interface ProcessSummaryVM {
+export interface ProcessSummary {
   readonly id: number;
   readonly alleles: string;
   readonly epitope_lengths: string;
@@ -65,4 +66,20 @@ export interface ProcessSummaryVM {
 
 export interface ProcessMap {
   [key: number]: Process;
+}
+
+export function mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummary[] {
+  const processes = _.valuesIn<Process>(processMap);
+  return _.map(processes, (process) => {
+    return {
+      id: process.id,
+      samplename: process.parameters.samplename,
+      input_filename: _(process.parameters.input).split('/').last(),
+      running: process.running,
+      status: process.status,
+      alleles: _.join(process.parameters.alleles, ', '),
+      prediction_algorithms: _.join(process.parameters.prediction_algorithms, ', '),
+      epitope_lengths: _.join(process.parameters.epitope_lengths, ', ')
+    };
+  });
 }

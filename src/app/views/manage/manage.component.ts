@@ -1,48 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../store/models/app.model';
-import { Process, ProcessMap, ProcessSummaryVM } from '../../store/models/process.model';
+import { Process, ProcessSummary } from '../../store/models/process.model';
+import { mapProcessMapToProcessSummaries } from '../../store/models/process.model';
+
 import { LoadProcessesAction } from '../../store/actions/store.actions';
 
 @Component({
   templateUrl: 'manage.component.html',
-  providers: []
+  providers: [],
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ManageComponent implements OnInit {
   processes$: Observable<Process[]>;
-  processSummaries$: Observable<ProcessSummaryVM[]>;
+  processSummaries$: Observable<ProcessSummary[]>;
 
   constructor(private store: Store<AppState>) {
     this.processes$ = store
       .select(state => state.store.processes)
-      .map(processMap => _.chain(processMap).valuesIn().map(p => p as Process).value());
+      .map((processMap) => {
+        return _.chain(processMap).valuesIn().map(p => p as Process).value();
+      });
 
-    this.processSummaries$ = store
-      .select(state => state.store.processes)
-      .map(this.mapProcessMapToProcessSummaries);
+    this.processSummaries$ = this.processes$
+      .map(mapProcessMapToProcessSummaries);
   }
 
   // TODO: this kind of munging probably belongs in process.service
-  mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummaryVM[] {
-    const processes = _.valuesIn<Process>(processMap);
-    return _.map(processes, (process) => {
-      return {
-        id: process.id,
-        samplename: process.parameters.samplename,
-        input_filename: _(process.parameters.input).split('/').last(),
-        running: process.running,
-        status: process.status,
-        alleles: _.join(process.parameters.alleles, ', '),
-        prediction_algorithms: _.join(process.parameters.prediction_algorithms, ', '),
-        epitope_lengths: _.join(process.parameters.epitope_lengths, ', '),
-        detail: process
-      };
-    });
-  }
 
   loadProcesses(): void {
     this.store.dispatch(new LoadProcessesAction());
