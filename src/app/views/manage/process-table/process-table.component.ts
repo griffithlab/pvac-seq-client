@@ -1,5 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { Process, ProcessSummaryVM } from '../../../store/models/process.model';
+import { Process, ProcessSummary } from '../../../store/models/process.model';
 
 @Component({
   selector: 'pvs-process-table',
@@ -8,8 +8,8 @@ import { Process, ProcessSummaryVM } from '../../../store/models/process.model';
 })
 
 export class ProcessTableComponent implements OnInit {
-  @Input() processSummaries: Array<ProcessSummaryVM>;
-  @Input() processes: Array<Process>;
+  @Input() processSummaries: ProcessSummary[];
+  @Input() processes: Process[];
   @Input() title: string;
 
   @Output()
