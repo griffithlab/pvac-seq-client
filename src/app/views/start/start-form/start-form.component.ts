@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   Validators,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 import * as _ from 'lodash';
 
 import { Observable } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.model';
 import { File, ServerRequest } from '../../../store/models/store.model';
@@ -25,8 +26,10 @@ import { SelectItem } from 'primeng/primeng';
   templateUrl: './start-form.component.html',
   styleUrls: ['./start-form.component.scss']
 })
-export class StartFormComponent implements OnInit {
+
+export class StartFormComponent implements OnInit, OnDestroy {
   id: string; // unique ID for this component
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   startForm: FormGroup;
 
   // observables
@@ -90,7 +93,9 @@ export class StartFormComponent implements OnInit {
       })
       .filter(req => _.isObject(req));
 
-    this.stagingRequest$.subscribe(
+    this.stagingRequest$
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
       (request) => {
         this.submitButtonIcon = request.active ? 'fa-spinner fa-spin' : 'fa-play';
         if (!_.isUndefined(request.response.ok)) {
@@ -101,11 +106,13 @@ export class StartFormComponent implements OnInit {
         }
         this.lastStagingRequest = request;
       }
-    );
+      );
 
-    this.inputsRequest$.subscribe(
+    this.inputsRequest$
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
       (request) => { this.lastInputsRequest = request; }
-    );
+      );
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
@@ -151,6 +158,11 @@ export class StartFormComponent implements OnInit {
 
   ngOnInit() {
     this.loadInputs();
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   onSubmit(form: any): void {
