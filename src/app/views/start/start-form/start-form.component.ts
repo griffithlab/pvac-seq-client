@@ -19,7 +19,7 @@ import {
 
 import { InputService } from '../../../services/input.service';
 
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem, Message } from 'primeng/primeng';
 
 @Component({
   selector: 'pvs-start-form',
@@ -48,7 +48,7 @@ export class StartFormComponent implements OnInit, OnDestroy {
   submitButtonClass = 'ui-button-primary';
   submitButtonIcon = 'fa-play';
 
-  startMessages = [];
+  startMessages: Message[] = [];
 
   netChopMethodOptions: SelectItem[];
   topScoreMetricOptions: SelectItem[];
@@ -95,18 +95,18 @@ export class StartFormComponent implements OnInit, OnDestroy {
 
     this.stagingRequest$
       .takeUntil(this.ngUnsubscribe)
-      .subscribe(
-      (request) => {
+      .subscribe((request) => {
         this.submitButtonIcon = request.active ? 'fa-spinner fa-spin' : 'fa-play';
         if (!_.isUndefined(request.response.ok)) {
-          this.lastStagingRequestOK = request.response.ok;
-          this.startMessages.push({
-
-          });
+          const res = request.response;
+          if (res.ok === true) {
+            this.startMessages.push({ severity: 'success', summary: 'Success Message', detail: 'Start Process Succeeded' });
+          } else {
+            this.startMessages.push({ severity: 'error', summary: 'Error Message', detail: 'Start Process Failed' });
+          }
         }
         this.lastStagingRequest = request;
-      }
-      );
+      });
 
     this.inputsRequest$
       .takeUntil(this.ngUnsubscribe)

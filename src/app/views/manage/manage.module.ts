@@ -5,7 +5,7 @@ import {
   DataTableModule,
   ButtonModule,
   PanelModule,
-  TabViewModule
+  TabViewModule,
 } from 'primeng/primeng';
 
 import { ManageComponent } from './manage.component';

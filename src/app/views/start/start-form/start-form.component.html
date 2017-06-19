@@ -5,7 +5,7 @@
   <div class="form-group row">
     <label for="vcfDropdown" class="col-sm-3 col-form-label">*Input VCF
       <span class="small" *ngIf="lastInputsRequest.active === true">
-        <i class="fa fa-spinner fa-spin"></i>
+        <i class="fa sfa-spinner fa-spin"></i>
       </span>
     </label>
     <div class="col-sm-4">
@@ -493,6 +493,9 @@
               [ngClass]="{'ui-button-danger': lastStagingRequestOK === false, 'ui-button-primary': lastStagingRequestOK === true}"
               [icon]="submitButtonIcon"
               [disabled]="!startForm.valid || lastStagingRequest?.active"></button>
+    </div>
+    <div class="col-sm-4 offset-sm-3 text-right form-button-row">
+      <p-messages [(value)]="startMessages"></p-messages>
     </div>
   </div>
 

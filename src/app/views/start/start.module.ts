@@ -12,6 +12,7 @@ import {
   DropdownModule,
   SpinnerModule,
   CheckboxModule,
+  MessagesModule
 } from 'primeng/primeng';
 import { StartFormComponent } from './start-form/start-form.component';
 
@@ -27,6 +28,7 @@ import { StartFormComponent } from './start-form/start-form.component';
     DropdownModule,
     SpinnerModule,
     CheckboxModule,
+    MessagesModule
   ],
   declarations: [StartComponent, StartFormComponent]
 })
