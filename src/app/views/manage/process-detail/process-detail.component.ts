@@ -20,7 +20,9 @@ export class ProcessDetailComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.process$ = store
-      .select(state => state.store.processDetail[this.processId]);
+      .select((state) => {
+        return state.store.processDetail[this.processId];
+      });
   }
 
   loadProcess() {
