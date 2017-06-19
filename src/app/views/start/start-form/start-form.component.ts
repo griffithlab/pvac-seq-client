@@ -100,9 +100,17 @@ export class StartFormComponent implements OnInit, OnDestroy {
         if (!_.isUndefined(request.response.ok)) {
           const res = request.response;
           if (res.ok === true) {
-            this.startMessages.push({ severity: 'success', summary: 'Success Message', detail: 'Start Process Succeeded' });
+            this.startMessages.push({
+              severity: 'success',
+              summary: 'Success Message',
+              detail: 'Start Process Succeeded'
+            });
           } else {
-            this.startMessages.push({ severity: 'error', summary: 'Error Message', detail: 'Start Process Failed' });
+            this.startMessages.push({
+              severity: 'error',
+              summary: `Server ${res.status} Error`,
+              detail: `Start Process Failed: ${res.statusText}`
+            });
           }
         }
         this.lastStagingRequest = request;
