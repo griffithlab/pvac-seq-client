@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { ProcessSummaryVM } from '../../../store/models/process.model';
+import { ProcessSummary } from '../../../store/models/process.model';
 
 @Component({
   selector: 'pvs-results-table',
@@ -7,7 +7,7 @@ import { ProcessSummaryVM } from '../../../store/models/process.model';
   styleUrls: ['./results-table.component.scss']
 })
 export class ResultsTableComponent implements OnInit {
-  @Input() processSummaries: Array<ProcessSummaryVM>;
+  @Input() processSummaries: Array<ProcessSummary>;
   @Input() title: string;
 
   @Output()

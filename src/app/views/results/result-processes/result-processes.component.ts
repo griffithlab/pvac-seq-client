@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../../store/models/app.model';
-import { Process, ProcessMap, ProcessSummaryVM } from '../../../store/models/process.model';
+import { Process, ProcessMap, ProcessSummary } from '../../../store/models/process.model';
 import { LoadProcessesAction } from '../../../store/actions/store.actions';
 
 @Component({
@@ -14,7 +14,7 @@ import { LoadProcessesAction } from '../../../store/actions/store.actions';
 })
 export class ResultProcessesComponent implements OnInit {
 
-  processSummaries$: Observable<ProcessSummaryVM[]>;
+  processSummaries$: Observable<ProcessSummary[]>;
 
   constructor(private store: Store<AppState>) {
 
@@ -32,7 +32,7 @@ export class ResultProcessesComponent implements OnInit {
   }
 }
 
-function mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummaryVM[] {
+function mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummary[] {
   const processes = _.chain(processMap)
     .valuesIn<Process>()
     .filter({ running: false })
