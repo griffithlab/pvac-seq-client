@@ -1,518 +1,525 @@
-<form (formGroup)="startForm"
-      (ngSubmit)="onSubmit(startForm.value)"
-      enctype="application/x-www-form-urlencoded">
-
-  <div class="form-group row">
-    <label for="vcfDropdown" class="col-sm-3 col-form-label">*Input VCF
-      <span class="small" *ngIf="lastInputsRequest.active === true">
-        <i class="fa sfa-spinner fa-spin"></i>
-      </span>
-    </label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['input']"
-                  placeholder="Select Input VCF"
-                  id="vcfDropdown">
-      </p-dropdown>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['input'].valid&&startForm.controls['input'].dirty">
-        Input VCF is required.
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>VCF Input file</p>
-    </div>
+<div class="card">
+  <div class="card-header">
+    Start pVAC-Seq Process Form
   </div>
+  <div class="card-block" >
+    <form (formGroup)="startForm"
+          (ngSubmit)="onSubmit(startForm.value)"
+          enctype="application/x-www-form-urlencoded">
 
-  <div class="form-group row">
-    <label for="samplename" class="col-sm-3 col-form-label">*Sample Name</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['samplename']"
-             id="samplename"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['samplename'].valid&&startForm.controls['samplename'].dirty">
-        Sample Name is required.
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Name assigned to this process</p>
-    </div>
+      <div class="form-group row">
+        <label for="vcfDropdown" class="col-sm-3 col-form-label">*Input VCF
+          <span class="small" *ngIf="lastInputsRequest.active === true">
+            <i class="fa sfa-spinner fa-spin"></i>
+          </span>
+        </label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['input']"
+                      placeholder="Select Input VCF"
+                      id="vcfDropdown">
+          </p-dropdown>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['input'].valid&&startForm.controls['input'].dirty">
+            Input VCF is required.
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>VCF Input file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="samplename" class="col-sm-3 col-form-label">*Sample Name</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['samplename']"
+                 id="samplename"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['samplename'].valid&&startForm.controls['samplename'].dirty">
+            Sample Name is required.
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Name assigned to this process</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="alleles" class="col-sm-3 col-form-label">*Alleles</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['alleles']"
+                 id="alleles"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['alleles'].valid&&startForm.controls['alleles'].dirty">
+            Alleles are required.
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Comma-separated list of alleles to run the sequences against</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="prediction_algorithms" class="col-sm-3 col-form-label">*Prediction Algorithms</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['prediction_algorithms']"
+                 id="prediction_algoriths"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['prediction_algorithms'].valid&&startForm.controls['prediction_algorithms'].dirty">
+            Prediction algorithms are required.
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Comma-separated list of prediction algorithms to use</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="epitope_lengths" class="col-sm-3 col-form-label">Epitope Lengths</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['epitope_lengths']"
+                 id="epitope_lengths"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['epitope_lengths'].valid&&startForm.controls['epitope_lengths'].dirty">
+            Epitope lengths are required.
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Comma-separated list of epitope lengths to produce</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="peptide_sequence_length" class="col-sm-3 col-form-label">Peptide Sequence Length</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['peptide_sequence_length']"
+                 id="peptide_sequence_length"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['peptide_sequence_length'].valid&&startForm.controls['peptide_sequence_length'].dirty">
+            Peptide sequence length(s) are required.
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Length of the peptide sequences to produce in the FASTA</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="geneExpnFileDropdown" class="col-sm-3 col-form-label">Gene Expression File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['gene_expn_file']"
+                      placeholder="Select Gene Expression File"
+                      id="geneExpnFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Gene expression file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="transcriptExpnFileDropdown" class="col-sm-3 col-form-label">Transcript Expression File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['transcript_expn_file']"
+                      placeholder="Select Transcript Expression File"
+                      id="geneExpnFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Transcript expression file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="normalSnvsCoverageFileDropdown" class="col-sm-3 col-form-label">Normal SNVs Coverage File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['normal_snvs_coverage_file']"
+                      placeholder="Select Normal SVNs Coverage File"
+                      id="normalSnvsCoverageFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Normal SNVs coverage file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="normalIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Normal Indels Coverage File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['normal_indels_coverage_file']"
+                      placeholder="Select Normal Indels Coverage File"
+                      id="normalIndelsCoverageFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Normal Indels coverage file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tumorDnaSnvsCoverageFile" class="col-sm-3 col-form-label">Tumor DNA SNVs Coverage File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['tdna_snvs_coverage_file']"
+                      placeholder="Select Tumor DNA SNVs Coverage File"
+                      id="tumorDnaSnvsCoverageFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Tumor DNA SNVs coverage file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tumorIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Tumor DNA Indels Coverage File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['tdna_indels_coverage_file']"
+                      placeholder="Select Tumor Indels Coverage File"
+                      id="tumorIndelsCoverageFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Tumor DNA Indels coverage file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tumorRnaSnvsCoverageFile" class="col-sm-3 col-form-label">Tumor RNA SNVs Coverage File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['trna_snvs_coverage_file']"
+                      placeholder="Select Tumor RNA SNVs Coverage File"
+                      id="tumorRnaSnvsCoverageFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Tumor RNA SNVs coverage file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tumorIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Tumor RNA Indels Coverage File</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="inputs$ | async"
+                      [formControl]="startForm.controls['trna_indels_coverage_file']"
+                      placeholder="Select Tumor Indels Coverage File"
+                      id="tumorIndelsCoverageFileDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Tumor RNA Indels coverage file</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="netChopMethodDropdown" class="col-sm-3 col-form-label">NetChop Method</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="netChopMethodOptions"
+                      [formControl]="startForm.controls['net_chop_method']"
+                      placeholder="Skip NetChop"
+                      id="netChopMethodDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>NetChop will be run if method specified here.</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="netChopThresholdSpinner" class="col-sm-3 col-form-label">NetChop Threshold</label>
+        <div class="col-sm-4">
+          <p-spinner [formControl]="startForm.controls['net_chop_threshold']"
+                     [step]="0.5"
+                     id="netChopSpinnerThreshold">
+          </p-spinner>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>NetChop prediction threshold</p>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="netMhcStabCheckbox" class="col-sm-3 col-form-label">NetMHC Stab</label>
+        <div class="col-sm-4">
+          <p-checkbox [formControl]="startForm.controls['netmhc_stab']"
+                      binary="true"
+                      id="netMhcStabCheckbox">
+          </p-checkbox>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Run NetMHCStabPan at the end of the pipeline</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="topResultPerMutationCheckbox" class="col-sm-3 col-form-label">Top Result Per Mutation</label>
+        <div class="col-sm-4">
+          <p-checkbox [formControl]="startForm.controls['top_result_per_mutation']"
+                      binary="true"
+                      id="topResultPerMutationCheckbox">
+          </p-checkbox>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Output top scoring candidate per allele-length per mutation</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="topScoreMetricDropdown" class="col-sm-3 col-form-label">Top Score Metric</label>
+        <div class="col-sm-4">
+          <p-dropdown [options]="topScoreMetricOptions"
+                      [formControl]="startForm.controls['top_score_metric']"
+                      placeholder="Select Top Score Metric"
+                      id="topScoreMetricDropdown">
+          </p-dropdown>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Metric for choosing best epitopes during binding filtering</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="bindingThresholdSpinner" class="col-sm-3 col-form-label">Binding Threshold</label>
+        <div class="col-sm-4">
+          <p-spinner [formControl]="startForm.controls['binding_threshold']"
+                     [step]="5"
+                     id="bindingThresholdSpinner">
+          </p-spinner>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>NetChop prediction threshold</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="minimumFoldChangeInput" class="col-sm-3 col-form-label">Minimum Fold Change</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['minimum_fold_change']"
+                 id="minimumFoldChangeInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['minimum_fold_change'].valid&&startForm.controls['minimum_fold_change'].dirty">
+            Minimum fold change required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Report only epitopes with a fold change between the mutant and wildtype sequences above this value</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="expressionValueInput" class="col-sm-3 col-form-label">Expression Cutoff</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['expn_val']"
+                 id="expressionValueInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['expn_val'].valid&&startForm.controls['expn_val'].dirty">
+            Expression cutoff required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Only sites above this expression cutoff will be considered</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="normalCoverageInput" class="col-sm-3 col-form-label">Normal Coverage Cutoff</label>
+        <div class="col-sm-4">
+          <input type="number" pInputText
+                 [formControl]="startForm.controls['normal_cov']"
+                 id="normalCoverageInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['normal_cov'].valid&&startForm.controls['normal_cov'].dirty">
+            Normal coverage cutoff required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Only sites above this normal cutoff will be considered</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tdnaCoverageInput" class="col-sm-3 col-form-label">Tumor DNA Coverage Cutoff</label>
+        <div class="col-sm-4">
+          <input type="number" pInputText
+                 [formControl]="startForm.controls['tdna_cov']"
+                 id="tdnaCoverageInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['tdna_cov'].valid&&startForm.controls['tdna_cov'].dirty">
+            Tumor DNA coverage cutoff required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Only sites above this tumor DNA cutoff will be considered</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="trnaCoverageInput" class="col-sm-3 col-form-label">Tumor RNA Coverage Cutoff</label>
+        <div class="col-sm-4">
+          <input type="number" pInputText
+                 [formControl]="startForm.controls['trna_cov']"
+                 id="trnaCoverageInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['trna_cov'].valid&&startForm.controls['trna_cov'].dirty">
+            Tumor RNA coverage cutoff required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Only sites above this tumor RNA coverge will be considered</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="normalVafInput" class="col-sm-3 col-form-label">Normal DNA VAF Cutoff</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['normal_vaf']"
+                 id="normalVafInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['normal_vaf'].valid&&startForm.controls['normal_vaf'].dirty">
+            Normal VAF cutoff required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Only sites below this normal DNA VAF will be considered</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tumorDnaVafInput" class="col-sm-3 col-form-label">Tumor DNA VAF Cutoff</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['tdna_vaf']"
+                 id="tumorDnaVafInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['tdna_vaf'].valid&&startForm.controls['tdna_vaf'].dirty">
+            Tumore DNA VAF cutoff required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Only sites below this tumor DNA VAF will be considered</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tumorRnaVafInput" class="col-sm-3 col-form-label">Tumor RNA VAF Cutoff</label>
+        <div class="col-sm-4">
+          <input type="number" pInputText
+                 [formControl]="startForm.controls['trna_vaf']"
+                 id="tumorRnaVafInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['trna_vaf'].valid&&startForm.controls['trna_vaf'].dirty">
+            Tumor RNA VAF cutoff required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Only sites below this tumor RNA VAF will be considered</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="fastaSizeInput" class="col-sm-3 col-form-label">FASTA Size Input</label>
+        <div class="col-sm-4">
+          <input type="number" pInputText
+                 [formControl]="startForm.controls['fasta_size']"
+                 id="fastaSizeInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['fasta_size'].valid&&startForm.controls['fasta_size'].dirty">
+            FASTA size required.
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Number of entries submitted to IEDB in each request. Must be an even number</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="iedbRetriesInput" class="col-sm-3 col-form-label">IEDB Retries</label>
+        <div class="col-sm-4">
+          <input type="number" pInputText
+                 [formControl]="startForm.controls['iedb_retries']"
+                 id="iedbRetriesInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['iedb_retries'].valid&&startForm.controls['iedb_retries'].dirty">
+            IEDB retries required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Number of retries when making requests to the IEDB RESTful web interface. Must be less than or equal to 100</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="downstreamSequenceLengthInput" class="col-sm-3 col-form-label">Downstream Sequence Length</label>
+        <div class="col-sm-4">
+          <input type="text" pInputText
+                 [formControl]="startForm.controls['downstream_sequence_length']"
+                 id="downstreamSequenceLengthInput"/>
+          <small class="form-text text-danger"
+                 *ngIf="!startForm.controls['downstream_sequence_length'].valid&&startForm.controls['downstream_sequence_length'].dirty">
+            Downstream sequence length required
+          </small>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Cap to limit the downstream sequence length for frameshifts when creating the fasta file. Use 'full' to include the full downstream sequence.</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="keepTmpFilesCheckbox" class="col-sm-3 col-form-label">Keep Temp Files</label>
+        <div class="col-sm-4">
+          <p-checkbox [formControl]="startForm.controls['keep_tmp_files']"
+                      binary="true"
+                      id="keepTmpFilesCheckbox">
+          </p-checkbox>
+        </div>
+        <div class="col-sm-5 col-form-help">
+          <p>Keep temporary files</p>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="col-sm-4 offset-sm-3 text-right form-button-row">
+          <button pButton type="submit"
+                  label="Launch Process"
+                  [ngClass]="{'ui-button-danger': lastStagingRequestOK === false, 'ui-button-primary': lastStagingRequestOK === true}"
+                  [icon]="submitButtonIcon"
+                  [disabled]="!startForm.valid || lastStagingRequest?.active"></button>
+        </div>
+        <div class="col-sm-6 offset-sm-2${res.status}  form-messages-row">
+          <p-messages [(value)]="startMessages" [closable]="false"></p-messages>
+        </div>
+      </div>
+
+      <!-- <div class="row"> -->
+      <!-- <div class="col-sm-4 offset-sm-3" > -->
+      <!-- <h4>Input Requests:</h4> -->
+      <!-- <pre>{{lastInputsRequest | json}}</pre> -->
+      <!-- </div> -->
+      <!-- <div class="col-sm-4"> -->
+      <!-- <h4>Last Staging Request:</h4> -->
+      <!-- <pre>{{lastStagingRequest | json}}</pre> -->
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- <div class="row"> -->
+      <!-- <div class="col" > -->
+      <!-- <h2>Form startForm.value</h2> -->
+      <!-- <pre>{{startForm.value|json}}</pre> -->
+      <!-- </div> -->
+      <!-- </div> -->
+    </form>
   </div>
-
-  <div class="form-group row">
-    <label for="alleles" class="col-sm-3 col-form-label">*Alleles</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['alleles']"
-             id="alleles"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['alleles'].valid&&startForm.controls['alleles'].dirty">
-        Alleles are required.
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Comma-separated list of alleles to run the sequences against</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="prediction_algorithms" class="col-sm-3 col-form-label">*Prediction Algorithms</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['prediction_algorithms']"
-             id="prediction_algoriths"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['prediction_algorithms'].valid&&startForm.controls['prediction_algorithms'].dirty">
-        Prediction algorithms are required.
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Comma-separated list of prediction algorithms to use</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="epitope_lengths" class="col-sm-3 col-form-label">Epitope Lengths</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['epitope_lengths']"
-             id="epitope_lengths"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['epitope_lengths'].valid&&startForm.controls['epitope_lengths'].dirty">
-        Epitope lengths are required.
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Comma-separated list of epitope lengths to produce</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="peptide_sequence_length" class="col-sm-3 col-form-label">Peptide Sequence Length</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['peptide_sequence_length']"
-             id="peptide_sequence_length"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['peptide_sequence_length'].valid&&startForm.controls['peptide_sequence_length'].dirty">
-        Peptide sequence length(s) are required.
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Length of the peptide sequences to produce in the FASTA</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="geneExpnFileDropdown" class="col-sm-3 col-form-label">Gene Expression File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['gene_expn_file']"
-                  placeholder="Select Gene Expression File"
-                  id="geneExpnFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Gene expression file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="transcriptExpnFileDropdown" class="col-sm-3 col-form-label">Transcript Expression File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['transcript_expn_file']"
-                  placeholder="Select Transcript Expression File"
-                  id="geneExpnFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Transcript expression file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="normalSnvsCoverageFileDropdown" class="col-sm-3 col-form-label">Normal SNVs Coverage File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['normal_snvs_coverage_file']"
-                  placeholder="Select Normal SVNs Coverage File"
-                  id="normalSnvsCoverageFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Normal SNVs coverage file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="normalIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Normal Indels Coverage File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['normal_indels_coverage_file']"
-                  placeholder="Select Normal Indels Coverage File"
-                  id="normalIndelsCoverageFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Normal Indels coverage file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="tumorDnaSnvsCoverageFile" class="col-sm-3 col-form-label">Tumor DNA SNVs Coverage File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['tdna_snvs_coverage_file']"
-                  placeholder="Select Tumor DNA SNVs Coverage File"
-                  id="tumorDnaSnvsCoverageFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Tumor DNA SNVs coverage file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="tumorIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Tumor DNA Indels Coverage File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['tdna_indels_coverage_file']"
-                  placeholder="Select Tumor Indels Coverage File"
-                  id="tumorIndelsCoverageFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Tumor DNA Indels coverage file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="tumorRnaSnvsCoverageFile" class="col-sm-3 col-form-label">Tumor RNA SNVs Coverage File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['trna_snvs_coverage_file']"
-                  placeholder="Select Tumor RNA SNVs Coverage File"
-                  id="tumorRnaSnvsCoverageFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Tumor RNA SNVs coverage file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="tumorIndelsCoverageFileDropdown" class="col-sm-3 col-form-label">Tumor RNA Indels Coverage File</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="inputs$ | async"
-                  [formControl]="startForm.controls['trna_indels_coverage_file']"
-                  placeholder="Select Tumor Indels Coverage File"
-                  id="tumorIndelsCoverageFileDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Tumor RNA Indels coverage file</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="netChopMethodDropdown" class="col-sm-3 col-form-label">NetChop Method</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="netChopMethodOptions"
-                  [formControl]="startForm.controls['net_chop_method']"
-                  placeholder="Skip NetChop"
-                  id="netChopMethodDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>NetChop will be run if method specified here.</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="netChopThresholdSpinner" class="col-sm-3 col-form-label">NetChop Threshold</label>
-    <div class="col-sm-4">
-      <p-spinner [formControl]="startForm.controls['net_chop_threshold']"
-                 [step]="0.5"
-                 id="netChopSpinnerThreshold">
-      </p-spinner>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>NetChop prediction threshold</p>
-    </div>
-  </div>
-
-
-  <div class="form-group row">
-    <label for="netMhcStabCheckbox" class="col-sm-3 col-form-label">NetMHC Stab</label>
-    <div class="col-sm-4">
-      <p-checkbox [formControl]="startForm.controls['netmhc_stab']"
-                  binary="true"
-                  id="netMhcStabCheckbox">
-      </p-checkbox>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Run NetMHCStabPan at the end of the pipeline</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="topResultPerMutationCheckbox" class="col-sm-3 col-form-label">Top Result Per Mutation</label>
-    <div class="col-sm-4">
-      <p-checkbox [formControl]="startForm.controls['top_result_per_mutation']"
-                  binary="true"
-                  id="topResultPerMutationCheckbox">
-      </p-checkbox>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Output top scoring candidate per allele-length per mutation</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="topScoreMetricDropdown" class="col-sm-3 col-form-label">Top Score Metric</label>
-    <div class="col-sm-4">
-      <p-dropdown [options]="topScoreMetricOptions"
-                  [formControl]="startForm.controls['top_score_metric']"
-                  placeholder="Select Top Score Metric"
-                  id="topScoreMetricDropdown">
-      </p-dropdown>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Metric for choosing best epitopes during binding filtering</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="bindingThresholdSpinner" class="col-sm-3 col-form-label">Binding Threshold</label>
-    <div class="col-sm-4">
-      <p-spinner [formControl]="startForm.controls['binding_threshold']"
-                 [step]="5"
-                 id="bindingThresholdSpinner">
-      </p-spinner>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>NetChop prediction threshold</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="minimumFoldChangeInput" class="col-sm-3 col-form-label">Minimum Fold Change</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['minimum_fold_change']"
-             id="minimumFoldChangeInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['minimum_fold_change'].valid&&startForm.controls['minimum_fold_change'].dirty">
-        Minimum fold change required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Report only epitopes with a fold change between the mutant and wildtype sequences above this value</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="expressionValueInput" class="col-sm-3 col-form-label">Expression Cutoff</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['expn_val']"
-             id="expressionValueInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['expn_val'].valid&&startForm.controls['expn_val'].dirty">
-        Expression cutoff required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Only sites above this expression cutoff will be considered</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="normalCoverageInput" class="col-sm-3 col-form-label">Normal Coverage Cutoff</label>
-    <div class="col-sm-4">
-      <input type="number" pInputText
-             [formControl]="startForm.controls['normal_cov']"
-             id="normalCoverageInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['normal_cov'].valid&&startForm.controls['normal_cov'].dirty">
-        Normal coverage cutoff required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Only sites above this normal cutoff will be considered</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="tdnaCoverageInput" class="col-sm-3 col-form-label">Tumor DNA Coverage Cutoff</label>
-    <div class="col-sm-4">
-      <input type="number" pInputText
-             [formControl]="startForm.controls['tdna_cov']"
-             id="tdnaCoverageInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['tdna_cov'].valid&&startForm.controls['tdna_cov'].dirty">
-        Tumor DNA coverage cutoff required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Only sites above this tumor DNA cutoff will be considered</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="trnaCoverageInput" class="col-sm-3 col-form-label">Tumor RNA Coverage Cutoff</label>
-    <div class="col-sm-4">
-      <input type="number" pInputText
-             [formControl]="startForm.controls['trna_cov']"
-             id="trnaCoverageInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['trna_cov'].valid&&startForm.controls['trna_cov'].dirty">
-        Tumor RNA coverage cutoff required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Only sites above this tumor RNA coverge will be considered</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="normalVafInput" class="col-sm-3 col-form-label">Normal DNA VAF Cutoff</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['normal_vaf']"
-             id="normalVafInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['normal_vaf'].valid&&startForm.controls['normal_vaf'].dirty">
-        Normal VAF cutoff required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Only sites below this normal DNA VAF will be considered</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="tumorDnaVafInput" class="col-sm-3 col-form-label">Tumor DNA VAF Cutoff</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['tdna_vaf']"
-             id="tumorDnaVafInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['tdna_vaf'].valid&&startForm.controls['tdna_vaf'].dirty">
-        Tumore DNA VAF cutoff required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Only sites below this tumor DNA VAF will be considered</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="tumorRnaVafInput" class="col-sm-3 col-form-label">Tumor RNA VAF Cutoff</label>
-    <div class="col-sm-4">
-      <input type="number" pInputText
-             [formControl]="startForm.controls['trna_vaf']"
-             id="tumorRnaVafInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['trna_vaf'].valid&&startForm.controls['trna_vaf'].dirty">
-        Tumor RNA VAF cutoff required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Only sites below this tumor RNA VAF will be considered</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="fastaSizeInput" class="col-sm-3 col-form-label">FASTA Size Input</label>
-    <div class="col-sm-4">
-      <input type="number" pInputText
-             [formControl]="startForm.controls['fasta_size']"
-             id="fastaSizeInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['fasta_size'].valid&&startForm.controls['fasta_size'].dirty">
-        FASTA size required.
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Number of entries submitted to IEDB in each request. Must be an even number</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="iedbRetriesInput" class="col-sm-3 col-form-label">IEDB Retries</label>
-    <div class="col-sm-4">
-      <input type="number" pInputText
-             [formControl]="startForm.controls['iedb_retries']"
-             id="iedbRetriesInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['iedb_retries'].valid&&startForm.controls['iedb_retries'].dirty">
-        IEDB retries required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Number of retries when making requests to the IEDB RESTful web interface. Must be less than or equal to 100</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="downstreamSequenceLengthInput" class="col-sm-3 col-form-label">Downstream Sequence Length</label>
-    <div class="col-sm-4">
-      <input type="text" pInputText
-             [formControl]="startForm.controls['downstream_sequence_length']"
-             id="downstreamSequenceLengthInput"/>
-      <small class="form-text text-danger"
-             *ngIf="!startForm.controls['downstream_sequence_length'].valid&&startForm.controls['downstream_sequence_length'].dirty">
-        Downstream sequence length required
-      </small>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Cap to limit the downstream sequence length for frameshifts when creating the fasta file. Use 'full' to include the full downstream sequence.</p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="keepTmpFilesCheckbox" class="col-sm-3 col-form-label">Keep Temp Files</label>
-    <div class="col-sm-4">
-      <p-checkbox [formControl]="startForm.controls['keep_tmp_files']"
-                  binary="true"
-                  id="keepTmpFilesCheckbox">
-      </p-checkbox>
-    </div>
-    <div class="col-sm-5 col-form-help">
-      <p>Keep temporary files</p>
-    </div>
-  </div>
-
-  <div class="row" >
-    <div class="col-sm-4 offset-sm-3 text-right form-button-row">
-      <button pButton type="submit"
-              label="Launch Process"
-              [ngClass]="{'ui-button-danger': lastStagingRequestOK === false, 'ui-button-primary': lastStagingRequestOK === true}"
-              [icon]="submitButtonIcon"
-              [disabled]="!startForm.valid || lastStagingRequest?.active"></button>
-    </div>
-    <div class="col-sm-6 offset-sm-2${res.status}  form-messages-row">
-      <p-messages [(value)]="startMessages" [closable]="false"></p-messages>
-    </div>
-  </div>
-
-  <!-- <div class="row"> -->
-  <!-- <div class="col-sm-4 offset-sm-3" > -->
-  <!-- <h4>Input Requests:</h4> -->
-  <!-- <pre>{{lastInputsRequest | json}}</pre> -->
-  <!-- </div> -->
-  <!-- <div class="col-sm-4"> -->
-  <!-- <h4>Last Staging Request:</h4> -->
-  <!-- <pre>{{lastStagingRequest | json}}</pre> -->
-  <!-- </div> -->
-  <!-- </div> -->
-  <!-- <div class="row"> -->
-  <!-- <div class="col" > -->
-  <!-- <h2>Form startForm.value</h2> -->
-  <!-- <pre>{{startForm.value|json}}</pre> -->
-  <!-- </div> -->
-  <!-- </div> -->
-</form>
+</div>
