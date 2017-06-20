@@ -29,7 +29,7 @@ import { SelectItem, Message } from 'primeng/primeng';
 
 export class StartFormComponent implements OnInit, OnDestroy {
   id: string; // unique ID for this component
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  private ngUnsubscribe: Subject<void> = new Subject<void>(); // technique to unsub from all subscribed onDestroy
   startForm: FormGroup;
 
   // observables
@@ -40,12 +40,13 @@ export class StartFormComponent implements OnInit, OnDestroy {
 
   // last server requests
   lastStagingRequest: ServerRequest;
-  lastStagingRequestOK: boolean;
   lastInputsRequest: ServerRequest;
-  lastInputsrequestOK: boolean;
 
   // UI classes, etc
-  submitButtonClass = 'ui-button-primary';
+  submitButtonClass = {
+    'ui-button-danger': 'lastStagingRequest?.response?.ok === false',
+    'ui-button-primary': 'lastStagingRequest?.response?.ok === true'
+  };
   submitButtonIcon = 'fa-play';
 
   startMessages: Message[] = [];
@@ -73,30 +74,33 @@ export class StartFormComponent implements OnInit, OnDestroy {
       .map(fileMap => _.valuesIn(fileMap))
       .map(files => _.map(files, (f: File) => { return { label: f.display_name, value: f.fileID }; }));
 
-    // monitors all start-form server requests
+    // provides all start-form server requests
     this.startFormRequests$ = store.select(state => state.store.serverRequests)
       .map(reqMap => _.valuesIn(reqMap)) // convert to array from object
       .filter(reqs => reqs.length > 0) // filter empty array
       .map(reqs => _.filter(reqs, req => req.component === this.id));
 
-    // monitors all staging server requests
+    // provides all staging server requests
     this.stagingRequest$ = this.startFormRequests$
       .map((reqs) => {
         return _.find(reqs, (req) => _.includes(req.url, 'staging'));
       })
       .filter(req => _.isObject(req));
 
-    // monitors all inputs server requests
+    // provides all inputs server requests
     this.inputsRequest$ = this.startFormRequests$
       .map((reqs) => {
         return _.find(reqs, (req) => _.includes(req.url, 'input'));
       })
       .filter(req => _.isObject(req));
 
+    // updates staging-related messages, icons
     this.stagingRequest$
       .takeUntil(this.ngUnsubscribe)
       .subscribe((request) => {
-        this.submitButtonIcon = request.active ? 'fa-spinner fa-spin' : 'fa-play';
+        this.lastStagingRequest = request;
+
+        // create success or error msg
         if (!_.isUndefined(request.response.ok)) {
           const res = request.response;
           if (res.ok === true) {
@@ -113,9 +117,20 @@ export class StartFormComponent implements OnInit, OnDestroy {
             });
           }
         }
-        this.lastStagingRequest = request;
+
+        // specify submit button icon
+        if (request.active) {
+          this.submitButtonIcon = 'fa-spinner fa-spin';
+        } else {
+          if (request.response.ok === true) {
+            this.submitButtonIcon = 'fa-check';
+          } else {
+            this.submitButtonIcon = 'fa-close';
+          }
+        }
       });
 
+    // updates inputs related messages,icons
     this.inputsRequest$
       .takeUntil(this.ngUnsubscribe)
       .subscribe(
