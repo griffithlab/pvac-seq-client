@@ -175,6 +175,12 @@ export class StartFormComponent implements OnInit, OnDestroy {
     this.startForm = fb.group(startFormGroup);
   }
 
+  clearErrors() {
+    this.lastStagingRequest = undefined;
+    this.startMessages = [];
+    this.submitButtonIcon = 'fa-play';
+  }
+
   loadInputs(): void {
     this.store.dispatch(new LoadInputsAction(this.id));
   }
