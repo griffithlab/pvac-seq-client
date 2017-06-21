@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../../store/models/app.model';
-import { Process, ProcessMap, ProcessSummary } from '../../../store/models/process.model';
+import { ProcessSummary } from '../../../store/models/process.model';
+import { mapProcessMapToProcessSummaries } from '../../../store/models/process.model';
 import { LoadProcessesAction } from '../../../store/actions/store.actions';
 
 @Component({
@@ -30,26 +30,4 @@ export class ResultProcessesComponent implements OnInit {
   ngOnInit() {
     this.loadProcesses();
   }
-}
-
-function mapProcessMapToProcessSummaries(processMap: ProcessMap): ProcessSummary[] {
-  const processes = _.chain(processMap)
-    .valuesIn<Process>()
-    .filter({ running: false })
-    .value();
-
-  return _.map(processes, (process) => {
-    return {
-      id: process.id,
-      alleles: _.join(process.parameters.alleles, ', '),
-      detail: process,
-      epitope_lengths: _.join(process.parameters.epitope_lengths, ', '),
-      file_count: _.size(process.files),
-      input_filename: _(process.parameters.input).split('/').last(),
-      prediction_algorithms: _.join(process.parameters.prediction_algorithms, ', '),
-      running: process.running,
-      samplename: process.parameters.samplename,
-      status: process.status,
-    };
-  });
 }
