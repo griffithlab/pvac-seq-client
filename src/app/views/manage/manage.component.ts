@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
