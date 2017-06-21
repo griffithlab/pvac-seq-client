@@ -93,6 +93,36 @@ function handleClearCompletedServerRequestAction(state: StoreState, action: Clea
   return newState;
 }
 
+// function handleServerRequestStartedAction(state: StoreState, action: ServerRequestStartedAction): StoreState {
+//   const request: ServerRequest = action.payload;
+//   const newState = Object.assign({}, state);
+//   const newServerRequests = Object.assign({}, state.serverRequests);
+
+//   newServerRequests[request.url] = request;
+//   newState.serverRequests = newServerRequests;
+
+//   return newState;
+// }
+
+// function handleServerRequestCompletedAction(state: StoreState, action: ServerRequestCompletedAction): StoreState {
+//   const response: ServerResponse = action.payload;
+//   const newState = Object.assign({}, state);
+//   const newServerRequests = _.cloneDeep(state.serverRequests);
+
+//   newServerRequests[response.url].response = response;
+//   newServerRequests[response.url].active = false;
+//   return newState;
+// }
+
+// function handleClearCompletedServerRequestAction(state: StoreState, action: ClearCompletedServerRequestAction): StoreState {
+//   const response: ServerResponse = action.payload;
+//   const newState = _.cloneDeep(state);
+
+//   newState.serverRequests = <ServerRequestMap>_.omit(newState.serverRequests, response.url);
+
+//   return newState;
+// }
+
 function handleProcessesLoadedAction(state: StoreState, action: ProcessesLoadedAction): StoreState {
   const processes = action.payload;
   const newState = Object.assign({}, state);
