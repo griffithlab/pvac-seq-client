@@ -71,57 +71,38 @@ export function storeReducer(state: StoreState = INITIAL_STORE_STATE, action: Ac
 
 function handleServerRequestStartedAction(state: StoreState, action: ServerRequestStartedAction): StoreState {
   const request: ServerRequest = action.payload;
-  const newState = _.cloneDeep(state);
-  newState.serverRequests[request.url] = request;
+  const newState = Object.assign({}, state);
+  const newServerRequests = Object.assign({}, state.serverRequests);
+
+  newServerRequests[request.url] = request;
+  newState.serverRequests = newServerRequests;
+
   return newState;
 }
 
 function handleServerRequestCompletedAction(state: StoreState, action: ServerRequestCompletedAction): StoreState {
   const response: ServerResponse = action.payload;
-  const newState = _.cloneDeep(state);
-  newState.serverRequests[response.url].response = response;
-  newState.serverRequests[response.url].active = false;
+  const newState = _.assign({}, state) as StoreState;
+  const newServerRequest = _.omit(state.serverRequests[response.url], ['active', 'response']) as ServerRequest;
+
+  newState.serverRequests = _.omit(newState.serverRequests[response.url]) as ServerRequestMap;
+
+  newServerRequest.active = false;
+  newServerRequest.response = response;
+
+  newState.serverRequests[response.url] = newServerRequest;
+
   return newState;
 }
 
 function handleClearCompletedServerRequestAction(state: StoreState, action: ClearCompletedServerRequestAction): StoreState {
   const response: ServerResponse = action.payload;
-  const newState = _.cloneDeep(state);
+  const newState = _.assign({}, state) as StoreState;
 
   newState.serverRequests = <ServerRequestMap>_.omit(newState.serverRequests, response.url);
 
   return newState;
 }
-
-// function handleServerRequestStartedAction(state: StoreState, action: ServerRequestStartedAction): StoreState {
-//   const request: ServerRequest = action.payload;
-//   const newState = Object.assign({}, state);
-//   const newServerRequests = Object.assign({}, state.serverRequests);
-
-//   newServerRequests[request.url] = request;
-//   newState.serverRequests = newServerRequests;
-
-//   return newState;
-// }
-
-// function handleServerRequestCompletedAction(state: StoreState, action: ServerRequestCompletedAction): StoreState {
-//   const response: ServerResponse = action.payload;
-//   const newState = Object.assign({}, state);
-//   const newServerRequests = _.cloneDeep(state.serverRequests);
-
-//   newServerRequests[response.url].response = response;
-//   newServerRequests[response.url].active = false;
-//   return newState;
-// }
-
-// function handleClearCompletedServerRequestAction(state: StoreState, action: ClearCompletedServerRequestAction): StoreState {
-//   const response: ServerResponse = action.payload;
-//   const newState = _.cloneDeep(state);
-
-//   newState.serverRequests = <ServerRequestMap>_.omit(newState.serverRequests, response.url);
-
-//   return newState;
-// }
 
 function handleProcessesLoadedAction(state: StoreState, action: ProcessesLoadedAction): StoreState {
   const processes = action.payload;
