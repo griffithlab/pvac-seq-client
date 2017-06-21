@@ -538,12 +538,20 @@
                             class="btn-block"
                             [ngClass]="{'ui-button-danger': lastStagingRequest?.response?.ok === false, 'ui-button-success': lastStagingRequest?.response?.ok === true}"
                             [icon]="submitButtonIcon"
-                            [disabled]="!startForm.valid || lastStagingRequest?.active || lastStagingRequest?.response?.ok === false">
+                            [disabled]="!startForm.valid || lastStagingRequest != undefined">
                     </button>
 
                     <button pButton
                             *ngIf="lastStagingRequest?.response?.ok === false"
                             label="Clear Errors"
+                            class="btn-block ui-button-default "
+                            (click)="clearErrors()"
+                            [icon]="fa-refresh">
+                    </button>
+
+                    <button pButton
+                            *ngIf="lastStagingRequest?.response?.ok === true"
+                            label="Start Another Process"
                             class="btn-block ui-button-default "
                             (click)="clearErrors()"
                             [icon]="fa-refresh">

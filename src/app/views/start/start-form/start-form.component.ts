@@ -133,9 +133,7 @@ export class StartFormComponent implements OnInit, OnDestroy {
     // updates inputs related messages,icons
     this.inputsRequest$
       .takeUntil(this.ngUnsubscribe)
-      .subscribe(
-      (request) => { this.lastInputsRequest = request; }
-      );
+      .subscribe((request) => { this.lastInputsRequest = request; });
 
     const startFormGroup = {
       'input': [null, [Validators.required]],
