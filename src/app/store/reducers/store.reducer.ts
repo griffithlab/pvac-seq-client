@@ -85,7 +85,7 @@ function handleServerRequestCompletedAction(state: StoreState, action: ServerReq
   const newState = _.assign({}, state) as StoreState;
   const newServerRequest = _.omit(state.serverRequests[response.url], ['active', 'response']) as ServerRequest;
 
-  newState.serverRequests = _.omit(newState.serverRequests[response.url]) as ServerRequestMap;
+  newState.serverRequests = _.omit(newState.serverRequests, response.url) as ServerRequestMap;
 
   newServerRequest.active = false;
   newServerRequest.response = response;
