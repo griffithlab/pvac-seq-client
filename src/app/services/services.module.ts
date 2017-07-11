@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpModule, RequestMethod } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import {
   HttpInterceptorModule,
   HttpInterceptorService
