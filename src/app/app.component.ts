@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SwaggerApiService } from './services/swagger-api.service';
 
 @Component({
   selector: 'body',
@@ -7,12 +6,5 @@ import { SwaggerApiService } from './services/swagger-api.service';
 })
 export class AppComponent {
 
-  private apiJson;
-
-  constructor(api: SwaggerApiService) {
-    api.getApi()
-      .subscribe((apiJson) => {
-        this.apiJson = apiJson;
-      });
-  }
+  constructor() { }
 }
