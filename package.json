@@ -40,6 +40,7 @@
     "lodash": "^4.17.4",
     "moment": "2.17.1",
     "ng-http-interceptor": "^3.1.1",
+    "ngx-resource": "^3.2.4",
     "ngx-restangular": "^1.0.11",
     "primeng": "^4.1.0-rc.2",
     "rxjs": "5.1.0",
