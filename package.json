@@ -29,9 +29,9 @@
     "@angular/platform-browser-dynamic": "^4.2.6",
     "@angular/router": "^4.2.6",
     "@ngrx/core": "^1.2.0",
-    "@ngrx/effects": "^2.0.3",
+    "@ngrx/effects": "^2.0.4",
     "@ngrx/router-store": "^1.2.6",
-    "@ngrx/store": "^2.2.2",
+    "@ngrx/store": "^2.2.3",
     "@ngrx/store-devtools": "^3.2.4",
     "chart.js": "2.4.0",
     "core-js": "2.4.1",
@@ -69,6 +69,6 @@
     "protractor": "5.1.0",
     "ts-node": "3.0.2",
     "tslint": "~4.5.0",
-    "typescript": "2.2.0"
+    "typescript": "2.4.1"
   }
 }
