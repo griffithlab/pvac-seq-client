@@ -11,7 +11,6 @@ import 'rxjs/add/operator/map';
 import * as _ from 'lodash';
 
 import { Process } from '../store/models/process.model';
-import { ConfigService } from './config.service';
 
 import { FlaskQueryEncoder } from './FlaskQueryEncoder';
 
@@ -24,23 +23,31 @@ interface IProcessGetParams {
   id: number;
 }
 
+interface IProcessArchiveParams {
+  id: number;
+}
+
 @Injectable()
 @ResourceParams({
   url: environment.apiEndpoint,
   pathPrefix: '/processes'
 })
-export class NewsRes extends Resource {
+export class ProcessService extends Resource {
 
   @ResourceAction({
     isArray: true
   })
-  query: ResourceMethod<IProcessGetParams, Process[]>;
+  query: ResourceMethod<IProcessQueryParams, Process[]>;
 
   @ResourceAction({
     path: '/{!id}'
   })
-  get: ResourceMethod<{ id: any }, Process>;
+  get: ResourceMethod<IProcessGetParams, Process>;
 
+  @ResourceAction({
+    path: '/archive/{!id}'
+  })
+  archive: ResourceMethod<IProcessArchiveParams, Process>;
 }
 
 // @Injectable()

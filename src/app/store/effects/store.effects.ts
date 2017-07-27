@@ -43,6 +43,7 @@ export class LoadProcessesEffectService {
     .ofType(LOAD_PROCESSES_ACTION)
     .switchMap((action) => {
       return this.processService.query()
+        .$observable
         .map(processes => new ProcessesLoadedAction(processes))
         .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading processes.')));
     });
@@ -58,6 +59,7 @@ export class LoadProcessEffectService {
     .ofType(LOAD_PROCESS_ACTION)
     .switchMap((action) => {
       return this.processService.get(action.payload)
+        .$observable
         .map(process => new ProcessLoadedAction(process))
         .catch(() => Observable.of(new ErrorOccurredAction('Error Ocurred while loading process.')));
     });
@@ -90,6 +92,7 @@ export class ArchiveProcessEffectService {
     .ofType(ARCHIVE_PROCESS_ACTION)
     .switchMap((action) => {
       return this.processService.archive(action.payload)
+        .$observable
         .flatMap((response) => {
           const processId = action.payload;
           return [
