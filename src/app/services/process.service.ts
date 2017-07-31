@@ -1,6 +1,8 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
 
+import { Resource, ResourceParams, ResourceAction, ResourceMethod } from 'ngx-resource';
 import { Restangular } from 'ngx-restangular';
 
 import { Observable } from 'rxjs/Rx';
@@ -13,14 +15,53 @@ import { ConfigService } from './config.service';
 
 import { FlaskQueryEncoder } from './FlaskQueryEncoder';
 
+interface IProcessQueryParams {
+  page?: number;
+  perPage?: number;
+}
+
+interface IProcessGetParams {
+  id: number;
+}
+
+interface IProcessArchiveParams {
+  id: number;
+}
+
+@Injectable()
+@ResourceParams({
+  url: environment.apiEndpoint,
+  pathPrefix: '/processes'
+})
+export class ProcessResource extends Resource {
+
+  @ResourceAction({
+    isArray: true
+  })
+  query: ResourceMethod<IProcessQueryParams, Process[]>;
+
+  @ResourceAction({
+    path: '/{!id}'
+  })
+  get: ResourceMethod<IProcessGetParams, Process>;
+
+  @ResourceAction({
+    path: '/archive/{!id}'
+  })
+  archive: ResourceMethod<IProcessArchiveParams, Process>;
+}
+
 @Injectable()
 export class ProcessService {
+  private processResource: ProcessResource;
   private api: string;
 
   constructor(
+    private pResource: ProcessResource,
     private restangular: Restangular,
     private config: ConfigService,
   ) {
+    this.processResource = pResource;
     this.api = config.apiUrl();
   }
 

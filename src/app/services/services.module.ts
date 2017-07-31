@@ -17,7 +17,7 @@ import { RestangularModule } from 'ngx-restangular';
 
 import { ConfigService } from './config.service';
 import { SwaggerApiService } from './swagger-api.service';
-import { ProcessService } from './process.service';
+import { ProcessResource, ProcessService } from './process.service';
 import { InputService } from './input.service';
 import { FileService } from './file.service';
 
@@ -35,6 +35,7 @@ export function RestangularConfigFactory(RestangularProvider) {
   providers: [
     ConfigService,
     SwaggerApiService,
+    ProcessResource,
     ProcessService,
     InputService,
     FileService,
