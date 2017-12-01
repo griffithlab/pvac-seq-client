@@ -24,7 +24,7 @@ export class FileService {
 }
 
 function mapFiles(res: Response): File[] {
-  return res.json().map(mapFile);
+  return res.json().result.map(mapFile);
 }
 
 function mapFile(f: {}): File {

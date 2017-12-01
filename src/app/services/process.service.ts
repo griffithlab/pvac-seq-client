@@ -60,7 +60,7 @@ export class ProcessService {
 }
 
 function mapProcesses(res: Response): Process[] {
-  return res.json().map(toProcess);
+  return res.json().result.map(toProcess);
 }
 
 function mapProcess(res: Response): Process {
